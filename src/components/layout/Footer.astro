@@ -1,0 +1,229 @@
+---
+import Logo from '../ui/Logo.astro';
+
+const services = [
+  { href: '/services/roofing-seo', label: 'Roofing SEO' },
+  { href: '/services/gutter-marketing', label: 'Gutter Marketing' },
+  { href: '/services/siding-marketing', label: 'Siding Marketing' },
+  { href: '/services/web-design', label: 'Web Design' },
+  { href: '/services/google-ads', label: 'Google Ads' },
+  { href: '/services/local-seo', label: 'Local SEO' },
+];
+
+const serviceAreas = [
+  { href: '/locations/roanoke', label: 'Roanoke, VA' },
+  { href: '/locations/salem', label: 'Salem, VA' },
+  { href: '/locations/vinton', label: 'Vinton, VA' },
+  { href: '/locations/botetourt-county', label: 'Botetourt County' },
+  { href: '/locations/bedford-county', label: 'Bedford County' },
+  { href: '/locations/new-river-valley', label: 'New River Valley' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__main container">
+    <div class="footer__brand">
+      <Logo variant="inverse" height={32} linkTo="/" />
+      <p class="footer__tagline">
+        Specialist marketing for Roanoke roofing and exterior contractors. Phone calls and booked jobs. That's the metric.
+      </p>
+      <address class="footer__nap">
+        <span class="footer__nap-name">Roava Digital</span><br />
+        Roanoke, Virginia<br />
+        <!-- TODO: Add phone number -->
+        <a href="mailto:hello@roavadigital.com">hello@roavadigital.com</a>
+      </address>
+    </div>
+
+    <nav class="footer__nav" aria-label="Services navigation">
+      <h4 class="footer__heading">Services</h4>
+      <ul class="footer__list" role="list">
+        {services.map(({ href, label }) => (
+          <li>
+            <a href={href} class="footer__link">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="footer__nav" aria-label="Service areas navigation">
+      <h4 class="footer__heading">Service Areas</h4>
+      <ul class="footer__list" role="list">
+        {serviceAreas.map(({ href, label }) => (
+          <li>
+            <a href={href} class="footer__link">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__bottom-inner container">
+      <p class="footer__copyright">
+        &copy; {currentYear} Roava Digital. All rights reserved.
+      </p>
+      <nav class="footer__legal" aria-label="Legal navigation">
+        <a href="/legal/privacy" class="footer__legal-link">Privacy Policy</a>
+        <a href="/legal/terms" class="footer__legal-link">Terms of Service</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+    border-top: 3px solid var(--color-brand-gold);
+  }
+
+  .footer__main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-12);
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .footer__tagline {
+    font-size: var(--text-sm);
+    color: rgba(250, 247, 241, 0.75);
+    line-height: var(--leading-relaxed);
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .footer__nap {
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: rgba(250, 247, 241, 0.75);
+    line-height: var(--leading-relaxed);
+  }
+
+  .footer__nap-name {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-inverse);
+  }
+
+  .footer__nap a {
+    color: var(--color-brand-gold);
+    text-decoration: none;
+  }
+
+  .footer__nap a:hover {
+    text-decoration: underline;
+  }
+
+  .footer__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-brand-gold);
+    margin-bottom: var(--space-4);
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__link {
+    font-size: var(--text-sm);
+    color: rgba(250, 247, 241, 0.75);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__link:hover {
+    color: var(--color-text-inverse);
+  }
+
+  .footer__link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(250, 247, 241, 0.15);
+  }
+
+  .footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+    gap: var(--space-4);
+  }
+
+  .footer__copyright {
+    font-size: var(--text-xs);
+    color: rgba(250, 247, 241, 0.5);
+    margin: 0;
+  }
+
+  .footer__legal {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .footer__legal-link {
+    font-size: var(--text-xs);
+    color: rgba(250, 247, 241, 0.5);
+    text-decoration: none;
+  }
+
+  .footer__legal-link:hover {
+    color: var(--color-text-inverse);
+  }
+
+  .footer__legal-link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 900px) {
+    .footer__main {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer__main {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .footer__brand {
+      grid-column: auto;
+    }
+
+    .footer__bottom-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+  }
+</style>

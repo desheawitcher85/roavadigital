@@ -1,0 +1,98 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://roavadigital.com/locations' },
+    { '@type': 'ListItem', position: 3, name: 'Bedford County', item: 'https://roavadigital.com/locations/bedford-county' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Exterior Contractor Marketing in Bedford County, VA | Roava Digital"
+  description="Local SEO and Google Ads for contractors serving Bedford County, VA. Forest, Bedford City, and surrounding communities. Part of the Roanoke MSA retainer."
+  canonicalUrl="https://roavadigital.com/locations/bedford-county"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="loc-hero" aria-labelledby="loc-headline">
+    <div class="container loc-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/locations" class="breadcrumb__link">Locations</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Bedford County</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Bedford County, Virginia</span>
+      <h1 id="loc-headline" class="loc-hero__headline">
+        Roofing and contractor marketing in Bedford County, VA
+      </h1>
+      <p class="loc-hero__subhead">
+        Bedford County, particularly the Forest corridor south of Roanoke, has dense residential development and active home services demand. Contractors without dedicated Bedford coverage are leaving those searches to competitors.
+      </p>
+      <p class="hero-lead">Roava Digital serves contractors operating in Bedford County, Virginia, covering Forest, Bedford City, and surrounding communities. Bedford County location pages, GBP service area configuration, and Bedford-specific keyword targeting are included in the standard Roanoke MSA retainer. The Forest area in particular has higher average home values and consistent exterior work demand.</p>
+      <div class="loc-hero__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+        <Button href="/contact" variant="ghost" size="lg">Talk to DeShea</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-content-section" aria-labelledby="market-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="market-heading">The Bedford County opportunity for contractors</h2>
+      </div>
+      <div class="loc-prose">
+        <p>The Forest area of Bedford County is one of the fastest-growing residential communities in the Roanoke region. Larger homes, newer subdivisions, and higher household incomes make it a high-value target for roofing and exterior contractors. Searches like "roofer Forest VA," "roofing company Bedford County," and "gutter installation Forest Virginia" represent real demand that dedicated local search coverage captures.</p>
+        <p>Most Roanoke-based contractors include Bedford County in their service area but don't have dedicated location pages or content targeting Bedford-specific searches. The competitive landscape there is less crowded than in Roanoke City, making it one of the easier markets to rank in within the MSA.</p>
+        <p>Bedford County coverage is part of the standard Roanoke MSA retainer. No additional fee. A dedicated location page and GBP configuration for Bedford are built in the first 60 days of an engagement.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Bedford County, VA"
+    headline="Capture the Bedford County jobs your competitors aren't targeting"
+    body="A free audit shows your current Bedford visibility and the gaps available to claim. 48 hours."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See Roanoke coverage"
+    secondaryCtaHref="/locations/roanoke"
+  />
+</MarketingLayout>
+
+<style>
+  .loc-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .loc-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .loc-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .loc-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 640px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .loc-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .loc-content-section { background: var(--color-surface-white); padding: var(--space-16) 0; }
+  .loc-prose { display: flex; flex-direction: column; gap: var(--space-5); max-width: 720px; }
+  .loc-prose p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+  @media (max-width: 600px) { .loc-hero { padding: var(--space-12) 0; } }
+</style>

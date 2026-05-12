@@ -1,0 +1,525 @@
+---
+import MarketingLayout from '../components/layout/MarketingLayout.astro';
+import Button from '../components/ui/Button.astro';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'DeShea Witcher',
+  jobTitle: 'Founder',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Roava Digital',
+    url: 'https://roavadigital.com',
+  },
+  url: 'https://roavadigital.com/about',
+  image: 'https://roavadigital.com/deshea-witcher.jpg',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://roavadigital.com/about' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="About Roava Digital | DeShea Witcher"
+  description="Roava Digital is DeShea Witcher. 15 years of B2B marketing applied to Roanoke roofing and exterior contractors. One operator, one market, no account managers."
+  canonicalUrl="https://roavadigital.com/about"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- Header -->
+  <section class="about-header" aria-labelledby="about-heading">
+    <div class="container about-header__inner">
+      <span class="eyebrow">Roanoke, Virginia</span>
+      <h1 id="about-heading" class="about-header__headline">
+        I run the campaigns myself. There's no account manager between us.
+      </h1>
+      <p class="about-header__subhead">
+        Roava Digital is one person with a specific focus: roofing and exterior contractors in the Roanoke MSA. You work directly with me, every month.
+      </p>
+    </div>
+  </section>
+
+  <!-- Bio section -->
+  <section class="about-bio" aria-label="About DeShea Witcher">
+    <div class="container about-bio__grid">
+      <div class="about-bio__photo-wrap">
+        <figure class="about-photo">
+          <img
+            src="/deshea-witcher.jpg"
+            alt="DeShea Witcher, founder of Roava Digital"
+            class="about-photo__img"
+            width="480"
+            height="560"
+            loading="eager"
+          />
+          <figcaption class="about-photo__caption">
+            <span class="about-photo__name">DeShea Witcher</span>
+            <span class="about-photo__title">Founder, Roava Digital</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="about-bio__content">
+        <div class="about-bio__text">
+          <p>I've spent 15 years in B2B marketing. Currently VP of Marketing at an enterprise software company, where I run demand generation across multiple product lines. Before that, similar work at similar scale. I know how to build a lead-generation machine: the attribution tracking, the conversion optimization, the systematic testing that turns marketing spend into pipeline.</p>
+          <p>I started Roava Digital because the Roanoke roofing and exterior contractor market is genuinely underserved. Most contractors are either getting low-quality generalist SEO, running Google Ads without conversion tracking, or doing nothing at all. The gap between what's possible and what's actually being done is large.</p>
+          <p>The work isn't complicated. It's consistent execution of the right fundamentals: a complete Google Business Profile, clean citations, service pages that match real searches, and a steady review velocity. Most agencies know this. Few actually do it well month after month.</p>
+          <p>I'm not building a large agency. Roava serves a small number of clients in one market. That's intentional. It means I'm doing the work, not managing people who do the work.</p>
+        </div>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat__number">15</div>
+            <div class="about-stat__label">years in B2B marketing and demand generation</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat__number">1</div>
+            <div class="about-stat__label">market served. Roanoke MSA only. Focus is the point.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach section -->
+  <section class="about-approach" aria-labelledby="approach-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="approach-heading">How I work with clients</h2>
+        <p class="section-head__intro">Three things that aren't negotiable. Everything else is flexible.</p>
+      </div>
+      <div class="approach-list">
+        <div class="approach-item">
+          <div class="approach-item__number" aria-hidden="true">1</div>
+          <div class="approach-item__content">
+            <h3 class="approach-item__title">No mystery. You see exactly what was done.</h3>
+            <p class="approach-item__body">Every month you get a written report covering GBP activity, citation changes, content published, rank tracking across 20+ keywords, and Google Search Console data. Not a dashboard you have to interpret. A written account of what happened and what it means.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-item__number" aria-hidden="true">2</div>
+          <div class="approach-item__content">
+            <h3 class="approach-item__title">No fabricated results or inflated projections.</h3>
+            <p class="approach-item__body">I won't tell you that SEO produces calls in 30 days when it doesn't. I won't show you traffic graphs with made-up before states. I'll tell you what's realistic for your specific situation in the Roanoke market, and I'll report actual numbers against those projections.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-item__number" aria-hidden="true">3</div>
+          <div class="approach-item__content">
+            <h3 class="approach-item__title">If it's not working, I'll tell you first.</h3>
+            <p class="approach-item__body">I'd rather end an engagement that isn't producing results than keep billing. If the market conditions change, if your business model shifts, or if the strategy isn't moving the needle, I'll surface that conversation before you have to.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Current client callout -->
+  <section class="about-client" aria-label="Current client">
+    <div class="container about-client__inner">
+      <div class="about-client__content">
+        <h2 class="about-client__heading">Currently working with Blue Ridge NanoGuard</h2>
+        <p class="about-client__body">Blue Ridge NanoGuard is a Roanoke-based roofing and exterior coatings contractor. Their SEO and local search campaign is active and results are in progress. Real numbers will be published as a case study when there's enough data to be meaningful.</p>
+        <p class="about-client__body">I'm not fabricating results to make the portfolio look full. When the data is real, you'll see it.</p>
+        <a href="/case-studies/blue-ridge-nanoguard" class="about-client__link">
+          See the case study in progress
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="about-client__logo-wrap" aria-hidden="true">
+        <img src="/nanoguard-logo.png" alt="" class="about-client__logo" width="160" height="48" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta" aria-labelledby="about-cta-heading">
+    <div class="container about-cta__inner">
+      <h2 id="about-cta-heading" class="about-cta__headline">Ready to see what's possible in your market?</h2>
+      <p class="about-cta__body">Start with the free audit. It takes 2 minutes to request and 48 hours to deliver. You'll have specific findings before we talk about anything else.</p>
+      <div class="about-cta__actions">
+        <Button href="/free-audit" variant="secondary" size="lg" withArrow={true}>Request a free audit</Button>
+        <Button href="/contact" variant="ghost" size="lg">Get in touch directly</Button>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>
+
+<style>
+  /* ===== HEADER ===== */
+  .about-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .about-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .about-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .about-header__subhead {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 580px;
+    margin: 0;
+  }
+
+  /* ===== BIO SECTION ===== */
+  .about-bio {
+    background: var(--color-surface-white);
+    padding: var(--space-16) 0;
+  }
+
+  .about-bio__grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  /* ===== PHOTO ===== */
+  .about-photo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+    position: sticky;
+    top: 96px;
+  }
+
+  .about-photo__img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: block;
+  }
+
+  .about-photo__caption {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .about-photo__name {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    display: block;
+  }
+
+  .about-photo__title {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 1px;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    display: block;
+  }
+
+  /* ===== BIO CONTENT ===== */
+  .about-bio__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .about-bio__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .about-bio__text p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .about-stat {
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface-cream);
+    border-left: 4px solid var(--color-brand-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .about-stat__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    line-height: 0.75;
+    letter-spacing: -1px;
+  }
+
+  .about-stat__label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ===== APPROACH ===== */
+  .about-approach {
+    background: var(--color-surface-cream);
+    padding: var(--space-16) 0;
+  }
+
+  .approach-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 840px;
+  }
+
+  .approach-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .approach-item:first-child {
+    padding-top: 0;
+  }
+
+  .approach-item:last-child {
+    border-bottom: none;
+  }
+
+  .approach-item__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-gold);
+    background: var(--color-brand-gold-tint);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .approach-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .approach-item__title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .approach-item__body {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== CLIENT CALLOUT ===== */
+  .about-client {
+    background: var(--color-surface-white);
+    padding: var(--space-16) 0;
+  }
+
+  .about-client__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-12);
+    align-items: center;
+    background: var(--color-surface-teal-tint);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-10) var(--space-12);
+  }
+
+  .about-client__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .about-client__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .about-client__body {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .about-client__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    text-decoration: none;
+    margin-top: var(--space-2);
+    transition: gap var(--transition-fast);
+  }
+
+  .about-client__link:hover {
+    gap: var(--space-3);
+  }
+
+  .about-client__link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .about-client__logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+  }
+
+  .about-client__logo {
+    max-width: 160px;
+    height: auto;
+    opacity: 0.8;
+  }
+
+  /* ===== CTA ===== */
+  .about-cta {
+    background: var(--color-brand-teal);
+    padding: var(--space-16) 0;
+  }
+
+  .about-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-6);
+  }
+
+  .about-cta__headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-inverse);
+    margin: 0;
+  }
+
+  .about-cta__body {
+    font-size: var(--text-lg);
+    color: rgba(250, 247, 241, 0.8);
+    line-height: var(--leading-relaxed);
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .about-cta__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1000px) {
+    .about-bio__grid {
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-12);
+    }
+  }
+
+  @media (max-width: 800px) {
+    .about-bio__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-photo {
+      position: static;
+      max-width: 360px;
+    }
+
+    .about-client__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      padding: var(--space-8);
+    }
+
+    .about-client__logo-wrap {
+      justify-content: flex-start;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .about-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .about-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .approach-item {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .approach-item__number {
+      margin-top: 0;
+    }
+
+    .about-cta__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,98 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://roavadigital.com/locations' },
+    { '@type': 'ListItem', position: 3, name: 'Botetourt County', item: 'https://roavadigital.com/locations/botetourt-county' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Exterior Contractor Marketing in Botetourt County, VA | Roava Digital"
+  description="Local SEO and Google Ads for contractors serving Botetourt County, VA. Daleville, Troutville, Fincastle coverage. Specific local search strategy for the northern Roanoke MSA."
+  canonicalUrl="https://roavadigital.com/locations/botetourt-county"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="loc-hero" aria-labelledby="loc-headline">
+    <div class="container loc-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/locations" class="breadcrumb__link">Locations</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Botetourt County</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Botetourt County, Virginia</span>
+      <h1 id="loc-headline" class="loc-hero__headline">
+        Roofing and contractor marketing in Botetourt County, VA
+      </h1>
+      <p class="loc-hero__subhead">
+        Botetourt County, including Daleville, Troutville, and Fincastle, has growing residential density north of Roanoke. Homeowners here search locally and contractors without a Botetourt presence leave those searches to competitors.
+      </p>
+      <p class="hero-lead">Roava Digital serves contractors operating in Botetourt County, Virginia as part of the Roanoke MSA service area. This covers Daleville, Troutville, Fincastle, and surrounding communities. Botetourt County location pages, GBP service area configuration, and targeted ad coverage are included in the standard retainer. The county's lower competition makes it a strong local search opportunity.</p>
+      <div class="loc-hero__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+        <Button href="/contact" variant="ghost" size="lg">Talk to DeShea</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-content-section" aria-labelledby="market-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="market-heading">Why Botetourt County is worth targeting separately</h2>
+      </div>
+      <div class="loc-prose">
+        <p>Botetourt County has added significant residential growth in the Daleville and Troutville corridors over the past decade. Newer housing stock means regular roofing and exterior work as properties age, and homeowners in these communities tend to have higher average household incomes and larger homes than the Roanoke core market.</p>
+        <p>Searches like "roofer Daleville VA," "roofing company Botetourt County," and "gutter installation Troutville" represent a market that most Roanoke-based contractors ignore in their local search strategy. Dedicated Botetourt content captures that traffic at lower competition than the Roanoke core market.</p>
+        <p>Botetourt County is part of the standard Roanoke MSA retainer. A dedicated location page, proper GBP service area settings, and county-specific keyword targeting are all included.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Botetourt County, VA"
+    headline="Reach Botetourt County homeowners searching for contractors"
+    body="Free audit covers your current Botetourt visibility and competitor gaps. Results in 48 hours."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See Roanoke coverage"
+    secondaryCtaHref="/locations/roanoke"
+  />
+</MarketingLayout>
+
+<style>
+  .loc-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .loc-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .loc-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .loc-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 640px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .loc-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .loc-content-section { background: var(--color-surface-white); padding: var(--space-16) 0; }
+  .loc-prose { display: flex; flex-direction: column; gap: var(--space-5); max-width: 720px; }
+  .loc-prose p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+  @media (max-width: 600px) { .loc-hero { padding: var(--space-12) 0; } }
+</style>

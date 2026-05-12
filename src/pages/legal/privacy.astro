@@ -1,0 +1,198 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: 'https://roavadigital.com/legal/privacy' },
+  ],
+};
+
+const lastUpdated = 'May 2026';
+---
+
+<MarketingLayout
+  title="Privacy Policy | Roava Digital"
+  description="Roava Digital privacy policy. How we collect, use, and protect information submitted through the Roava Digital website."
+  canonicalUrl="https://roavadigital.com/legal/privacy"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <meta name="robots" content="noindex, follow" />
+  </Fragment>
+
+  <section class="legal-header" aria-labelledby="legal-heading">
+    <div class="container legal-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Privacy Policy</li>
+        </ol>
+      </nav>
+      <h1 id="legal-heading" class="legal-header__headline">Privacy Policy</h1>
+      <p class="legal-header__meta">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="legal-body" aria-label="Privacy policy content">
+    <div class="container legal-body__inner">
+      <div class="legal-content">
+
+        <h2>Who we are</h2>
+        <p>Roava Digital is a marketing agency serving roofing and exterior contractors in the Roanoke, Virginia metropolitan area. Our website is roavadigital.com. For questions about this policy, contact us at hello@roavadigital.com.</p>
+
+        <h2>What information we collect</h2>
+        <p>We collect information you provide directly when you:</p>
+        <ul>
+          <li>Submit the free audit request form</li>
+          <li>Submit the contact form</li>
+          <li>Email us directly</li>
+        </ul>
+        <p>This may include your name, business name, email address, phone number, website URL, city, and the message or details you provide. We do not collect payment information through this website.</p>
+
+        <h2>How we use your information</h2>
+        <p>Information you submit is used to:</p>
+        <ul>
+          <li>Respond to your inquiry or request</li>
+          <li>Deliver the audit or assessment you requested</li>
+          <li>Follow up on potential business inquiries</li>
+        </ul>
+        <p>We do not sell, rent, or share your personal information with third parties for their marketing purposes.</p>
+
+        <h2>Email communications</h2>
+        <p>If you submit a form on this site, you may receive follow-up emails related to your inquiry. You can opt out of further contact at any time by replying to any email with "unsubscribe" or by contacting us at hello@roavadigital.com.</p>
+
+        <h2>Cookies and analytics</h2>
+        <p>This site may use cookies or similar technologies for basic functionality and analytics. Analytics data helps us understand how visitors use the site. If we add third-party analytics or tracking tools, we will update this policy accordingly.</p>
+        <p>You can disable cookies in your browser settings. Disabling cookies does not prevent you from using the site.</p>
+
+        <h2>Third-party services</h2>
+        <p>This site is hosted on Vercel. Form submissions are processed through our server infrastructure. We do not use third-party CRM or marketing automation tools that would receive your personal data without your knowledge.</p>
+
+        <h2>Data retention</h2>
+        <p>We retain inquiry information for as long as it is relevant to a potential or active business relationship. If you would like your information deleted, contact us at hello@roavadigital.com and we will respond within 10 business days.</p>
+
+        <h2>Your rights (Virginia residents)</h2>
+        <p>Under the Virginia Consumer Data Protection Act (VCDPA), Virginia residents have rights including the right to access, correct, and delete personal data we hold about them. To exercise these rights, contact us at hello@roavadigital.com. We will respond within 45 days.</p>
+
+        <h2>Children's privacy</h2>
+        <p>This website is not directed at children under 13 and we do not knowingly collect information from children under 13.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>We may update this policy as our practices change. The "last updated" date at the top of this page will reflect when changes were made. Continued use of this site after changes constitutes acceptance of the updated policy.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about this privacy policy: hello@roavadigital.com</p>
+
+      </div>
+    </div>
+  </section>
+</MarketingLayout>
+
+<style>
+  .legal-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .legal-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .legal-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: var(--weight-black);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .legal-header__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== LEGAL BODY ===== */
+  .legal-body {
+    background: var(--color-surface-white);
+    padding: var(--space-12) 0 var(--space-24);
+  }
+
+  .legal-body__inner {
+    max-width: 760px;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .legal-content h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-10) 0 var(--space-3);
+    line-height: var(--leading-snug);
+  }
+
+  .legal-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal-content p {
+    margin: 0 0 var(--space-4);
+  }
+
+  .legal-content ul {
+    padding-left: var(--space-6);
+    margin: 0 0 var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .legal-content li {
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 600px) {
+    .legal-header {
+      padding: var(--space-12) 0;
+    }
+  }
+</style>

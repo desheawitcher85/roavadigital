@@ -1,0 +1,67 @@
+---
+interface Props {
+  background?: 'cream' | 'white' | 'teal' | 'teal-tint';
+  id?: string;
+  class?: string;
+  contained?: boolean;
+}
+
+const {
+  background = 'cream',
+  id,
+  class: className,
+  contained = true,
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['section', `section--${background}`, className]}
+>
+  {contained ? (
+    <div class="container">
+      <slot />
+    </div>
+  ) : (
+    <slot />
+  )}
+</section>
+
+<style>
+  .section {
+    padding: var(--section-padding-desktop) 0;
+  }
+
+  .section--cream {
+    background: var(--color-surface-cream);
+  }
+
+  .section--white {
+    background: var(--color-surface-white);
+  }
+
+  .section--teal {
+    background: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+  }
+
+  .section--teal-tint {
+    background: var(--color-surface-teal-tint);
+  }
+
+  .section--teal :global(h1),
+  .section--teal :global(h2),
+  .section--teal :global(h3) {
+    color: var(--color-text-inverse);
+  }
+
+  .section--teal :global(p) {
+    color: rgba(250, 247, 241, 0.85);
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: var(--section-padding-mobile) 0;
+    }
+  }
+</style>

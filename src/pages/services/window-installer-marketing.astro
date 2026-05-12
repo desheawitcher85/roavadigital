@@ -1,0 +1,379 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+import Button from '../../components/ui/Button.astro';
+
+const faqItems = [
+  {
+    question: 'What search terms do homeowners use to find window installers in Roanoke?',
+    answer: 'The highest-converting terms are "window replacement Roanoke VA," "window company Roanoke," and city-specific variants like "window installation Salem VA." Energy efficiency terms like "energy efficient windows Roanoke" generate lower volume but higher-intent leads from homeowners mid-decision.',
+  },
+  {
+    question: 'Is window installation more competitive than roofing in local search?',
+    answer: 'Generally less competitive. Roofing has more contractors, more search volume, and a more aggressive local SEO market. A window installer with a solid GBP, 40 to 60 reviews, and consistent citations can reach the top 3 faster than an equivalent roofing contractor.',
+  },
+  {
+    question: 'How do I differentiate a window installer in local search results?',
+    answer: 'Beyond review count and GBP completeness, differentiators that matter in search are: manufacturer certifications (Andersen, Pella, Marvin), specific product types (casement, double-hung, picture windows), and service area specificity. Homeowners searching for a specific brand or window type are closer to buying.',
+  },
+  {
+    question: 'Do I need separate pages for different window types?',
+    answer: "It depends on your volume. If you install enough of a specific type (bay windows, storm windows, egress windows) to justify the content, yes. Individual product or application pages can rank for long-tail searches that your homepage won't touch.",
+  },
+  {
+    question: 'How does Roava handle window installer marketing differently than a generalist agency?',
+    answer: 'The keyword research and competitor analysis are built from Roanoke-specific data, not national averages. Local search patterns for window contractors in Roanoke are different from those in Richmond or Northern Virginia. Roava uses what the actual market shows, not what a template says.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Window Installer Marketing',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'Roava Digital',
+    url: 'https://roavadigital.com',
+  },
+  areaServed: [
+    'Roanoke City, VA',
+    'Roanoke County, VA',
+    'Salem, VA',
+    'Vinton, VA',
+    'Botetourt County, VA',
+    'Bedford County, VA',
+    'New River Valley, VA',
+  ],
+  description: 'Local SEO and lead generation for window installation companies in the Roanoke MSA.',
+  url: 'https://roavadigital.com/services/window-installer-marketing',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://roavadigital.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Window Installer Marketing', item: 'https://roavadigital.com/services/window-installer-marketing' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Window Installer Marketing Roanoke VA | Roava Digital"
+  description="Local SEO and lead generation for window installation companies in the Roanoke MSA. GBP management, citations, review strategy, and location pages."
+  canonicalUrl="https://roavadigital.com/services/window-installer-marketing"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="service-header" aria-labelledby="service-heading">
+    <div class="container service-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/services" class="breadcrumb__link">Services</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Window Installer Marketing</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Roanoke MSA · window installation</span>
+      <h1 id="service-heading" class="service-header__headline">Window installer marketing for the Roanoke market.</h1>
+      <p class="hero-lead">Window installation is less competitive than roofing in Roanoke local search. Contractors with 40 to 60 reviews, a complete GBP, and location-specific service pages can reach top 3 positions faster than in most other exterior trades. Roava builds the foundation: GBP management, citation building, review velocity, and conversion-focused service pages.</p>
+      <div class="service-header__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+        <Button href="/pricing" variant="secondary" size="lg">See pricing</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="market-section" aria-labelledby="market-heading">
+    <div class="container market-inner">
+      <h2 id="market-heading" class="section-heading">Window search in Roanoke is under-contested.</h2>
+      <div class="market-body">
+        <p>Roanoke roofing has 50+ contractors fighting for the top 3 spots. Window installation has far fewer. A well-run local SEO program can place a window installer in the top 3 for Roanoke-area terms with significantly less competition to displace.</p>
+        <p>The work is the same: a complete Google Business Profile, consistent citations across directories, a steady flow of reviews, and service pages that match what homeowners are searching for. The competitive gap just means results come faster.</p>
+        <p>Where it gets interesting is product specificity. Homeowners searching for "Andersen window installer Roanoke" or "energy efficient window replacement Salem VA" are at the bottom of the funnel. Those searches convert. Most window installers do not have pages targeting them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars-section" aria-labelledby="pillars-heading">
+    <div class="container">
+      <h2 id="pillars-heading" class="section-heading">What Roava builds for window installers.</h2>
+      <ol class="pillars-list">
+        <li class="pillar">
+          <span class="pillar__number">01</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">GBP foundation</h3>
+            <p class="pillar__desc">Complete profile setup, category selection (Window Installation Company, Window Supplier), service area configuration, and weekly management. Photo uploads, post cadence, and Q&A responses that signal local relevance to Google.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <span class="pillar__number">02</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">Citation building</h3>
+            <p class="pillar__desc">Audit all existing listings for NAP consistency. Build new citations on home services directories, Roanoke-area business directories, and manufacturer dealer directories if applicable. Citation volume and accuracy are direct local pack ranking signals.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <span class="pillar__number">03</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">Review velocity system</h3>
+            <p class="pillar__desc">A repeatable process for asking every customer at job completion. Same-day text system outperforms any follow-up by a significant margin. Most window installers can reach 4 to 8 new reviews per month with a consistent ask process.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <span class="pillar__number">04</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">Location and product pages</h3>
+            <p class="pillar__desc">Service area pages for Roanoke, Salem, Vinton, Botetourt, and the NRV. Product-specific pages where volume justifies them. Each page targets the specific keywords homeowners use in that area, not generic national phrasing.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-heading">
+    <div class="container faq-inner">
+      <h2 id="faq-heading" class="section-heading">Window installer marketing questions</h2>
+      <dl class="faq-list">
+        {faqItems.map((item) => (
+          <div class="faq-item">
+            <dt class="faq-question">{item.question}</dt>
+            <dd class="faq-answer">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to show up when homeowners search?"
+    body="A free audit covers your current GBP score, citation health, competitor positioning, and the specific gaps keeping you off the first page."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<style>
+  .service-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .service-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .service-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+
+  .service-header__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  /* ===== MARKET ===== */
+  .market-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .market-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .market-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .market-body p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== PILLARS ===== */
+  .pillars-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .pillars-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-8) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 760px;
+  }
+
+  .pillar {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .pillar:last-child {
+    border-bottom: none;
+  }
+
+  .pillar__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 1px;
+    padding-top: 4px;
+  }
+
+  .pillar__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .pillar__name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .pillar__desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .faq-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: var(--space-6) 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+  }
+
+  .faq-answer {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .service-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .pillar {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

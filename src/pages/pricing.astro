@@ -1,0 +1,695 @@
+---
+import MarketingLayout from '../components/layout/MarketingLayout.astro';
+import CTASection from '../components/sections/CTASection.astro';
+import PricingCard from '../components/ui/PricingCard.astro';
+import Button from '../components/ui/Button.astro';
+
+const pricingTiers = [
+  {
+    name: 'Foundation',
+    price: '$1,200',
+    description:
+      'For contractors getting serious about online lead gen. Right fit for operators under $1M annual revenue who want to lock down their primary service area.',
+    features: [
+      'Conversion-focused website (8 pages)',
+      'Google Business Profile management',
+      'Local citation audit + ongoing builds',
+      'Review generation system',
+      'Call tracking on every lead source',
+      'Monthly performance reporting',
+      'Direct access to the founder',
+    ],
+    ctaText: 'Get started',
+    ctaHref: '/contact',
+    recommended: false,
+  },
+  {
+    name: 'Growth',
+    price: '$2,400',
+    description:
+      'Foundation plus content velocity, link building, and Local Service Ads. Right fit for established contractors at $1M to $3M who want to dominate the entire Roanoke MSA.',
+    features: [
+      'Everything in Foundation',
+      '4 monthly blog posts, local intent targeting',
+      'Ongoing link building',
+      'Multi-city service area pages',
+      'Google Local Service Ads management',
+      'Quarterly competitor analysis',
+    ],
+    ctaText: 'Get started',
+    ctaHref: '/contact',
+    recommended: true,
+  },
+  {
+    name: 'Saturation',
+    price: '$4,000',
+    description:
+      'Growth plus aggressive PR, multi-location targeting, and paid search. Right fit for contractors at $3M+ who want to be the default name in the entire Roanoke and NRV market.',
+    features: [
+      'Everything in Growth',
+      '8 monthly blog posts',
+      'Proactive PR and link earning',
+      'Multi-location targeting',
+      'Paid search management',
+      'Quarterly competitor displacement strategy',
+    ],
+    ctaText: 'Get started',
+    ctaHref: '/contact',
+    recommended: false,
+  },
+];
+
+const faqItems = [
+  {
+    question: 'Is there a setup fee?',
+    answer: 'No separate setup fee. The website build is included in the first month of any plan. You start getting deliverables from day one.',
+  },
+  {
+    question: 'What is the contract length?',
+    answer: 'Twelve-month minimum. SEO does not produce meaningful return until month 6+. After the first 12 months, the contract converts to month-to-month with 30 days notice. You own the website outright regardless.',
+  },
+  {
+    question: 'Can I start with Foundation and move up?',
+    answer: 'Yes. Most contractors start at Foundation to establish the base, then move to Growth once rankings start producing calls. The upgrade is seamless since all deliverables carry forward.',
+  },
+  {
+    question: 'What do I actually own at the end?',
+    answer: 'Your website, your domain, your GBP, your content, and your review profiles. Everything you pay for is yours. No retainer lock-in on the assets.',
+  },
+  {
+    question: 'Do you work with contractors outside the Roanoke MSA?',
+    answer: 'Not right now. Roava is focused on Roanoke City, Roanoke County, Salem, Vinton, Botetourt County, Bedford County, and the New River Valley. Concentration in one market is what makes the local knowledge advantage real.',
+  },
+  {
+    question: 'Why a 12-month minimum?',
+    answer: 'Because the math requires it. The website build alone takes 6 weeks. Citation-building effects compound over 3 to 4 months. Organic ranking gains are most visible at month 9 to 12. Any agency promising faster timelines is either overselling or taking shortcuts that will need to be undone.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const servicesSchema = pricingTiers.map((tier) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Roava Digital ${tier.name} Plan`,
+  provider: { '@type': 'LocalBusiness', name: 'Roava Digital', url: 'https://roavadigital.com' },
+  description: tier.description,
+  offers: {
+    '@type': 'Offer',
+    price: tier.price.replace('$', '').replace(',', ''),
+    priceCurrency: 'USD',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: tier.price.replace('$', '').replace(',', ''),
+      priceCurrency: 'USD',
+      unitText: 'month',
+    },
+  },
+}));
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Pricing', item: 'https://roavadigital.com/pricing' },
+  ],
+};
+
+const comparisonRows = [
+  { feature: 'Conversion-focused website', foundation: true, growth: true, saturation: true },
+  { feature: 'Google Business Profile management', foundation: true, growth: true, saturation: true },
+  { feature: 'Local citation audit + builds', foundation: true, growth: true, saturation: true },
+  { feature: 'Review generation system', foundation: true, growth: true, saturation: true },
+  { feature: 'Call tracking', foundation: true, growth: true, saturation: true },
+  { feature: 'Monthly reporting', foundation: true, growth: true, saturation: true },
+  { feature: 'Direct founder access', foundation: true, growth: true, saturation: true },
+  { feature: '4 monthly blog posts', foundation: false, growth: true, saturation: true },
+  { feature: 'Ongoing link building', foundation: false, growth: true, saturation: true },
+  { feature: 'Multi-city service area pages', foundation: false, growth: true, saturation: true },
+  { feature: 'Google Local Service Ads', foundation: false, growth: true, saturation: true },
+  { feature: 'Quarterly competitor analysis', foundation: false, growth: true, saturation: true },
+  { feature: '8 monthly blog posts', foundation: false, growth: false, saturation: true },
+  { feature: 'Proactive PR and link earning', foundation: false, growth: false, saturation: true },
+  { feature: 'Multi-location targeting', foundation: false, growth: false, saturation: true },
+  { feature: 'Paid search management', foundation: false, growth: false, saturation: true },
+  { feature: 'Quarterly competitor displacement strategy', foundation: false, growth: false, saturation: true },
+];
+---
+
+<MarketingLayout
+  title="Pricing | Roava Digital — Roanoke Contractor Marketing"
+  description="Transparent flat-rate monthly pricing for roofing and exterior contractors in Roanoke. Foundation $1,200, Growth $2,400, Saturation $4,000. No setup fees, no hidden costs."
+  canonicalUrl="https://roavadigital.com/pricing"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    {servicesSchema.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- Header -->
+  <section class="pricing-header" aria-labelledby="pricing-heading">
+    <div class="container pricing-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Pricing</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Flat-rate monthly retainers</span>
+      <h1 id="pricing-heading" class="pricing-header__headline">Straight pricing. No surprises.</h1>
+      <p class="hero-lead">Three flat-rate monthly retainers: Foundation at $1,200/month for contractors building their foundation, Growth at $2,400/month for operators ready to dominate the Roanoke MSA, and Saturation at $4,000/month for $3M+ contractors who want to own the market. All plans include a 12-month minimum. No setup fees. You own everything you pay for.</p>
+    </div>
+  </section>
+
+  <!-- Pricing cards -->
+  <section class="pricing-cards-section" aria-labelledby="plans-heading">
+    <div class="container">
+      <h2 id="plans-heading" class="sr-only">Available plans</h2>
+      <div class="pricing-grid">
+        {pricingTiers.map((tier) => (
+          <PricingCard
+            name={tier.name}
+            price={tier.price}
+            description={tier.description}
+            features={tier.features}
+            ctaText={tier.ctaText}
+            ctaHref={tier.ctaHref}
+            recommended={tier.recommended}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included callout -->
+  <section class="included-section" aria-labelledby="included-heading">
+    <div class="container included-inner">
+      <h2 id="included-heading" class="included-heading">What every plan includes</h2>
+      <p class="included-subhead">Every retainer starts here. Foundation is not a stripped-down tier — it is the complete base that growth is built on.</p>
+      <div class="included-grid">
+        <div class="included-item">
+          <p class="included-item__label">Website</p>
+          <p class="included-item__desc">8-page conversion-focused site built around your primary service area. Fast, mobile-first, no templates.</p>
+        </div>
+        <div class="included-item">
+          <p class="included-item__label">GBP management</p>
+          <p class="included-item__desc">Weekly posts, photo uploads, Q&A management, review response templates. The signals Google uses for local pack ranking.</p>
+        </div>
+        <div class="included-item">
+          <p class="included-item__label">Citations</p>
+          <p class="included-item__desc">Audit every existing listing. Clean up inconsistent NAP data. Build new citations on authoritative directories monthly.</p>
+        </div>
+        <div class="included-item">
+          <p class="included-item__label">Review system</p>
+          <p class="included-item__desc">A repeatable process your crew can run at job completion. Most contractors get 8 to 12 reviews per month within 90 days.</p>
+        </div>
+        <div class="included-item">
+          <p class="included-item__label">Call tracking</p>
+          <p class="included-item__desc">Every lead source gets a tracked number. You see exactly where calls come from: GBP, organic, paid, referral. No more guessing.</p>
+        </div>
+        <div class="included-item">
+          <p class="included-item__label">Monthly report</p>
+          <p class="included-item__desc">Written plain-English report every month. Rank positions, traffic, calls, what was done, what is next. No dashboards you have to interpret.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="comparison-section" aria-labelledby="comparison-heading">
+    <div class="container">
+      <h2 id="comparison-heading" class="section-heading">Plan comparison</h2>
+      <div class="table-wrapper">
+        <table class="comparison-table" aria-label="Feature comparison by plan">
+          <thead>
+            <tr>
+              <th class="feature-col" scope="col">Feature</th>
+              <th scope="col">Foundation<br /><span class="plan-price">$1,200/mo</span></th>
+              <th scope="col" class="col-recommended">Growth<br /><span class="plan-price">$2,400/mo</span></th>
+              <th scope="col">Saturation<br /><span class="plan-price">$4,000/mo</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonRows.map((row) => (
+              <tr>
+                <td class="feature-name">{row.feature}</td>
+                <td class="check-cell" aria-label={row.foundation ? 'Included' : 'Not included'}>
+                  {row.foundation ? <span class="check" aria-hidden="true">✓</span> : <span class="dash" aria-hidden="true">–</span>}
+                </td>
+                <td class="check-cell col-recommended" aria-label={row.growth ? 'Included' : 'Not included'}>
+                  {row.growth ? <span class="check" aria-hidden="true">✓</span> : <span class="dash" aria-hidden="true">–</span>}
+                </td>
+                <td class="check-cell" aria-label={row.saturation ? 'Included' : 'Not included'}>
+                  {row.saturation ? <span class="check" aria-hidden="true">✓</span> : <span class="dash" aria-hidden="true">–</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI framing -->
+  <section class="roi-section" aria-labelledby="roi-heading">
+    <div class="container roi-inner">
+      <h2 id="roi-heading" class="roi-heading">The math that makes this work</h2>
+      <p class="roi-subhead">Marketing is overhead until it produces calls. Here is how the return math looks at each tier.</p>
+      <div class="roi-grid">
+        <div class="roi-card">
+          <p class="roi-card__tier">Foundation</p>
+          <p class="roi-card__number">1 job</p>
+          <p class="roi-card__label">covers 4 months of retainer at a $5K average ticket</p>
+        </div>
+        <div class="roi-card roi-card--featured">
+          <p class="roi-card__tier">Growth</p>
+          <p class="roi-card__number">2 jobs</p>
+          <p class="roi-card__label">covers 4 months of retainer at a $5K average ticket</p>
+        </div>
+        <div class="roi-card">
+          <p class="roi-card__tier">Saturation</p>
+          <p class="roi-card__number">3 to 4 jobs</p>
+          <p class="roi-card__label">covers 4 months of retainer at a $5K average ticket</p>
+        </div>
+      </div>
+      <p class="roi-note">Roanoke roofing jobs average $8K to $20K for replacements. At those numbers, the math tightens considerably. One job per quarter from Roava pays the year on Foundation.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" aria-labelledby="faq-heading">
+    <div class="container faq-inner">
+      <h2 id="faq-heading" class="section-heading">Questions about pricing</h2>
+      <dl class="faq-list">
+        {faqItems.map((item) => (
+          <div class="faq-item">
+            <dt class="faq-question">{item.question}</dt>
+            <dd class="faq-answer">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Not sure which plan fits?"
+    body="Start with the free audit. It maps your current GBP score, citation gaps, and competitor positioning. From there you will know exactly where you stand and which tier makes sense."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="Or contact us directly"
+    secondaryCtaHref="/contact"
+  />
+</MarketingLayout>
+
+<style>
+  /* ===== HEADER ===== */
+  .pricing-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .pricing-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .pricing-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+
+  /* ===== PRICING CARDS ===== */
+  .pricing-cards-section {
+    background: var(--color-surface-white);
+    padding: var(--space-16) 0 var(--space-24);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  /* ===== INCLUDED SECTION ===== */
+  .included-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .included-inner {
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .included-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .included-subhead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: -var(--space-4) 0 0;
+    max-width: 600px;
+  }
+
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .included-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .included-item__label {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .included-item__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .comparison-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-8);
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    min-width: 600px;
+  }
+
+  .comparison-table thead tr {
+    border-bottom: 2px solid var(--color-border-default);
+  }
+
+  .comparison-table th {
+    padding: var(--space-3) var(--space-4);
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .comparison-table th.feature-col {
+    text-align: left;
+    width: 40%;
+  }
+
+  .plan-price {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-regular);
+    color: var(--color-text-tertiary);
+    display: block;
+    margin-top: var(--space-1);
+  }
+
+  .col-recommended {
+    background: var(--color-surface-teal-tint);
+  }
+
+  .comparison-table tbody tr {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .comparison-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .feature-name {
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text-secondary);
+    text-align: left;
+  }
+
+  .check-cell {
+    padding: var(--space-3) var(--space-4);
+    text-align: center;
+  }
+
+  .check {
+    color: var(--color-brand-teal);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+  }
+
+  .dash {
+    color: var(--color-text-tertiary);
+    font-size: var(--text-base);
+  }
+
+  /* ===== ROI SECTION ===== */
+  .roi-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .roi-inner {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .roi-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .roi-subhead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: -var(--space-4) 0 0;
+  }
+
+  .roi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .roi-card {
+    background: var(--color-surface-white);
+    border: 1px solid var(--color-border-subtle);
+    border-left: 4px solid var(--color-border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .roi-card--featured {
+    border-left-color: var(--color-brand-gold);
+  }
+
+  .roi-card__tier {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+
+  .roi-card__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 0.8;
+  }
+
+  .roi-card__label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .roi-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 680px;
+    font-style: italic;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .faq-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: var(--space-6) 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+  }
+
+  .faq-answer {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+
+    .included-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .roi-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pricing-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

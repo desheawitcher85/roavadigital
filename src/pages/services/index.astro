@@ -1,0 +1,371 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+import Button from '../../components/ui/Button.astro';
+
+const services = [
+  {
+    name: 'Roofing SEO',
+    href: '/services/roofing-seo',
+    description: 'Local pack dominance for roofing contractors. GBP management, citation building, service pages, and review velocity strategy.',
+    stat: '60–90 days',
+    statLabel: 'to first ranking movement',
+  },
+  {
+    name: 'Local SEO',
+    href: '/services/local-seo',
+    description: 'Full local search foundation for any exterior contractor. Covers the same pillars as roofing SEO, built for your trade.',
+    stat: '3-pack',
+    statLabel: 'target for every service area',
+  },
+  {
+    name: 'Web Design',
+    href: '/services/web-design',
+    description: 'Conversion-focused contractor websites. Fast, mobile-first, built to generate calls and form submissions.',
+    stat: '< 2s',
+    statLabel: 'mobile load time target',
+  },
+  {
+    name: 'Google Ads',
+    href: '/services/google-ads',
+    description: 'PPC and Local Service Ads management for roofing and exterior contractors. Built for call volume, not click volume.',
+    stat: 'LSA + PPC',
+    statLabel: 'managed together',
+  },
+  {
+    name: 'Gutter Marketing',
+    href: '/services/gutter-marketing',
+    description: 'Local SEO and lead gen built specifically for gutter contractors in the Roanoke MSA.',
+    stat: 'Roanoke MSA',
+    statLabel: 'market focus',
+  },
+  {
+    name: 'Siding Marketing',
+    href: '/services/siding-marketing',
+    description: 'Search presence and lead generation for siding and exterior cladding contractors.',
+    stat: 'Roanoke MSA',
+    statLabel: 'market focus',
+  },
+  {
+    name: 'Window Installer Marketing',
+    href: '/services/window-installer-marketing',
+    description: 'Local SEO and paid lead generation for window installation companies in the Roanoke area.',
+    stat: 'Roanoke MSA',
+    statLabel: 'market focus',
+  },
+  {
+    name: 'Exterior Coating Marketing',
+    href: '/services/exterior-coating-marketing',
+    description: 'Lead generation for exterior painting and protective coating contractors, including ceramic and nano-coating specialists.',
+    stat: 'Roanoke MSA',
+    statLabel: 'market focus',
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://roavadigital.com/services' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Services | Roava Digital — Roanoke Contractor Marketing"
+  description="Local SEO, web design, and paid advertising for roofing, gutter, siding, window, and exterior coating contractors in the Roanoke, VA area."
+  canonicalUrl="https://roavadigital.com/services"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="services-header" aria-labelledby="services-heading">
+    <div class="container services-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Services</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Roanoke MSA only</span>
+      <h1 id="services-heading" class="services-header__headline">What Roava builds and runs.</h1>
+      <p class="services-header__subhead">
+        Every service is built for one market: Roanoke-area roofing and exterior contractors. No generalist playbooks, no contractor-of-the-month agency model.
+      </p>
+    </div>
+  </section>
+
+  <section class="services-list" aria-labelledby="services-list-heading">
+    <div class="container">
+      <h2 id="services-list-heading" class="sr-only">All services</h2>
+      <ol class="services-grid" role="list">
+        {services.map((service) => (
+          <li class="service-card">
+            <div class="service-card__stat">
+              <span class="service-card__stat-number">{service.stat}</span>
+              <span class="service-card__stat-label">{service.statLabel}</span>
+            </div>
+            <h2 class="service-card__name">
+              <a href={service.href} class="service-card__link">{service.name}</a>
+            </h2>
+            <p class="service-card__desc">{service.description}</p>
+            <a href={service.href} class="service-card__cta" aria-label={`Learn more about ${service.name}`}>
+              See the details <span aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="approach-section" aria-labelledby="approach-heading">
+    <div class="container approach-inner">
+      <h2 id="approach-heading" class="approach-heading">One market. Deep playbook.</h2>
+      <div class="approach-body">
+        <p>Roava works with roofing and exterior contractors in the Roanoke MSA only. That means Roanoke City, Roanoke County, Salem, Vinton, Botetourt County, Bedford County, and the New River Valley.</p>
+        <p>The narrow focus is the product. When the only clients are exterior contractors in one metro, the keyword data, competitor intel, and local search patterns are specific to your actual competition. Not generic advice adapted from dental SEO.</p>
+        <p>All work is done by the founder. No account managers, no offshore execution teams. DeShea runs the strategy and the campaigns.</p>
+        <div class="approach-actions">
+          <Button href="/pricing" variant="primary" size="lg">See pricing</Button>
+          <Button href="/free-audit" variant="secondary" size="lg">Get a free audit</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Not sure where to start?"
+    body="The free audit covers your GBP score, citation health, competitor gaps, and site speed. Specific findings for your business in 48 hours."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+  />
+</MarketingLayout>
+
+<style>
+  .services-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .services-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .services-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .services-header__subhead {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 580px;
+  }
+
+  /* ===== SERVICES LIST ===== */
+  .services-list {
+    background: var(--color-surface-white);
+    padding: var(--space-16) 0 var(--space-24);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 960px;
+  }
+
+  .service-card {
+    background: var(--color-surface-cream);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color var(--transition-fast);
+  }
+
+  .service-card:hover {
+    border-color: var(--color-brand-teal);
+  }
+
+  .service-card__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .service-card__stat-number {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    line-height: 0.85;
+  }
+
+  .service-card__stat-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.3px;
+  }
+
+  .service-card__name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .service-card__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .service-card__link:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .service-card__link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .service-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    flex: 1;
+  }
+
+  .service-card__cta {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-brand-teal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    transition: gap var(--transition-fast);
+    margin-top: var(--space-1);
+  }
+
+  .service-card__cta:hover {
+    gap: var(--space-2);
+  }
+
+  /* ===== APPROACH ===== */
+  .approach-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .approach-inner {
+    max-width: 760px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .approach-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+    padding-top: var(--space-2);
+  }
+
+  .approach-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .approach-body p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .approach-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    padding-top: var(--space-2);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .approach-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .services-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+  }
+</style>

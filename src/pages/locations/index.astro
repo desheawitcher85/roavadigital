@@ -1,0 +1,350 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const locations = [
+  {
+    name: 'Roanoke',
+    href: '/locations/roanoke',
+    description: "The primary market. Roanoke City and Roanoke County combined account for the highest concentration of roofing and exterior work in the MSA.",
+    population: '315K+',
+    populationLabel: 'metro population',
+  },
+  {
+    name: 'Salem',
+    href: '/locations/salem',
+    description: "An independent city with its own local pack. Salem contractors compete against Roanoke-based companies that have expanded their service areas.",
+    population: '25K',
+    populationLabel: 'city population',
+  },
+  {
+    name: 'Vinton',
+    href: '/locations/vinton',
+    description: "Roanoke County's largest town. Dense residential neighborhoods and a concentrated contractor market.",
+    population: '8K+',
+    populationLabel: 'town population',
+  },
+  {
+    name: 'Botetourt County',
+    href: '/locations/botetourt-county',
+    description: "Growing residential area north of Roanoke. Higher-income demographics, newer housing stock, strong demand for exterior work.",
+    population: '34K+',
+    populationLabel: 'county population',
+  },
+  {
+    name: 'Bedford County',
+    href: '/locations/bedford-county',
+    description: "Southwest of Roanoke. Lower contractor density means less competition for local pack positions in this service area.",
+    population: '78K+',
+    populationLabel: 'county population',
+  },
+  {
+    name: 'New River Valley',
+    href: '/locations/new-river-valley',
+    description: "Christiansburg, Blacksburg, and Radford. A separate market from Roanoke with its own local pack and distinct search patterns.",
+    population: '180K+',
+    populationLabel: 'regional population',
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://roavadigital.com/locations' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Service Locations | Roava Digital — Roanoke MSA Contractor Marketing"
+  description="Roava Digital serves roofing and exterior contractors across the Roanoke MSA: Roanoke, Salem, Vinton, Botetourt County, Bedford County, and the New River Valley."
+  canonicalUrl="https://roavadigital.com/locations"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="locations-header" aria-labelledby="locations-heading">
+    <div class="container locations-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Locations</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Roanoke MSA and New River Valley</span>
+      <h1 id="locations-heading" class="locations-header__headline">One market. Six service areas.</h1>
+      <p class="locations-header__subhead">
+        Roava serves contractors across the Roanoke metropolitan area and the New River Valley. Each location has its own local pack, its own competitor set, and its own search patterns.
+      </p>
+    </div>
+  </section>
+
+  <section class="locations-list" aria-labelledby="locations-list-heading">
+    <div class="container">
+      <h2 id="locations-list-heading" class="sr-only">All service areas</h2>
+      <ol class="locations-grid" role="list">
+        {locations.map((location) => (
+          <li class="location-card">
+            <div class="location-card__stat">
+              <span class="location-card__stat-number">{location.population}</span>
+              <span class="location-card__stat-label">{location.populationLabel}</span>
+            </div>
+            <h2 class="location-card__name">
+              <a href={location.href} class="location-card__link">{location.name}</a>
+            </h2>
+            <p class="location-card__desc">{location.description}</p>
+            <a href={location.href} class="location-card__cta" aria-label={`Local SEO in ${location.name}`}>
+              See market details <span aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="why-local" aria-labelledby="why-local-heading">
+    <div class="container why-local__inner">
+      <h2 id="why-local-heading" class="why-local__heading">Local packs are not one market.</h2>
+      <div class="why-local__body">
+        <p>A search for "roofing company Roanoke VA" and "roofing company Salem VA" produce completely different local pack results. The contractors in both are competing for different searchers in different geographic zones.</p>
+        <p>Ranking in Roanoke does not automatically produce visibility in Salem, Vinton, or Botetourt County. Each service area requires its own content, citations, and GBP signals pointing to that location specifically.</p>
+        <p>This is what multi-city service area pages are for. It is also why Roava builds out location pages and manages citations per-city, not per-business.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Serving more than one area?"
+    body="The Growth and Saturation plans include multi-city service area pages and location-specific citation builds. The free audit will show you where your current gaps are."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See pricing plans"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<style>
+  .locations-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .locations-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .locations-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .locations-header__subhead {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 580px;
+  }
+
+  /* ===== LIST ===== */
+  .locations-list {
+    background: var(--color-surface-white);
+    padding: var(--space-16) 0 var(--space-24);
+  }
+
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .location-card {
+    background: var(--color-surface-cream);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color var(--transition-fast);
+  }
+
+  .location-card:hover {
+    border-color: var(--color-brand-teal);
+  }
+
+  .location-card__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .location-card__stat-number {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    line-height: 0.85;
+  }
+
+  .location-card__stat-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.3px;
+  }
+
+  .location-card__name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .location-card__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .location-card__link:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .location-card__link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .location-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    flex: 1;
+  }
+
+  .location-card__cta {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-brand-teal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    transition: gap var(--transition-fast);
+    margin-top: var(--space-1);
+  }
+
+  .location-card__cta:hover {
+    gap: var(--space-2);
+  }
+
+  /* ===== WHY LOCAL ===== */
+  .why-local {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .why-local__inner {
+    max-width: 760px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .why-local__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+    padding-top: var(--space-2);
+  }
+
+  .why-local__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .why-local__body p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  @media (max-width: 900px) {
+    .locations-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-local__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .locations-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .locations-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

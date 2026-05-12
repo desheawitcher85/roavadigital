@@ -1,0 +1,170 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const faqItems = [
+  {
+    question: "What roofing and contractor keywords get searches in Salem, VA?",
+    answer: "'Roofing contractor Salem VA,' 'roof replacement Salem Virginia,' 'gutter installation Salem VA,' and storm-related searches like 'emergency roofer Salem VA.' Salem's location in the Roanoke Valley means it shares storm event patterns with the broader MSA.",
+  },
+  {
+    question: 'Does a contractor based in Roanoke need a separate Salem location page?',
+    answer: "Yes. A Salem-specific page targets homeowners who include 'Salem' in their search. A generic Roanoke page won't rank well for Salem-specific queries. The page needs unique content: references to Salem neighborhoods, the Salem Fair area, local landmarks where relevant, and a clear service area statement for Salem specifically.",
+  },
+  {
+    question: 'How competitive is Salem for roofing SEO?',
+    answer: "Salem is slightly less competitive than Roanoke City for roofing local search because fewer contractors have dedicated Salem location pages. A contractor who builds a solid Salem page and maintains a Salem-specific GBP service area has a real advantage over contractors who just list Salem in their service area without dedicated content.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://roavadigital.com/locations' },
+    { '@type': 'ListItem', position: 3, name: 'Salem, VA', item: 'https://roavadigital.com/locations/salem' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Exterior Contractor Marketing in Salem, VA | Roava Digital"
+  description="Local SEO and Google Ads for roofing and exterior contractors in Salem, VA. Salem-specific location pages, GBP optimization, citation building. Free audit in 48 hours."
+  canonicalUrl="https://roavadigital.com/locations/salem"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="loc-hero" aria-labelledby="loc-headline">
+    <div class="container loc-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/locations" class="breadcrumb__link">Locations</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Salem, VA</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Salem, Virginia</span>
+      <h1 id="loc-headline" class="loc-hero__headline">
+        Roofing and contractor marketing in Salem, VA
+      </h1>
+      <p class="loc-hero__subhead">
+        Salem homeowners search specifically for Salem contractors. A dedicated Salem location page and service area strategy captures that traffic that generic Roanoke-focused pages miss.
+      </p>
+      <p class="hero-lead">Roava Digital serves roofing, gutter, siding, and exterior contractors operating in Salem, Virginia. Services include Google Business Profile optimization for Salem service area, Salem-specific location pages, local citation management, and Google Ads targeting Salem ZIP codes. Salem is covered under the standard Roanoke MSA retainer at no additional location fee.</p>
+      <div class="loc-hero__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free Salem audit</Button>
+        <Button href="/contact" variant="ghost" size="lg">Talk to DeShea</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-content-section" aria-labelledby="market-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="market-heading">Why Salem deserves its own local search strategy</h2>
+        <p class="section-head__intro">Salem is an independent city, not part of Roanoke County. Homeowners searching for contractors in Salem use Salem-specific searches that a Roanoke-focused strategy won't fully capture.</p>
+      </div>
+      <div class="loc-prose">
+        <p>Salem, Virginia is a small independent city of roughly 25,000 residents bordered by Roanoke County. It has its own search identity: homeowners in Hollins Road corridors, Lakeside area, and neighborhoods near the Salem Civic Center search for local contractors with Salem in the query.</p>
+        <p>Most roofing contractors with a presence in Salem don't have dedicated Salem location pages. They list Salem as a service area on their Roanoke page or mention it in their GBP service area. This leaves the Salem-specific search results less competitive than Roanoke City, which means a contractor who builds the right content has a genuine opportunity to rank in the top 3 for Salem-specific searches faster than in the Roanoke core market.</p>
+        <p>The strategy: a dedicated Salem location page targeting the highest-volume Salem service keywords, Salem added as a specific service area in GBP with category-appropriate attributes, and citation listings that reference Salem rather than defaulting to Roanoke as the primary location. Combined, these three moves cover the Salem search landscape that generic Roanoke-focused campaigns miss.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-faq" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="faq-heading">Salem contractor marketing questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqItems.map((item, i) => (
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls={`faq-answer-${i}`} id={`faq-trigger-${i}`}>
+              {item.question}
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-trigger-${i}`} hidden>
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Salem, VA"
+    headline="Find out how visible you are in Salem local search"
+    body="Free audit covers GBP score, citation health, Salem-specific competitor gaps, and site speed. 48 hours. No obligation."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See all service areas"
+    secondaryCtaHref="/locations/roanoke"
+  />
+</MarketingLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      const answerId = trigger.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  .loc-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .loc-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .loc-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .loc-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 640px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .loc-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .loc-content-section { background: var(--color-surface-white); padding: var(--space-16) 0; }
+  .loc-prose { display: flex; flex-direction: column; gap: var(--space-5); max-width: 720px; }
+  .loc-prose p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+  .loc-faq { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--color-border-subtle); max-width: 760px; }
+  .faq-item { border-bottom: 1px solid var(--color-border-subtle); }
+  .faq-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; background: none; border: none; text-align: left; font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-primary); cursor: pointer; transition: color var(--transition-fast); }
+  .faq-trigger:hover { color: var(--color-brand-teal); }
+  .faq-trigger:focus-visible { outline: 3px solid var(--color-brand-gold); outline-offset: 2px; border-radius: var(--radius-sm); }
+  .faq-icon { flex-shrink: 0; color: var(--color-brand-gold); transition: transform var(--transition-fast); }
+  .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+  .faq-answer { padding-bottom: var(--space-5); }
+  .faq-answer p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; max-width: 660px; }
+  @media (max-width: 600px) { .loc-hero { padding: var(--space-12) 0; } }
+</style>

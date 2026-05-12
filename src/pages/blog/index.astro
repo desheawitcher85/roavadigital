@@ -1,0 +1,221 @@
+---
+import { getCollection } from 'astro:content';
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://roavadigital.com/blog' },
+  ],
+};
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<MarketingLayout
+  title="Local SEO and Marketing Blog for Roanoke Contractors | Roava Digital"
+  description="Practical local SEO and marketing guides for roofing and exterior contractors in the Roanoke, VA area. No fluff, no generic advice."
+  canonicalUrl="https://roavadigital.com/blog"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="blog-header" aria-labelledby="blog-heading">
+    <div class="container blog-header__inner">
+      <span class="eyebrow">Roanoke contractor marketing</span>
+      <h1 id="blog-heading" class="blog-header__headline">Practical advice. No fluff.</h1>
+      <p class="blog-header__subhead">
+        Local SEO and marketing guides written for roofing and exterior contractors in Roanoke, VA. Specific tactics, real numbers, no generic "content marketing strategy" posts.
+      </p>
+    </div>
+  </section>
+
+  <section class="blog-list" aria-label="Blog posts">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="blog-empty">No posts yet. Check back soon.</p>
+      ) : (
+        <ol class="posts-list" role="list">
+          {posts.map((post) => (
+            <li class="post-card">
+              <article>
+                <div class="post-card__meta">
+                  <time datetime={post.data.pubDate.toISOString()} class="post-card__date">
+                    {formatDate(post.data.pubDate)}
+                  </time>
+                  <span class="post-card__read-time">{post.data.readTime} min read</span>
+                </div>
+                <h2 class="post-card__title">
+                  <a href={`/blog/${post.slug}`} class="post-card__link">
+                    {post.data.title}
+                  </a>
+                </h2>
+                <p class="post-card__description">{post.data.description}</p>
+                <div class="post-card__tags" aria-label="Tags">
+                  {post.data.tags.slice(0, 3).map((tag) => (
+                    <span class="post-tag">{tag}</span>
+                  ))}
+                </div>
+              </article>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  </section>
+</MarketingLayout>
+
+<style>
+  .blog-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .blog-header__inner {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .blog-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .blog-header__subhead {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 580px;
+  }
+
+  .blog-list {
+    background: var(--color-surface-white);
+    padding: var(--space-16) 0 var(--space-24);
+  }
+
+  .blog-empty {
+    font-size: var(--text-base);
+    color: var(--color-text-tertiary);
+    padding: var(--space-12) 0;
+  }
+
+  .posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 760px;
+  }
+
+  .post-card {
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .post-card:first-child {
+    padding-top: 0;
+  }
+
+  .post-card:last-child {
+    border-bottom: none;
+  }
+
+  .post-card article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .post-card__date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.5px;
+  }
+
+  .post-card__read-time {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  .post-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .post-card__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .post-card__link:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .post-card__link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .post-card__description {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  .post-card__tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-top: var(--space-1);
+  }
+
+  .post-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-brand-teal);
+    background: var(--color-surface-teal-tint);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.3px;
+  }
+
+  @media (max-width: 600px) {
+    .blog-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+  }
+</style>

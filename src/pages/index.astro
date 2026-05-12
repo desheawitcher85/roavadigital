@@ -1,0 +1,1145 @@
+---
+import MarketingLayout from '../components/layout/MarketingLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Section from '../components/sections/Section.astro';
+import ProofBar from '../components/sections/ProofBar.astro';
+import CTASection from '../components/sections/CTASection.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Callout from '../components/ui/Callout.astro';
+import PricingCard from '../components/ui/PricingCard.astro';
+import Button from '../components/ui/Button.astro';
+
+const faqItems = [
+  {
+    question: 'How long until I see leads from SEO?',
+    answer:
+      'Realistic timeline: 1 to 3 inbound leads from SEO in months 3 to 6, growing to 8 to 15 leads per month by month 9 to 12 as rankings compound. Most contractors panic at month 4 and quit. The ones who stay through month 9 are the ones who win. Roava does not take clients who are not committed to the timeline.',
+  },
+  {
+    question: 'What makes you different from the agency I am already paying?',
+    answer:
+      'Two things. First, Roava only works with roofing and exterior contractors in the Roanoke MSA. Most local agencies serve dentists, lawyers, restaurants, and you. Specialization beats generalization every time. Second, DeShea does the actual work. Most agencies sell the strategy and outsource execution to entry-level account managers. You hire Roava, you get DeShea.',
+  },
+  {
+    question: 'Can you run paid ads too?',
+    answer:
+      'Yes, but we start with the foundation: Google Business Profile, local SEO, and a website that actually converts. Most contractors are bleeding paid ad spend into a leaky bucket. Fix the bucket first, then we can scale paid traffic. Google Ads and Local Service Ads management is included in the Growth and Saturation tiers for clients who have the foundation in place.',
+  },
+  {
+    question: 'What if I want out?',
+    answer:
+      'Twelve-month minimum to start. The website build alone takes 6 weeks. SEO does not show meaningful return until month 6+. After the first 12 months, the contract converts to month-to-month with 30 days notice. You own the website outright either way. No hostage situations, no domain ransom.',
+  },
+  {
+    question: 'Why should I trust a brand new agency?',
+    answer:
+      'Fair question. Two answers. First, DeShea has 15 years of documented B2B marketing experience and currently leads marketing at an enterprise software company. The track record exists, just not yet under the Roava brand. Second, Roava is taking 3 to 5 clients before scaling, on purpose. If you want a household name, Roava is not it yet. If you want the operator\'s full attention while we are early, this is the window. Once the first cohort is at capacity, pricing goes up and access tightens.',
+  },
+  {
+    question: 'What service areas do you cover?',
+    answer:
+      'Roanoke City, Roanoke County, Salem, Vinton, Botetourt County, Bedford County, and the New River Valley (Christiansburg, Blacksburg, Radford). If you serve a different metro in Virginia, Roava is not the right fit right now.',
+  },
+];
+
+const pricingTiers = [
+  {
+    name: 'Foundation',
+    price: '$1,200',
+    description:
+      'For contractors getting serious about online lead gen. Right fit for operators under $1M annual revenue who want to lock down their primary service area.',
+    features: [
+      'Conversion-focused website (8 pages)',
+      'Google Business Profile management',
+      'Local citation audit + ongoing builds',
+      'Review generation system',
+      'Call tracking on every lead source',
+      'Monthly performance reporting',
+      'Direct access to the founder',
+    ],
+    ctaText: 'Get started',
+    ctaHref: '/contact',
+    recommended: false,
+  },
+  {
+    name: 'Growth',
+    price: '$2,400',
+    description:
+      'Foundation plus content velocity, link building, and Local Service Ads. Right fit for established contractors at $1M to $3M who want to dominate the entire Roanoke MSA.',
+    features: [
+      'Everything in Foundation',
+      '4 monthly blog posts, local intent targeting',
+      'Ongoing link building',
+      'Multi-city service area pages',
+      'Google Local Service Ads management',
+      'Quarterly competitor analysis',
+    ],
+    ctaText: 'Get started',
+    ctaHref: '/contact',
+    recommended: true,
+  },
+  {
+    name: 'Saturation',
+    price: '$4,000',
+    description:
+      'Growth plus aggressive PR, multi-location targeting, and paid search. Right fit for contractors at $3M+ who want to be the default name in the entire Roanoke and NRV market.',
+    features: [
+      'Everything in Growth',
+      '8 monthly blog posts',
+      'Proactive PR and link earning',
+      'Multi-location targeting',
+      'Paid search management',
+      'Quarterly competitor displacement strategy',
+    ],
+    ctaText: 'Get started',
+    ctaHref: '/contact',
+    recommended: false,
+  },
+];
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://roavadigital.com/#business',
+  name: 'Roava Digital',
+  description: 'Specialist marketing agency for Roanoke-area roofing, gutter, siding, and exterior contractors.',
+  url: 'https://roavadigital.com',
+  logo: 'https://roavadigital.com/roava-logo.png',
+  image: 'https://roavadigital.com/og-default.png',
+  telephone: '',
+  email: 'hello@roavadigital.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Roanoke',
+    addressRegion: 'VA',
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 37.271, longitude: -79.9414 },
+  areaServed: [
+    { '@type': 'City', name: 'Roanoke', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Salem', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Vinton', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'AdministrativeArea', name: 'Botetourt County, Virginia' },
+    { '@type': 'AdministrativeArea', name: 'Bedford County, Virginia' },
+    { '@type': 'AdministrativeArea', name: 'New River Valley, Virginia' },
+  ],
+  priceRange: '$1,200 - $4,000/month',
+  founder: { '@type': 'Person', name: 'DeShea Witcher' },
+};
+
+const servicesSchema = pricingTiers.map((tier) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Roava Digital ${tier.name} Plan`,
+  provider: { '@type': 'LocalBusiness', name: 'Roava Digital', url: 'https://roavadigital.com' },
+  description: tier.description,
+  offers: {
+    '@type': 'Offer',
+    price: tier.price.replace('$', '').replace(',', ''),
+    priceCurrency: 'USD',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: tier.price.replace('$', '').replace(',', ''),
+      priceCurrency: 'USD',
+      unitText: 'month',
+    },
+  },
+}));
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'DeShea Witcher',
+  jobTitle: 'Founder',
+  worksFor: { '@type': 'Organization', name: 'Roava Digital', url: 'https://roavadigital.com' },
+  description: '15 years of B2B marketing experience. Founder of Roava Digital.',
+  address: { '@type': 'PostalAddress', addressLocality: 'Roanoke', addressRegion: 'VA', addressCountry: 'US' },
+  image: 'https://roavadigital.com/deshea-witcher.jpg',
+};
+---
+
+<MarketingLayout
+  title="Qualified Phone Calls for Roanoke Exterior Contractors | Roava Digital"
+  description="Roava Digital builds conversion-focused websites and runs local SEO for roofing, gutter, siding, and exterior contractors in the Roanoke MSA. Get into Google's top 3 local pack."
+  canonicalUrl="https://roavadigital.com/"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    {servicesSchema.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <Hero
+    eyebrow="Roanoke roofing & exterior contractors"
+    headline="Qualified phone calls for Roanoke exterior contractors."
+    subhead="Roofing, gutters, siding, windows. Roava builds your website, runs your local SEO, and puts your business in front of homeowners searching for your trade right now. You answer the calls. We handle the rest."
+    primaryCtaText="Get a free local SEO audit"
+    primaryCtaHref="/free-audit"
+    primaryCtaWithArrow={true}
+    secondaryCtaText="See how we work"
+    secondaryCtaHref="#how-we-work"
+    imageSrc="/hero-neighborhood.jpg"
+    imageAlt="Aerial view of a residential neighborhood in the Roanoke region — the market Roava serves"
+  />
+
+  <!-- INTRO STATEMENT -->
+  <Section background="white" id="intro">
+    <span class="eyebrow intro-eyebrow">What Roava does</span>
+    <p class="intro-statement">Roava is a specialist marketing agency for Roanoke-area roofing, gutter, siding, and exterior contractors. We build conversion-focused websites, run local SEO that gets you into Google's top&nbsp;3 local pack, and track every call so you know what's actually working. Most clients see consistent inbound call volume from organic search within 3 to 6 months.</p>
+  </Section>
+
+  <!-- PROOF BAR -->
+  <ProofBar label="Currently working with:" background="cream">
+    <a href="https://blueridgenanoguard.com" class="client-logo-chip" rel="noopener" aria-label="Blue Ridge NanoGuard website">
+      <img src="/nanoguard-logo.png" alt="Blue Ridge NanoGuard" width="68" height="50" loading="lazy" decoding="async" />
+    </a>
+  </ProofBar>
+
+  <!-- STATS STRIP -->
+  <Section background="teal" id="stats">
+    <span class="eyebrow eyebrow--on-dark eyebrow--center stats-eyebrow">By the numbers</span>
+    <div class="stats-strip">
+      <div class="stat-item">
+        <span class="stat-item__number">300</span>
+        <span class="stat-item__rule" aria-hidden="true"></span>
+        <span class="stat-item__label">Keywords targeted, mapped by service and service area</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item__number">8&ndash;12</span>
+        <span class="stat-item__rule" aria-hidden="true"></span>
+        <span class="stat-item__label">New Google reviews per month within 90 days of launch</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item__number">Top 3</span>
+        <span class="stat-item__rule" aria-hidden="true"></span>
+        <span class="stat-item__label">Local pack position we target for every client in the Roanoke MSA</span>
+      </div>
+    </div>
+  </Section>
+
+  <!-- PROBLEM SECTION -->
+  <Section background="cream" id="the-problem">
+    <div class="split-layout">
+      <div class="split-layout__text">
+        <span class="eyebrow">The problem</span>
+        <h2>You're not paying for a website. You're paying for the phone to ring.</h2>
+        <p>Most agencies sell you "engagement," "brand awareness," and a monthly dashboard with 50 charts. None of that puts a roofer's truck in your customer's driveway.</p>
+        <p>The actual job: when a homeowner in Roanoke, Salem, or Botetourt County Googles "roof leak" or "best roofers near me," your business shows up in the top 3. They click. They call. You book the job.</p>
+        <p>That is the only metric that matters. Everything else is theater.</p>
+      </div>
+      <div class="split-layout__aside">
+        <div class="pull-stat">
+          <span class="pull-stat__number">#1</span>
+          <span class="pull-stat__label">metric that matters</span>
+          <span class="pull-stat__sub">Tracked phone calls per lead source. Not impressions, not clicks, not "engagement."</span>
+        </div>
+        <Callout type="reality-check">
+          A "marketing report" with 50 charts and zero phone calls is a $1,500 monthly receipt for nothing. If your current agency cannot show you tracked calls per lead source, ask why.
+        </Callout>
+      </div>
+    </div>
+  </Section>
+
+  <!-- METHODOLOGY SECTION -->
+  <Section background="white" id="how-we-work">
+    <div class="section-head">
+      <span class="eyebrow">The system</span>
+      <h2>How Roava works.</h2>
+      <p class="section-head__intro">Every Roava client gets the same four-part system. The work is the same whether you do $400K or $4M a year. The difference is volume.</p>
+    </div>
+
+    <div class="methodology">
+
+      <div class="methodology__step">
+        <div class="methodology__meta">
+          <span class="methodology__num">01</span>
+          <div class="methodology__stat-card">
+            <span class="methodology__stat-val">&lt;&nbsp;2s</span>
+            <span class="methodology__stat-lbl">load time</span>
+          </div>
+        </div>
+        <div class="methodology__content">
+          <h3>A website built for one job: making the phone ring.</h3>
+          <p>Fast, mobile-first, loads in under 2 seconds. Click-to-call buttons on every page. Service area maps that match the towns you actually drive to. Real photos of finished jobs, not stock photography. Trust signals visible above the fold: license number, BBB rating, insurance verification, real Google reviews.</p>
+          <p>No carousel sliders. No "Our Story" essay nobody reads. No hero video that adds 4 seconds to your load time. Every element exists to get a homeowner to call you.</p>
+        </div>
+      </div>
+
+      <div class="methodology__step">
+        <div class="methodology__meta">
+          <span class="methodology__num">02</span>
+          <div class="methodology__stat-card">
+            <span class="methodology__stat-val">300</span>
+            <span class="methodology__stat-lbl">keywords</span>
+          </div>
+        </div>
+        <div class="methodology__content">
+          <h3>Local SEO that gets you in the top 3.</h3>
+          <p>We optimize your Google Business Profile, audit and clean up your local citations across the 30 directories that actually move the needle, and fix the NAP inconsistencies that are quietly tanking your rank.</p>
+          <p>Then we publish content that ranks for what your customers actually search: "metal roof Roanoke," "hail damage repair Botetourt County," "gutter replacement Salem VA." Most contractor websites target three keywords. We target 300, mapped by service and service area.</p>
+        </div>
+      </div>
+
+      <div class="methodology__step">
+        <div class="methodology__meta">
+          <span class="methodology__num">03</span>
+          <div class="methodology__stat-card">
+            <span class="methodology__stat-val">8&ndash;12</span>
+            <span class="methodology__stat-lbl">reviews / mo</span>
+          </div>
+        </div>
+        <div class="methodology__content">
+          <h3>Reviews on autopilot.</h3>
+          <p>We set up an automated system that asks happy customers for a review the same day the job ends. Most contractors leave 30% of their potential reviews on the table because they forget to ask in the moment. Roava clients average 8 to 12 new Google reviews per month within 90 days of launch.</p>
+          <p>More reviews means a higher local pack rank, higher click-through rate from search, and a higher conversion rate when a homeowner lands on your Google profile.</p>
+        </div>
+      </div>
+
+      <div class="methodology__step">
+        <div class="methodology__meta">
+          <span class="methodology__num">04</span>
+          <div class="methodology__stat-card">
+            <span class="methodology__stat-val">4</span>
+            <span class="methodology__stat-lbl">tracked sources</span>
+          </div>
+        </div>
+        <div class="methodology__content">
+          <h3>Call tracking so you actually know what works.</h3>
+          <p>Every lead source gets its own tracked phone number. Google Business Profile, organic website, Google Ads, Local Service Ads. We see exactly where calls come from, how long they last, and whether they converted. You stop guessing and start optimizing.</p>
+          <Callout type="insider-tip">
+            Most agencies do not show you raw call data because their numbers would not hold up. Roava gives you full access from day one, including call recordings if you enable them.
+          </Callout>
+        </div>
+      </div>
+
+    </div>
+  </Section>
+
+  <!-- SERVICES TABLE -->
+  <Section background="cream" id="services">
+    <div class="section-head">
+      <span class="eyebrow">The core stack</span>
+      <h2>What's included.</h2>
+      <p class="section-head__intro">Every plan includes the same core stack. Higher tiers add more content velocity, paid ad management, and aggressive link building.</p>
+    </div>
+    <div class="table-wrapper">
+      <table class="services-table" aria-label="Services included and why they matter">
+        <thead>
+          <tr>
+            <th scope="col">What you get</th>
+            <th scope="col">Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Conversion-focused website (8 to 12 pages)</td>
+            <td>Without a site that converts, paid traffic and SEO have nowhere to land.</td>
+          </tr>
+          <tr>
+            <td>Google Business Profile management</td>
+            <td>Your top free source of local leads. Most contractors barely use it.</td>
+          </tr>
+          <tr>
+            <td>Local citation audit + ongoing builds</td>
+            <td>Cleans up NAP inconsistencies that quietly hurt local rankings.</td>
+          </tr>
+          <tr>
+            <td>2 to 8 monthly blog posts, targeting local intent</td>
+            <td>Long-tail keywords that drive consistent organic traffic.</td>
+          </tr>
+          <tr>
+            <td>Review generation system</td>
+            <td>More reviews equals higher local pack rank and higher click-through.</td>
+          </tr>
+          <tr>
+            <td>Call tracking on every lead source</td>
+            <td>You see exactly what is working, in real numbers.</td>
+          </tr>
+          <tr>
+            <td>Monthly performance reporting</td>
+            <td>Plain English. No chart vomit.</td>
+          </tr>
+          <tr>
+            <td>Direct access to the founder, not an account manager</td>
+            <td>You text DeShea. DeShea texts back.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </Section>
+
+  <!-- PRICING -->
+  <Section background="white" id="pricing">
+    <div class="section-head">
+      <span class="eyebrow">Plans &amp; pricing</span>
+      <h2>What it costs.</h2>
+      <p class="section-head__intro">Three plans. All include the website build at no extra cost when you commit to 12 months.</p>
+    </div>
+    <div class="pricing-grid">
+      {pricingTiers.map((tier) => (
+        <PricingCard
+          name={tier.name}
+          price={tier.price}
+          description={tier.description}
+          features={tier.features}
+          ctaText={tier.ctaText}
+          ctaHref={tier.ctaHref}
+          recommended={tier.recommended}
+        />
+      ))}
+    </div>
+    <div class="pricing-notes">
+      <p><strong>Setup fee:</strong> $0 with a 12-month commit.</p>
+      <p><strong>Website ownership:</strong> transfers to you outright whether you stay or leave. No hostage situations.</p>
+    </div>
+  </Section>
+
+  <!-- FOUNDER -->
+  <Section background="cream" id="founder">
+    <div class="founder-layout">
+      <figure class="founder-figure">
+        <img
+          src="/deshea-witcher.jpg"
+          alt="DeShea Witcher, founder of Roava Digital"
+          class="founder-photo"
+          width="400"
+          height="500"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="founder-caption">DeShea Witcher · Founder, Roava Digital</figcaption>
+      </figure>
+      <div class="founder-content">
+        <span class="eyebrow">The operator</span>
+        <h2>Who actually does the work.</h2>
+        <p>I'm DeShea Witcher. I've spent 15 years running marketing for B2B software companies and I currently lead marketing at an enterprise software company with thousands of customers worldwide.</p>
+        <p>I built Roava because I kept watching Roanoke roofing and exterior contractors get overcharged by generic agencies that did not understand local lead gen and did not take the work personally. Most local agencies serve dentists, lawyers, restaurants, and you. The strategy that works for a dentist does not work for a roofer. You need a specialist.</p>
+        <p>When you hire Roava, I'm the one writing your strategy. I'm the one publishing your content. I'm the one you call when something breaks. No account managers, no offshore teams, no handoffs.</p>
+        <p>I live in Roanoke. I'm building this slowly and on purpose. I'm taking 3 to 5 clients before I scale. If you want the operator's full attention while we're early, this is the window.</p>
+        <div class="founder-cta">
+          <Button href="/free-audit" variant="primary" size="md" withArrow={true}>Book a free audit</Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- CURRENT CLIENT -->
+  <Section background="white" id="current-client">
+    <div class="client-proof-layout">
+      <div class="client-proof-visual">
+        <div class="browser-frame">
+          <div class="browser-frame__bar" aria-hidden="true">
+            <span class="browser-frame__dots">
+              <span class="browser-frame__dot"></span>
+              <span class="browser-frame__dot"></span>
+              <span class="browser-frame__dot"></span>
+            </span>
+            <span class="browser-frame__url">blueridgenanoguard.com</span>
+          </div>
+          <img
+            src="/nanoguard-site.png"
+            alt="The Blue Ridge NanoGuard website built by Roava Digital, showing the homepage hero and call-to-action"
+            class="browser-frame__shot"
+            width="1200"
+            height="891"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <figure class="ba-figure">
+          <img
+            src="/nanoguard-before-after.jpg"
+            alt="Before and after of a residential roof restored with a GoNano nano-coating treatment, featured on the Blue Ridge NanoGuard website"
+            class="ba-photo"
+            width="1024"
+            height="481"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="ba-caption">Real before/after from a NanoGuard job, featured on the new site</figcaption>
+        </figure>
+      </div>
+      <div class="client-proof-content">
+        <div class="client-proof-header">
+          <span class="eyebrow">Current client</span>
+          <h2>Blue Ridge NanoGuard.</h2>
+        </div>
+        <p>Blue Ridge NanoGuard is a roof restoration coating company serving Roanoke and the surrounding region. They came to Roava for a full website rebuild and the launch of a local SEO campaign.</p>
+        <div class="client-work-done">
+          <span class="client-work-done__label">What we have done so far</span>
+          <ul class="check-list" role="list">
+            <li>Built and launched a fast new website with sub-1-second load times</li>
+            <li>Set up Google Business Profile with optimized service categories and a full media library</li>
+            <li>Established the local citation foundation across 30+ directories</li>
+            <li>Implemented call tracking across every lead source</li>
+          </ul>
+        </div>
+        <blockquote class="client-quote">
+          <p>"DeShea built our entire site and handled all the SEO. He got it done faster than the agencies I talked to and the result looks better than what they quoted. He actually took the time to understand roof rejuvenation and the towns we cover. Easy to work with and answered the phone every time I called."</p>
+          <cite><strong>J. Dillow</strong> · Owner, Blue Ridge NanoGuard</cite>
+        </blockquote>
+        <Callout type="insider-note">
+          <strong>Real numbers coming.</strong> Local SEO campaign launched May 2026. This section updates quarterly with actual ranking gains, organic traffic, and lead volume. We do not fabricate case study results.
+        </Callout>
+      </div>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <FAQ items={faqItems} id="faq" />
+
+  <!-- FINAL CTA -->
+  <CTASection
+    id="free-audit"
+    eyebrow="Get started"
+    headline="See how we would do it for your business."
+    body="Free 30-minute audit. DeShea will pull your Google Business Profile, review your current website, run a quick competitor scan, and walk you through what is working, what is broken, and what we would fix first. No pitch deck. No sales pressure. If we are a fit, we talk next steps. If not, you walk away with a real audit and zero obligation."
+    primaryCtaText="Book your free audit"
+    primaryCtaHref="/free-audit"
+  />
+</MarketingLayout>
+
+<style>
+  /* Intro statement */
+  .intro-eyebrow {
+    margin-bottom: var(--space-6);
+  }
+
+  .intro-statement {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-regular);
+    line-height: 1.4;
+    color: var(--color-text-primary);
+    max-width: 880px;
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+
+  /* Proof bar client logo chip */
+  .client-logo-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface-white);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-4);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .client-logo-chip:hover {
+    border-color: var(--color-border-default);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .client-logo-chip:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .client-logo-chip img {
+    height: 38px;
+    width: auto;
+    display: block;
+  }
+
+  /* Stats strip */
+  .stats-eyebrow {
+    display: flex;
+    margin: 0 auto var(--space-12);
+    width: fit-content;
+  }
+
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-12);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+  }
+
+  .stat-item__number {
+    font-family: var(--font-mono);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-gold);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .stat-item__rule {
+    width: 36px;
+    height: 2px;
+    background: var(--color-brand-gold);
+    opacity: 0.5;
+  }
+
+  .stat-item__label {
+    font-size: var(--text-sm);
+    color: rgba(250, 247, 241, 0.7);
+    line-height: var(--leading-normal);
+    max-width: 220px;
+  }
+
+  /* Problem section split layout */
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .split-layout__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .split-layout__text .eyebrow {
+    margin-bottom: 0;
+  }
+
+  .split-layout__text h2 {
+    margin: 0;
+  }
+
+  .split-layout__text p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .split-layout__aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    position: sticky;
+    top: calc(72px + var(--space-8));
+  }
+
+  /* Pull stat */
+  .pull-stat {
+    background: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .pull-stat__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-5xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-gold);
+    line-height: 1;
+  }
+
+  .pull-stat__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(250, 247, 241, 0.5);
+  }
+
+  .pull-stat__sub {
+    font-size: var(--text-sm);
+    color: rgba(250, 247, 241, 0.78);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-2);
+  }
+
+  /* Methodology */
+  .methodology {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .methodology__step {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: var(--space-12);
+    padding: var(--space-12) 0;
+    border-top: 1px solid var(--color-border-subtle);
+    align-items: start;
+  }
+
+  .methodology__step:last-child {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .methodology__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    position: sticky;
+    top: calc(72px + var(--space-8));
+  }
+
+  .methodology__num {
+    font-family: var(--font-mono);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    line-height: 1;
+    opacity: 0.18;
+  }
+
+  .methodology__stat-card {
+    background: var(--color-surface-cream);
+    border-left: 4px solid var(--color-brand-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .methodology__stat-val {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    line-height: 1;
+  }
+
+  .methodology__stat-lbl {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .methodology__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .methodology__content h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    line-height: var(--leading-snug);
+    margin: 0;
+  }
+
+  .methodology__content p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* Services table */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    background: var(--color-surface-white);
+  }
+
+  .services-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+
+  .services-table thead {
+    background: var(--color-brand-teal);
+  }
+
+  .services-table th {
+    padding: var(--space-4) var(--space-8);
+    text-align: left;
+    font-family: var(--font-mono);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-xs);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(250, 247, 241, 0.85);
+  }
+
+  .services-table td {
+    padding: var(--space-5) var(--space-8);
+    border-bottom: 1px solid var(--color-border-subtle);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    vertical-align: top;
+  }
+
+  .services-table td:first-child {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    width: 42%;
+  }
+
+  .services-table td:last-child {
+    color: var(--color-text-secondary);
+  }
+
+  .services-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .services-table tbody tr:nth-child(even) {
+    background: var(--color-surface-cream);
+  }
+
+  .services-table tbody tr:hover {
+    background: var(--color-surface-teal-tint);
+  }
+
+  /* Pricing */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    align-items: stretch;
+    padding-top: var(--space-3);
+  }
+
+  .pricing-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6) var(--space-12);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface-cream);
+    border-left: 4px solid var(--color-brand-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-top: var(--space-10);
+  }
+
+  .pricing-notes p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: none;
+  }
+
+  /* Founder */
+  .founder-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .founder-figure {
+    margin: 0;
+    position: sticky;
+    top: calc(72px + var(--space-8));
+  }
+
+  .founder-photo {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .founder-caption {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-top: var(--space-4);
+  }
+
+  .founder-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .founder-content .eyebrow {
+    margin-bottom: 0;
+  }
+
+  .founder-content h2 {
+    margin: 0 0 var(--space-2);
+  }
+
+  .founder-content p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .founder-cta {
+    margin-top: var(--space-4);
+  }
+
+  /* Client proof */
+  .client-proof-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .client-proof-visual {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  /* Browser-frame mockup around the website screenshot */
+  .browser-frame {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-white);
+  }
+
+  .browser-frame__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-cream);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .browser-frame__dots {
+    display: inline-flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .browser-frame__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-border-default);
+  }
+
+  .browser-frame__url {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    background: var(--color-surface-white);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 99px;
+    padding: 2px var(--space-3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .browser-frame__shot {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Before / after figure */
+  .ba-figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .ba-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .ba-caption {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.3px;
+    color: var(--color-text-tertiary);
+  }
+
+  .client-proof-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .client-proof-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .client-proof-header .eyebrow {
+    margin-bottom: var(--space-1);
+  }
+
+  .client-proof-header h2 {
+    margin: 0;
+  }
+
+  .client-proof-content > p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .client-work-done {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .client-work-done__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  /* Generic gold check list */
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  .check-list li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    border-radius: 50%;
+    background: var(--color-brand-gold-tint);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='9' viewBox='0 0 11 9' fill='none'%3E%3Cpath d='M1 4.5L4 7.5L10 1' stroke='%23A88838' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Client testimonial quote */
+  .client-quote {
+    border-left: 4px solid var(--color-brand-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--color-surface-cream);
+    padding: var(--space-6);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .client-quote p {
+    font-size: var(--text-base);
+    font-style: italic;
+    color: var(--color-text-secondary);
+    max-width: none;
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .client-quote cite {
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+
+    .founder-layout {
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-10);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .split-layout,
+    .client-proof-layout,
+    .founder-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .split-layout__aside,
+    .founder-figure,
+    .client-proof-visual {
+      position: static;
+    }
+
+    .methodology__step {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      padding: var(--space-8) 0;
+    }
+
+    .methodology__meta {
+      flex-direction: row;
+      align-items: center;
+      position: static;
+    }
+
+    .methodology__stat-card {
+      width: auto;
+    }
+
+    .stats-strip {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .intro-statement {
+      font-size: var(--text-xl);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pricing-grid {
+      max-width: none;
+    }
+
+    .pricing-notes {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+  }
+</style>

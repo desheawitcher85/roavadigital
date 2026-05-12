@@ -1,0 +1,222 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const faqItems = [
+  {
+    question: 'What is local SEO and how is it different from regular SEO?',
+    answer: 'Local SEO focuses on ranking for searches with local intent: "contractor near me," "roofer in Roanoke," "gutter company Salem VA." It combines Google Business Profile optimization, local citation management, and location-specific content. Regular SEO targets broader keywords regardless of geography. For contractors, local SEO is the more valuable investment.',
+  },
+  {
+    question: 'Which contractors benefit most from local SEO?',
+    answer: 'Any contractor whose work is geographically bounded: roofing, gutters, siding, windows, exterior coatings, and similar trades. If 90% of your jobs come from within a 30-mile radius, local SEO is where to focus. National or regional contractors need a different strategy.',
+  },
+  {
+    question: 'Do I need a website or is Google Business Profile enough?',
+    answer: "GBP alone will get you into the local pack, but it won't capture organic search traffic from people who click the website results below the map. A solid GBP plus a fast, well-structured website is the combination that covers all the ground. GBP without a website leaves roughly 40% of search clicks on the table.",
+  },
+  {
+    question: 'How does local SEO work if I serve multiple cities?',
+    answer: 'You need a dedicated location page for each city you want to rank in. A Roanoke-based contractor who also serves Salem, Vinton, and Botetourt needs pages for each of those cities, optimized with local content, not just the same page with a different city name swapped in. We build these correctly from the start.',
+  },
+  {
+    question: 'How do I know if my local SEO is working?',
+    answer: 'Three numbers matter: Google Business Profile calls and direction requests (tracked in GBP Insights), local pack rankings for your target keywords (tracked via rank-tracking tools), and website organic traffic from local searches (Google Search Console). Monthly reports cover all three.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Local SEO for Contractors',
+  provider: { '@type': 'LocalBusiness', name: 'Roava Digital', url: 'https://roavadigital.com' },
+  areaServed: ['Roanoke City, VA', 'Roanoke County, VA', 'Salem, VA', 'Vinton, VA', 'Botetourt County, VA', 'Bedford County, VA', 'New River Valley, VA'],
+  description: 'Local SEO for roofing and exterior contractors in the Roanoke MSA. GBP management, citation building, location pages, and review strategy.',
+  url: 'https://roavadigital.com/services/local-seo',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://roavadigital.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Local SEO', item: 'https://roavadigital.com/services/local-seo' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Local SEO for Roanoke Contractors | Roava Digital"
+  description="Local SEO for roofing and exterior contractors in the Roanoke MSA. GBP management, citation building, location pages, review strategy. Calls, not just rankings."
+  canonicalUrl="https://roavadigital.com/services/local-seo"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="service-hero" aria-labelledby="service-headline">
+    <div class="container service-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/services" class="breadcrumb__link">Services</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Local SEO</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Roanoke MSA</span>
+      <h1 id="service-headline" class="service-hero__headline">
+        Show up when Roanoke homeowners search for what you do
+      </h1>
+      <p class="service-hero__subhead">
+        Local SEO for contractors comes down to three things: a complete, active Google Business Profile; consistent citations across directories; and service pages that match real search queries. All three are fixable. Most contractors are missing at least two.
+      </p>
+      <p class="hero-lead">Local SEO helps contractors rank in the Google local pack (the map results) and in organic search results for city-specific service keywords. Roava Digital focuses on the Roanoke MSA: Google Business Profile management, citation building and cleanup, location-specific service pages, and review velocity. Most contractors see measurable local pack movement within 60 to 90 days.</p>
+      <div class="service-hero__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+        <Button href="/services/roofing-seo" variant="ghost" size="lg">Roofing SEO specifically</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section service-section--white" aria-labelledby="pillars-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="pillars-heading">The four things that drive local rankings for contractors</h2>
+        <p class="section-head__intro">Google's local algorithm uses proximity, relevance, and prominence. Here's what that means in practice.</p>
+      </div>
+      <div class="service-pillars">
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">01</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Google Business Profile completeness and activity</h3>
+            <p class="service-pillar__body">Incomplete profiles rank lower. Missing hours, no service list, wrong category, no photos: each gap costs ranking positions. Active profiles (regular posts, Q&amp;A responses, photo uploads) signal to Google that the business is current and engaged.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">02</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Citation consistency</h3>
+            <p class="service-pillar__body">Your business name, address, and phone number must match exactly across Yelp, Angi, BBB, HomeAdvisor, and 40+ other directories. A mismatch on even one field tells Google your listing data isn't reliable. Citation cleanup is unglamorous work. It matters.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">03</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Location and service page strategy</h3>
+            <p class="service-pillar__body">A homepage with "we serve Roanoke" in one paragraph won't rank for "roof replacement Vinton VA." You need pages that match specific search queries for each service in each city. The Roanoke MSA has 7 distinct service areas worth targeting individually.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">04</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Review velocity and rating maintenance</h3>
+            <p class="service-pillar__body">Contractors in the Roanoke local pack top 3 typically have 40 to 120 reviews at 4.6 stars or better, with new reviews arriving consistently month over month. A burst of 20 reviews followed by silence is a negative signal. Consistent velocity is the goal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-faq service-section--cream" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="faq-heading">Common questions about local SEO</h2>
+      </div>
+      <div class="faq-list">
+        {faqItems.map((item, i) => (
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls={`faq-answer-${i}`} id={`faq-trigger-${i}`}>
+              {item.question}
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-trigger-${i}`} hidden>
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Next step"
+    headline="Find out where you stand in local search right now"
+    body="A free audit covers your GBP score, citation health, competitor gaps, and site speed. Specific findings in 48 hours. No obligation."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      const answerId = trigger.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  .service-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .service-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .service-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .service-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 680px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .service-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .service-section { padding: var(--space-16) 0; }
+  .service-section--white { background: var(--color-surface-white); }
+  .service-section--cream { background: var(--color-surface-cream); }
+  .service-pillars { display: flex; flex-direction: column; gap: var(--space-10); }
+  .service-pillar { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-6); padding-bottom: var(--space-10); border-bottom: 1px solid var(--color-border-subtle); }
+  .service-pillar:last-child { border-bottom: none; padding-bottom: 0; }
+  .service-pillar__number { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-brand-gold); background: var(--color-brand-gold-tint); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; letter-spacing: 0.5px; }
+  .service-pillar__content { display: flex; flex-direction: column; gap: var(--space-3); }
+  .service-pillar__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-text-primary); margin: 0; line-height: var(--leading-snug); }
+  .service-pillar__body { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; }
+  .service-faq { padding: var(--space-16) 0; }
+  .faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--color-border-subtle); max-width: 760px; }
+  .faq-item { border-bottom: 1px solid var(--color-border-subtle); }
+  .faq-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; background: none; border: none; text-align: left; font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-primary); cursor: pointer; transition: color var(--transition-fast); }
+  .faq-trigger:hover { color: var(--color-brand-teal); }
+  .faq-trigger:focus-visible { outline: 3px solid var(--color-brand-gold); outline-offset: 2px; border-radius: var(--radius-sm); }
+  .faq-icon { flex-shrink: 0; color: var(--color-brand-gold); transition: transform var(--transition-fast); }
+  .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+  .faq-answer { padding-bottom: var(--space-5); }
+  .faq-answer p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; max-width: 660px; }
+  @media (max-width: 900px) { .service-pillar { grid-template-columns: 1fr; gap: var(--space-3); } .service-pillar__number { margin-top: 0; } }
+  @media (max-width: 600px) { .service-hero { padding: var(--space-12) 0; } }
+</style>

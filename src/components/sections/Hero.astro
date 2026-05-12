@@ -1,0 +1,206 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  subhead: string;
+  primaryCtaText: string;
+  primaryCtaHref: string;
+  primaryCtaWithArrow?: boolean;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  headline,
+  subhead,
+  primaryCtaText,
+  primaryCtaHref,
+  primaryCtaWithArrow = false,
+  secondaryCtaText,
+  secondaryCtaHref,
+  imageSrc,
+  imageAlt = '',
+  class: className,
+} = Astro.props;
+---
+
+<section class:list={['hero', className]} aria-labelledby="hero-headline">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      {eyebrow && <span class="eyebrow hero__eyebrow">{eyebrow}</span>}
+      <h1 id="hero-headline" class="hero__headline">{headline}</h1>
+      <p class="hero__subhead">{subhead}</p>
+      <div class="hero__actions">
+        <Button href={primaryCtaHref} variant="primary" size="lg" withArrow={primaryCtaWithArrow}>
+          {primaryCtaText}
+        </Button>
+        {secondaryCtaText && secondaryCtaHref && (
+          <Button href={secondaryCtaHref} variant="ghost" size="lg">
+            {secondaryCtaText}
+          </Button>
+        )}
+      </div>
+    </div>
+    {imageSrc ? (
+      <div class="hero__visual">
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          class="hero__image"
+          width="640"
+          height="512"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <span class="hero__visual-accent" aria-hidden="true"></span>
+      </div>
+    ) : (
+      <div class="hero__visual hero__visual--placeholder" aria-hidden="true">
+        <!-- TODO: replace with real image: Roanoke neighborhood after a storm or a roofer's truck in a driveway. Real photography only, no stock. -->
+        <div class="hero__placeholder-box"><span>Real Roanoke photo coming</span></div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-24);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .hero__eyebrow {
+    margin-bottom: var(--space-2);
+  }
+
+  .hero__headline {
+    font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero__subhead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    max-width: 520px;
+    margin: 0;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    margin-top: var(--space-2);
+  }
+
+  .hero__visual {
+    position: relative;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 5 / 4;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Subtle gold accent block peeking out behind the photo */
+  .hero__visual-accent {
+    position: absolute;
+    right: calc(-1 * var(--space-6));
+    bottom: calc(-1 * var(--space-6));
+    width: 45%;
+    height: 60%;
+    border: 3px solid var(--color-brand-gold);
+    border-radius: var(--radius-lg);
+    z-index: 0;
+  }
+
+  .hero__visual--placeholder {
+    background: var(--color-surface-teal-tint);
+    border: 2px dashed var(--color-border-default);
+  }
+
+  .hero__placeholder-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 320px;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      padding: var(--space-16) 0;
+    }
+
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .hero__visual {
+      order: -1;
+      aspect-ratio: 16 / 9;
+    }
+
+    .hero__visual-accent {
+      right: calc(-1 * var(--space-4));
+      bottom: calc(-1 * var(--space-4));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero__headline {
+      font-size: 2.25rem;
+      letter-spacing: -1px;
+    }
+
+    .hero__actions {
+      width: 100%;
+    }
+
+    .hero__actions :global(.btn) {
+      flex: 1;
+    }
+
+    .hero__visual-accent {
+      display: none;
+    }
+  }
+</style>

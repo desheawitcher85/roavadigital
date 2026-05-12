@@ -1,0 +1,158 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  size?: 'sm' | 'md' | 'lg';
+  withArrow?: boolean;
+  class?: string;
+  disabled?: boolean;
+  'aria-label'?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  size = 'md',
+  withArrow = false,
+  class: className,
+  disabled,
+  'aria-label': ariaLabel,
+} = Astro.props;
+
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, withArrow && 'btn--with-arrow', className];
+---
+
+{href ? (
+  <a href={href} class:list={classes} aria-label={ariaLabel}>
+    <span class="btn__label"><slot /></span>
+    {withArrow && <span class="btn__arrow" aria-hidden="true">&rarr;</span>}
+  </a>
+) : (
+  <button type={type} class:list={classes} disabled={disabled} aria-label={ariaLabel}>
+    <span class="btn__label"><slot /></span>
+    {withArrow && <span class="btn__arrow" aria-hidden="true">&rarr;</span>}
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      box-shadow var(--transition-base),
+      transform var(--transition-fast);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .btn:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn__label {
+    display: inline-block;
+  }
+
+  .btn__arrow {
+    display: inline-block;
+    transition: transform var(--transition-base);
+    will-change: transform;
+  }
+
+  .btn:hover:not(:disabled) .btn__arrow {
+    transform: translateX(4px);
+  }
+
+  /* Sizes */
+  .btn--sm {
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .btn--md {
+    font-size: var(--text-base);
+    padding: var(--space-3) var(--space-6);
+  }
+
+  .btn--lg {
+    font-size: var(--text-lg);
+    padding: var(--space-4) var(--space-8);
+  }
+
+  /* Primary: teal background, cream text, gold hover */
+  .btn--primary {
+    background-color: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+    border-color: var(--color-brand-teal);
+  }
+
+  .btn--primary:hover:not(:disabled) {
+    background-color: var(--color-brand-gold);
+    border-color: var(--color-brand-gold);
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn--primary:active:not(:disabled) {
+    background-color: var(--color-brand-gold-hover);
+    border-color: var(--color-brand-gold-hover);
+    box-shadow: none;
+  }
+
+  /* Secondary: gold background, dark text */
+  .btn--secondary {
+    background-color: var(--color-brand-gold);
+    color: var(--color-text-primary);
+    border-color: var(--color-brand-gold);
+  }
+
+  .btn--secondary:hover:not(:disabled) {
+    background-color: var(--color-brand-gold-hover);
+    border-color: var(--color-brand-gold-hover);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn--secondary:active:not(:disabled) {
+    background-color: var(--color-brand-gold-hover);
+    filter: brightness(0.92);
+    box-shadow: none;
+  }
+
+  /* Ghost: transparent, teal border and text */
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--color-brand-teal);
+    border-color: var(--color-border-default);
+  }
+
+  .btn--ghost:hover:not(:disabled) {
+    background-color: var(--color-brand-teal);
+    border-color: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+  }
+
+  .btn--ghost:active:not(:disabled) {
+    background-color: var(--color-brand-teal-hover);
+    border-color: var(--color-brand-teal-hover);
+    color: var(--color-text-inverse);
+  }
+</style>

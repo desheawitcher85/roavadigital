@@ -1,0 +1,211 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const faqItems = [
+  {
+    question: 'What search terms should a siding contractor target in Roanoke?',
+    answer: "The highest-intent keywords in the Roanoke market are: 'siding replacement Roanoke VA,' 'vinyl siding contractor Salem,' 'fiber cement siding installation Roanoke County,' and 'storm damage siding repair.' Insurance claim-related searches also drive significant volume after hail events: 'insurance siding claim Roanoke' and similar.",
+  },
+  {
+    question: 'Does siding marketing work differently than roofing SEO?',
+    answer: "The mechanics are the same: GBP optimization, citation building, location pages, review strategy. The content strategy is different. Siding has more product differentiation (vinyl, fiber cement, wood, LP SmartSide) that homeowners research before calling. Service pages that address material options and pricing ranges convert better for siding than generic pages.",
+  },
+  {
+    question: 'How does insurance work with siding marketing?',
+    answer: "Storm damage claims drive a significant portion of siding replacement jobs in Virginia. A dedicated 'insurance siding claim' page that explains the process from inspection to installation to adjuster coordination converts visitors who are in that specific situation. Contractors who address insurance work on their site rank for those searches and close more of them.",
+  },
+  {
+    question: 'Can you run siding and roofing marketing together?',
+    answer: "Yes, and it often makes sense. Most of our clients do roofing as the primary service and siding as a secondary. The SEO and ads work reinforces both. One retainer covers both service areas with separate pages and GBP categories for each.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Siding Contractor Marketing',
+  provider: { '@type': 'LocalBusiness', name: 'Roava Digital', url: 'https://roavadigital.com' },
+  areaServed: ['Roanoke City, VA', 'Roanoke County, VA', 'Salem, VA', 'Vinton, VA', 'Botetourt County, VA', 'Bedford County, VA', 'New River Valley, VA'],
+  description: 'Local SEO and Google Ads for siding contractors in the Roanoke MSA. Insurance claim pages, material-specific content, seasonal storm demand strategy.',
+  url: 'https://roavadigital.com/services/siding-marketing',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://roavadigital.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Siding Marketing', item: 'https://roavadigital.com/services/siding-marketing' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Siding Contractor Marketing Roanoke | Roava Digital"
+  description="Local SEO and Google Ads for siding contractors in the Roanoke MSA. Insurance claim pages, material-specific content, storm demand strategy. More calls booked."
+  canonicalUrl="https://roavadigital.com/services/siding-marketing"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="service-hero" aria-labelledby="service-headline">
+    <div class="container service-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/services" class="breadcrumb__link">Services</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Siding Marketing</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Roanoke MSA</span>
+      <h1 id="service-headline" class="service-hero__headline">
+        Siding leads from homeowners who are ready to buy
+      </h1>
+      <p class="service-hero__subhead">
+        Siding replacement averages $8,000 to $18,000 per job in the Roanoke market. Homeowners don't search casually. When they're looking for a siding contractor, they have a real project and they're comparing 2 to 3 options. You need to be one of them.
+      </p>
+      <p class="hero-lead">Siding contractor marketing in Roanoke focuses on three areas: local search visibility for job-type and material keywords, dedicated pages for insurance claim and storm damage work, and Google Ads targeting high-intent searches. Siding homeowners research products before calling, so service pages with material comparisons (vinyl, fiber cement, LP SmartSide) convert better than generic "siding services" pages.</p>
+      <div class="service-hero__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+        <Button href="/contact" variant="ghost" size="lg">Talk about siding marketing</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section service-section--white" aria-labelledby="strategy-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="strategy-heading">What drives siding leads from local search</h2>
+        <p class="section-head__intro">Siding leads come from three distinct homeowner situations. Each needs a different content approach.</p>
+      </div>
+      <div class="service-pillars">
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">01</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Storm damage and insurance claims</h3>
+            <p class="service-pillar__body">Hail and wind damage drive a large share of siding replacement in Virginia. Homeowners with insurance claims search specifically for contractors who understand the claims process. A dedicated page that explains your inspection process, adjuster coordination, and insurance paperwork handling converts those visitors at higher rates than a generic siding page.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">02</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Material-specific searches</h3>
+            <p class="service-pillar__body">Homeowners who have done research before calling ask about specific materials: "LP SmartSide vs. fiber cement," "vinyl siding cost Roanoke," "James Hardie installer Roanoke County." These are high-intent searches from buyers who are close to a decision. Service pages built around material types and honest comparison content capture this traffic and build credibility before the first call.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">03</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Replacement and reside searches</h3>
+            <p class="service-pillar__body">General replacement searches ("siding replacement Roanoke VA," "reside house Salem") represent the largest keyword volume. These require location-specific service pages, a complete GBP with siding as a primary service category, and consistent citation presence in contractor-specific directories. Same core SEO work as roofing, calibrated to siding keywords.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-faq service-section--cream" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="faq-heading">Common questions about siding marketing</h2>
+      </div>
+      <div class="faq-list">
+        {faqItems.map((item, i) => (
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls={`faq-answer-${i}`} id={`faq-trigger-${i}`}>
+              {item.question}
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-trigger-${i}`} hidden>
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Next step"
+    headline="See how visible your siding business is right now"
+    body="A free audit covers your GBP score, citation health, competitor ranking gaps, and site speed. 48 hours. No obligation."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      const answerId = trigger.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  .service-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .service-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .service-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .service-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 680px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .service-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .service-section { padding: var(--space-16) 0; }
+  .service-section--white { background: var(--color-surface-white); }
+  .service-section--cream { background: var(--color-surface-cream); }
+  .service-pillars { display: flex; flex-direction: column; gap: var(--space-10); }
+  .service-pillar { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-6); padding-bottom: var(--space-10); border-bottom: 1px solid var(--color-border-subtle); }
+  .service-pillar:last-child { border-bottom: none; padding-bottom: 0; }
+  .service-pillar__number { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-brand-gold); background: var(--color-brand-gold-tint); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; letter-spacing: 0.5px; }
+  .service-pillar__content { display: flex; flex-direction: column; gap: var(--space-3); }
+  .service-pillar__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-text-primary); margin: 0; line-height: var(--leading-snug); }
+  .service-pillar__body { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; }
+  .service-faq { padding: var(--space-16) 0; }
+  .faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--color-border-subtle); max-width: 760px; }
+  .faq-item { border-bottom: 1px solid var(--color-border-subtle); }
+  .faq-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; background: none; border: none; text-align: left; font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-primary); cursor: pointer; transition: color var(--transition-fast); }
+  .faq-trigger:hover { color: var(--color-brand-teal); }
+  .faq-trigger:focus-visible { outline: 3px solid var(--color-brand-gold); outline-offset: 2px; border-radius: var(--radius-sm); }
+  .faq-icon { flex-shrink: 0; color: var(--color-brand-gold); transition: transform var(--transition-fast); }
+  .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+  .faq-answer { padding-bottom: var(--space-5); }
+  .faq-answer p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; max-width: 660px; }
+  @media (max-width: 900px) { .service-pillar { grid-template-columns: 1fr; gap: var(--space-3); } .service-pillar__number { margin-top: 0; } }
+  @media (max-width: 600px) { .service-hero { padding: var(--space-12) 0; } }
+</style>

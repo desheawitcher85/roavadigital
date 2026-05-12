@@ -1,0 +1,751 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+import Button from '../../components/ui/Button.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Case Studies', item: 'https://roavadigital.com/case-studies' },
+    { '@type': 'ListItem', position: 3, name: 'Blue Ridge NanoGuard', item: 'https://roavadigital.com/case-studies/blue-ridge-nanoguard' },
+  ],
+};
+
+const caseStudySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Blue Ridge NanoGuard: Building a Local Search Presence from Zero',
+  description: 'How Roava Digital built the website, SEO architecture, and technical foundation for Blue Ridge NanoGuard — a roof rejuvenation coating company in the Roanoke, VA market.',
+  author: {
+    '@type': 'Person',
+    name: 'DeShea Witcher',
+    url: 'https://roavadigital.com/about',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Roava Digital',
+    url: 'https://roavadigital.com',
+  },
+  about: {
+    '@type': 'LocalBusiness',
+    name: 'Blue Ridge NanoGuard',
+    url: 'https://blueridgenanoguard.com',
+    areaServed: 'Roanoke, Virginia',
+  },
+  datePublished: '2026-05-12',
+};
+---
+
+<MarketingLayout
+  title="Blue Ridge NanoGuard Case Study | Roava Digital"
+  description="How Roava Digital built the website, local SEO architecture, and technical foundation for Blue Ridge NanoGuard — a roof rejuvenation company in Roanoke, VA."
+  canonicalUrl="https://roavadigital.com/case-studies/blue-ridge-nanoguard"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(caseStudySchema)} />
+  </Fragment>
+
+  <!-- Header -->
+  <section class="case-header" aria-labelledby="case-heading">
+    <div class="container case-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/case-studies/blue-ridge-nanoguard" class="breadcrumb__current">Case Studies</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Blue Ridge NanoGuard</li>
+        </ol>
+      </nav>
+      <div class="case-header__client">
+        <a href="https://blueridgenanoguard.com" rel="noopener" aria-label="Blue Ridge NanoGuard website">
+          <img
+            src="/nanoguard-logo.png"
+            alt="Blue Ridge NanoGuard"
+            class="case-header__logo"
+            width="180"
+            height="54"
+            loading="eager"
+          />
+        </a>
+        <span class="case-header__badge">Site live · SEO campaign active</span>
+      </div>
+      <h1 id="case-heading" class="case-header__headline">Blue Ridge NanoGuard: built to rank from day one.</h1>
+      <p class="case-header__subhead">A roof rejuvenation coating company entering the Roanoke market with no web presence. Roava built the website, the SEO architecture, and the technical foundation to rank in local search and get picked up by AI-powered search results.</p>
+    </div>
+  </section>
+
+  <!-- Status bar -->
+  <section class="status-section" aria-label="Campaign status">
+    <div class="container status-inner">
+      <div class="status-stats">
+        <div class="status-stat">
+          <span class="status-stat__number">May 2026</span>
+          <span class="status-stat__label">Site launched</span>
+        </div>
+        <div class="status-stat">
+          <span class="status-stat__number">9 towns</span>
+          <span class="status-stat__label">service area pages built</span>
+        </div>
+        <div class="status-stat">
+          <span class="status-stat__number">&lt; 1s</span>
+          <span class="status-stat__label">mobile load time</span>
+        </div>
+        <div class="status-stat">
+          <span class="status-stat__number">100</span>
+          <span class="status-stat__label">Lighthouse SEO score</span>
+        </div>
+      </div>
+      <p class="status-note">Ranking data and lead volume will be published here as the campaign matures. Quarterly updates, real numbers only.</p>
+    </div>
+  </section>
+
+  <!-- The client -->
+  <section class="client-section" aria-labelledby="client-heading">
+    <div class="container client-inner">
+      <h2 id="client-heading" class="section-heading">The client.</h2>
+      <div class="client-body">
+        <p><a href="https://blueridgenanoguard.com" rel="noopener" class="prose-link">Blue Ridge NanoGuard</a> applies GoNano roof rejuvenation coating to residential and commercial properties across nine towns from Roanoke to Charlottesville. The product extends roof life by 10 to 15 years without a full replacement. It is a newer category in the Roanoke market — most homeowners have never heard of roof rejuvenation by name, which makes the marketing challenge more interesting than a typical roofing company.</p>
+        <p>When the engagement started: no website, no Google Business Profile, no citations, no reviews. The starting point was zero. Everything had to be built before any optimization could happen.</p>
+        <p>The service area covers nine towns across a significant geographic footprint: Roanoke, Salem, Vinton, Lynchburg, Charlottesville, and the surrounding region. Each location requires its own local search signals to be visible in that market's local pack.</p>
+      </div>
+      <div class="client-images">
+        <figure class="client-figure">
+          <a href="https://blueridgenanoguard.com" rel="noopener" aria-label="View Blue Ridge NanoGuard live site">
+            <img
+              src="/nanoguard-site.png"
+              alt="Blue Ridge NanoGuard website homepage showing roof rejuvenation coating services for Roanoke, VA"
+              class="client-figure__img"
+              width="760"
+              height="480"
+              loading="lazy"
+            />
+          </a>
+          <figcaption class="client-figure__caption">The live site at <a href="https://blueridgenanoguard.com" rel="noopener" class="caption-link">blueridgenanoguard.com</a></figcaption>
+        </figure>
+        <figure class="client-figure">
+          <img
+            src="/nanoguard-before-after.jpg"
+            alt="Before and after: residential roof restored with GoNano rejuvenation coating, featured on the Blue Ridge NanoGuard website"
+            class="client-figure__img"
+            width="760"
+            height="480"
+            loading="lazy"
+          />
+          <figcaption class="client-figure__caption">Real before/after from a NanoGuard job. Used on the site with client permission.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- The challenge -->
+  <section class="challenge-section" aria-labelledby="challenge-heading">
+    <div class="container challenge-inner">
+      <h2 id="challenge-heading" class="section-heading">The challenge.</h2>
+      <div class="challenge-cols">
+        <div class="challenge-item">
+          <h3 class="challenge-item__heading">New product category</h3>
+          <p class="challenge-item__body">Most Roanoke homeowners do not search for "roof rejuvenation" or "GoNano coating" by name. Monthly search volume for those exact terms is low. The site has to capture homeowners searching for adjacent problems — roof repair, roof maintenance, roof coating — and educate them about the product. That requires a different content strategy than a standard roofing company.</p>
+        </div>
+        <div class="challenge-item">
+          <h3 class="challenge-item__heading">Zero starting presence</h3>
+          <p class="challenge-item__body">No GBP, no domain authority, no citations, no reviews. Google uses these signals collectively to determine local pack ranking. Building from zero means establishing every signal before any optimization can compound. There is no shortcut to this phase — it has to be done correctly from the start.</p>
+        </div>
+        <div class="challenge-item">
+          <h3 class="challenge-item__heading">Nine-town service area</h3>
+          <p class="challenge-item__body">Serving Roanoke, Salem, Charlottesville, Lynchburg, and five other towns means nine separate local packs, each with their own competitors and their own ranking signals. A single location page cannot serve all of them. Each town needs its own targeted page to have any shot at the local pack there.</p>
+        </div>
+        <div class="challenge-item">
+          <h3 class="challenge-item__heading">Skeptical homeowner audience</h3>
+          <p class="challenge-item__body">Homeowners considering roof rejuvenation have often heard of full replacement but not coating. The website has to earn trust before it can close a lead. That means transparent explanation of what the product is, what it costs, who it is and is not right for, and real proof from real jobs — not generic claims.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Build quality: the technical work -->
+  <section class="build-section" aria-labelledby="build-heading">
+    <div class="container build-inner">
+      <h2 id="build-heading" class="section-heading">What was built, and why it ranks.</h2>
+      <p class="build-subhead">This section documents the technical and architectural decisions behind the site. The goal was a site that passes every technical SEO audit on day one, not one that needs fixes after launch.</p>
+
+      <div class="build-items">
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">01</span>
+            <h3 class="build-item__name">Site architecture and URL structure</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Flat, keyword-intent URL structure. Service pages follow <code>/services/[service-type]</code>, location pages follow <code>/locations/[city-name]</code>. No deep nesting, no parameter-based URLs, no date-based blog paths that dilute crawl equity over time.</p>
+            <p>Internal linking is deliberate: the homepage links to each service and location page, service pages link to relevant locations, and blog content links internally to the service pages it supports. Crawl budget is not wasted on orphaned pages.</p>
+          </div>
+        </div>
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">02</span>
+            <h3 class="build-item__name">Nine location-specific service pages</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Each of the nine service towns gets a dedicated page with: a location-specific H1, a Quick Answer block that directly answers "what is roof rejuvenation in [city]" in 50 to 60 words, local market context, service area details, FAQ content with H3 questions phrased as real searches, and a LocalBusiness schema with the city name in the <code>areaServed</code> field.</p>
+            <p>These pages are not templates with the city name swapped in. Each one covers what is specific to that market: proximity to Roanoke, local housing stock age, competitive context. Google can tell the difference between thin location pages and ones with real geographic specificity.</p>
+          </div>
+        </div>
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">03</span>
+            <h3 class="build-item__name">Schema markup on every page</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Every page ships with structured data appropriate to its content type. The homepage carries Organization, LocalBusiness, WebSite with SearchAction, and FAQPage schema. Service pages carry Service schema with <code>areaServed</code> and an Offer block. Location pages carry LocalBusiness schema with city-level coordinates and service area. Blog posts carry Article schema with author, publisher, and breadcrumb markup.</p>
+            <p>The FAQPage schema on every substantive page is the AEO/GEO play. When Google AI Overviews, Perplexity, or ChatGPT pull answers about roof rejuvenation in Roanoke, the question-and-answer markup gives them a clean extraction target. The content is written to be quoted directly: specific, self-contained, first-person answers under 80 words each.</p>
+          </div>
+        </div>
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">04</span>
+            <h3 class="build-item__name">AEO/GEO content architecture</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Every page is built for two audiences: the human visitor and the AI model extracting answers. Each H2 is followed immediately by a self-contained atomic answer in the first sentence — a direct response to the question implied by the heading. Every page opens with a Quick Answer blockquote: 50 to 60 words, no caveats, directly answerable out of context.</p>
+            <p>Named entities are used consistently and in full on first mention: "Blue Ridge NanoGuard," "GoNano coating," "Roanoke, Virginia." This helps AI models associate the business with the product category and the geography without ambiguity. Vague references like "our product" or "the area" are avoided throughout.</p>
+          </div>
+        </div>
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">05</span>
+            <h3 class="build-item__name">Page speed and Core Web Vitals</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Mobile load time under 1 second. Achieved by: zero client-side JavaScript frameworks (pure HTML + CSS output, no React or Vue hydration), all images served in WebP format with PNG fallback, Montserrat 800 preloaded as the above-fold display font with <code>font-display: swap</code> on all others, and no render-blocking third-party scripts at launch.</p>
+            <p>Lighthouse scores at launch: Performance 97+, Accessibility 100, Best Practices 100, SEO 100. These are verifiable on any public Lighthouse tool against <a href="https://blueridgenanoguard.com" rel="noopener" class="prose-link">blueridgenanoguard.com</a>.</p>
+          </div>
+        </div>
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">06</span>
+            <h3 class="build-item__name">On-page SEO fundamentals</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Every page has: exactly one H1 per page with the primary keyword phrase, a unique meta title under 60 characters with the keyword first, a unique meta description 140 to 160 characters with a call to action, a canonical URL, Open Graph and Twitter Card tags with a real og:image, and a breadcrumb both in the HTML and in BreadcrumbList schema.</p>
+            <p>Heading hierarchy is strict: H1 then H2 then H3, no skipped levels, no H2 appearing before the H1. Alt text on every image is descriptive and specific. No "image of X" prefix, no empty alt attributes on meaningful images.</p>
+          </div>
+        </div>
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">07</span>
+            <h3 class="build-item__name">Category education content</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Because "roof rejuvenation" is not a commonly searched term, several pages were written to capture homeowners researching related topics: what makes a roof eligible for coating versus replacement, the difference between GoNano and standard roof coating, how long rejuvenation lasts versus a new roof, and cost comparison content. These capture mid-funnel searchers who are in the decision window but not yet searching by product name.</p>
+            <p>Each piece is written at a 7th-grade reading level, with short paragraphs and no marketing filler. Roofing homeowners in the Roanoke market are not reading blog posts for entertainment — they are looking for a specific answer. Every page tries to give it to them in the first two sentences.</p>
+          </div>
+        </div>
+
+        <div class="build-item">
+          <div class="build-item__label">
+            <span class="build-item__number">08</span>
+            <h3 class="build-item__name">GBP and local citation foundation</h3>
+          </div>
+          <div class="build-item__body">
+            <p>Google Business Profile set up with the correct primary category, full service area configuration across all nine towns, initial media library with real job photos, and the review request system in place before launch. Consistent NAP (name, address, phone) data established across 30+ directories before the SEO campaign began — inconsistent citations are the most common and most avoidable technical problem for new local businesses.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="testimonial-section" aria-labelledby="testimonial-heading">
+    <div class="container testimonial-inner">
+      <h2 id="testimonial-heading" class="section-heading">From the client.</h2>
+      <blockquote class="testimonial-quote">
+        <p>"We sell a product most homeowners in Virginia have never heard of, so the website had to do real work. DeShea took the time to learn roof rejuvenation, how GoNano is different from what else is out there, and the nine towns we serve from Roanoke to Charlottesville. He built the site, wrote the pages, set up the service area pages, and handled the technical SEO. He ships on time and he knows the local market because he lives in it. If you run a service business in the Roanoke Valley and need a website that actually shows up in search, he's the guy I'd call."</p>
+        <cite>
+          <strong>J. Dillow</strong> · Owner, <a href="https://blueridgenanoguard.com" rel="noopener" class="cite-link">Blue Ridge NanoGuard</a>
+        </cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Results placeholder -->
+  <section class="results-section" aria-labelledby="results-heading">
+    <div class="container results-inner">
+      <h2 id="results-heading" class="section-heading">Results.</h2>
+      <div class="results-placeholder" role="note">
+        <p class="results-placeholder__heading">Campaign launched May 2026. First data published at 90 days.</p>
+        <p class="results-placeholder__body">Planned metrics: local pack ranking position for target keywords in each service area, monthly review count and velocity, organic search traffic from Google Search Console, and attributed leads from search vs. other sources.</p>
+        <p class="results-placeholder__body">No fabricated numbers here. If you want a current status update before the data is published, <a href="/contact" class="results-link">contact Roava directly</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Building a site that actually ranks?"
+    body="The free audit shows your current GBP score, citation gaps, and competitor positioning. If you are starting from zero or need a rebuild, that is where the conversation starts."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See service pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<style>
+  /* ===== HEADER ===== */
+  .case-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .case-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .case-header__client {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .case-header__logo {
+    width: 160px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .case-header__badge {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-success);
+    background: #F0FDF4;
+    padding: 3px var(--space-3);
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.3px;
+    border: 1px solid var(--color-success);
+  }
+
+  .case-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .case-header__subhead {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 640px;
+  }
+
+  /* ===== STATUS BAR ===== */
+  .status-section {
+    background: var(--color-brand-teal);
+    padding: var(--space-8) 0;
+  }
+
+  .status-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .status-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .status-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .status-stat__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-gold);
+    line-height: 0.85;
+  }
+
+  .status-stat__label {
+    font-size: var(--text-xs);
+    color: rgba(250, 247, 241, 0.7);
+    line-height: var(--leading-normal);
+  }
+
+  .status-note {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: rgba(250, 247, 241, 0.5);
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== CLIENT ===== */
+  .client-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .client-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .client-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .client-body p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .prose-link {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  .prose-link:hover {
+    color: var(--color-brand-teal-hover);
+  }
+
+  .client-images {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .client-figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .client-figure__img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+    display: block;
+    transition: opacity var(--transition-fast);
+  }
+
+  .client-figure a:hover .client-figure__img {
+    opacity: 0.92;
+  }
+
+  .client-figure__caption {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    font-style: italic;
+  }
+
+  .caption-link {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  /* ===== CHALLENGE ===== */
+  .challenge-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .challenge-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .challenge-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .challenge-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .challenge-item__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .challenge-item__body {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== BUILD QUALITY ===== */
+  .build-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .build-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .build-subhead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: -var(--space-4) 0 0;
+    max-width: 620px;
+  }
+
+  .build-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .build-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-8);
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    align-items: start;
+  }
+
+  .build-item:last-child {
+    border-bottom: none;
+  }
+
+  .build-item__label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: 2px;
+  }
+
+  .build-item__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 1px;
+  }
+
+  .build-item__name {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .build-item__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .build-item__body p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .build-item__body code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-surface-cream);
+    border: 1px solid var(--color-border-subtle);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--color-brand-teal);
+  }
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonial-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .testimonial-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .testimonial-quote {
+    border-left: 4px solid var(--color-brand-gold);
+    padding: var(--space-8) var(--space-8);
+    background: var(--color-surface-white);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .testimonial-quote p {
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .testimonial-quote cite {
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    display: block;
+  }
+
+  .cite-link {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  /* ===== RESULTS ===== */
+  .results-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .results-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .results-placeholder {
+    background: var(--color-surface-cream);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .results-placeholder__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .results-placeholder__body {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .results-link {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .status-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .challenge-cols {
+      grid-template-columns: 1fr;
+    }
+
+    .build-item {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .case-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .status-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    .testimonial-quote {
+      padding: var(--space-6);
+    }
+  }
+</style>

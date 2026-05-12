@@ -1,0 +1,226 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const faqItems = [
+  {
+    question: 'How much should a Roanoke roofing contractor spend on Google Ads?',
+    answer: "For most roofing contractors in the Roanoke market, a starting budget of $1,000 to $2,500 per month in ad spend is enough to get meaningful data and generate calls. That's separate from the management fee. Below $800/month, the data is too thin to optimize effectively.",
+  },
+  {
+    question: 'How fast do Google Ads produce results compared to SEO?',
+    answer: 'Google Ads can produce calls within days of launch. SEO takes 60 to 90 days for measurable movement. Most contractors run both: ads for immediate volume, SEO to build the long-term foundation that reduces ad dependency over time.',
+  },
+  {
+    question: 'What keywords should a roofing contractor target?',
+    answer: "In Roanoke, the highest-intent keywords are job-type + location combinations: 'roof replacement Roanoke VA,' 'emergency roof repair Salem,' 'gutter installation Botetourt County.' Storm-damage keywords spike after weather events. We monitor storm activity and adjust bids same-day when conditions warrant.",
+  },
+  {
+    question: "What's the difference between Google Ads and Local Services Ads?",
+    answer: "Google Search Ads (traditional PPC) show above organic results and charge per click. Local Services Ads (LSAs) show above everything, charge per lead (not per click), and display a Google Guaranteed badge. For roofing contractors, LSAs often produce lower cost-per-lead. We set up and manage both.",
+  },
+  {
+    question: 'Do I need a good website for Google Ads to work?',
+    answer: "Yes. Ads drive clicks, but your landing page closes the call. A slow site, a missing phone number, or a page that doesn't match the ad's promise will waste your budget. We audit your landing pages before launching any campaign.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Google Ads Management for Contractors',
+  provider: { '@type': 'LocalBusiness', name: 'Roava Digital', url: 'https://roavadigital.com' },
+  areaServed: ['Roanoke City, VA', 'Roanoke County, VA', 'Salem, VA', 'Vinton, VA', 'Botetourt County, VA', 'Bedford County, VA', 'New River Valley, VA'],
+  description: 'Google Ads and Local Services Ads management for Roanoke roofing and exterior contractors. Storm-responsive bidding, transparent reporting, no long-term contracts.',
+  url: 'https://roavadigital.com/services/google-ads',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://roavadigital.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Google Ads', item: 'https://roavadigital.com/services/google-ads' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Google Ads for Roanoke Exterior Contractors | Roava Digital"
+  description="Google Ads and Local Services Ads management for Roanoke roofing and exterior contractors. Storm-responsive bidding. Transparent reporting. No long-term contracts."
+  canonicalUrl="https://roavadigital.com/services/google-ads"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="service-hero" aria-labelledby="service-headline">
+    <div class="container service-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/services" class="breadcrumb__link">Services</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Google Ads</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Immediate results</span>
+      <h1 id="service-headline" class="service-hero__headline">
+        Google Ads that pay for themselves on the first job
+      </h1>
+      <p class="service-hero__subhead">
+        SEO builds long-term traffic. Google Ads fill the calendar while SEO compounds. For Roanoke roofing contractors, a well-managed ad campaign should generate enough calls in month one to pay for itself. If it doesn't, something is wrong with the campaign.
+      </p>
+      <p class="hero-lead">Roava Digital manages Google Search Ads and Local Services Ads for Roanoke roofing and exterior contractors. Every campaign uses tight geographic targeting, job-type keywords, storm-responsive bidding, and conversion tracking tied to real calls and form submissions. Minimum monthly ad spend is $1,000. Management is a separate flat fee.</p>
+      <div class="service-hero__actions">
+        <Button href="/contact" variant="primary" size="lg" withArrow={true}>Talk about running ads</Button>
+        <Button href="/free-audit" variant="ghost" size="lg">Get a free audit first</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section service-section--white" aria-labelledby="what-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="what-heading">How contractor Google Ads are different from other PPC</h2>
+        <p class="section-head__intro">Roofing ads aren't e-commerce. The funnel is different. The bidding strategy is different. Most generic PPC agencies miss this.</p>
+      </div>
+      <div class="service-pillars">
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">01</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Storm-responsive bidding</h3>
+            <p class="service-pillar__body">After a hailstorm or heavy wind event in the Roanoke area, search volume for roof repair and replacement spikes within 24 to 48 hours. If your bids aren't elevated during that window, your competitors capture the surge and you don't.</p>
+            <p class="service-pillar__body">We monitor Roanoke-area weather events and adjust bids same-day when storm conditions warrant. That window closes fast.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">02</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Local Services Ads setup and management</h3>
+            <p class="service-pillar__body">LSAs show above traditional ads and above the local pack. They charge per verified lead, not per click. For roofing contractors, the Google Guaranteed badge builds trust faster than a standard ad.</p>
+            <p class="service-pillar__body">Getting approved requires background checks and license verification. We handle the setup and dispute any invalid leads to keep your cost-per-lead accurate.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">03</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Conversion tracking tied to real outcomes</h3>
+            <p class="service-pillar__body">Clicks are not leads. We set up call tracking numbers and form submission tracking so you can see which keywords and ads are actually generating calls, not just traffic. Most campaigns improve significantly once real conversion data comes in.</p>
+            <p class="service-pillar__body">Monthly reports show cost-per-call, call volume by keyword, and wasted spend from irrelevant searches. You own all campaign data, always.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">04</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Tight geographic and keyword targeting</h3>
+            <p class="service-pillar__body">Broad match keywords and wide geographic targeting burn budgets. We use specific service-area targeting (Roanoke MSA ZIP codes) and match types that prioritize high-intent searches: job-type + location combinations, not "roofing" alone.</p>
+            <p class="service-pillar__body">Negative keyword lists are maintained weekly to block irrelevant searches like "roofing nails" or "roofing jobs near me" (job-seekers, not homeowners).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-faq service-section--cream" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="faq-heading">Common questions about roofing Google Ads</h2>
+      </div>
+      <div class="faq-list">
+        {faqItems.map((item, i) => (
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls={`faq-answer-${i}`} id={`faq-trigger-${i}`}>
+              {item.question}
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-trigger-${i}`} hidden>
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Next step"
+    headline="Talk through your current ad situation"
+    body="If you're running ads already, I'll review the account before we talk. If you're starting from scratch, I'll give you a realistic number for your market and service mix."
+    primaryCtaText="Start the conversation"
+    primaryCtaHref="/contact"
+    secondaryCtaText="See pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      const answerId = trigger.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  .service-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .service-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .service-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .service-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 680px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .service-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .service-section { padding: var(--space-16) 0; }
+  .service-section--white { background: var(--color-surface-white); }
+  .service-section--cream { background: var(--color-surface-cream); }
+  .service-pillars { display: flex; flex-direction: column; gap: var(--space-10); }
+  .service-pillar { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-6); padding-bottom: var(--space-10); border-bottom: 1px solid var(--color-border-subtle); }
+  .service-pillar:last-child { border-bottom: none; padding-bottom: 0; }
+  .service-pillar__number { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-brand-gold); background: var(--color-brand-gold-tint); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; letter-spacing: 0.5px; }
+  .service-pillar__content { display: flex; flex-direction: column; gap: var(--space-3); }
+  .service-pillar__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-text-primary); margin: 0; line-height: var(--leading-snug); }
+  .service-pillar__body { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; }
+  .service-faq { padding: var(--space-16) 0; }
+  .faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--color-border-subtle); max-width: 760px; }
+  .faq-item { border-bottom: 1px solid var(--color-border-subtle); }
+  .faq-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; background: none; border: none; text-align: left; font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-primary); cursor: pointer; transition: color var(--transition-fast); }
+  .faq-trigger:hover { color: var(--color-brand-teal); }
+  .faq-trigger:focus-visible { outline: 3px solid var(--color-brand-gold); outline-offset: 2px; border-radius: var(--radius-sm); }
+  .faq-icon { flex-shrink: 0; color: var(--color-brand-gold); transition: transform var(--transition-fast); }
+  .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+  .faq-answer { padding-bottom: var(--space-5); }
+  .faq-answer p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; max-width: 660px; }
+  @media (max-width: 900px) { .service-pillar { grid-template-columns: 1fr; gap: var(--space-3); } .service-pillar__number { margin-top: 0; } }
+  @media (max-width: 600px) { .service-hero { padding: var(--space-12) 0; } }
+</style>

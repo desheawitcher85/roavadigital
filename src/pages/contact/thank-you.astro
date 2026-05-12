@@ -1,0 +1,156 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+---
+
+<MarketingLayout
+  title="Message Received | Roava Digital"
+  description="Your message has been received. Expect a reply within 24 hours."
+  canonicalUrl="https://roavadigital.com/contact/thank-you"
+  noindex={true}
+>
+  <section class="thankyou" aria-labelledby="thankyou-heading">
+    <div class="container thankyou__inner">
+      <div class="thankyou__icon" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="23" stroke="var(--color-brand-gold)" stroke-width="2"/>
+          <path d="M14 24L21 31L34 17" stroke="var(--color-brand-teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 id="thankyou-heading" class="thankyou__headline">Message received.</h1>
+      <p class="thankyou__body">
+        I'll have a reply in your inbox within 24 hours. I'll look up your business before responding, so you don't have to recap your situation.
+      </p>
+      <p class="thankyou__body">
+        Questions before then? Email <a href="mailto:hello@roavadigital.com">hello@roavadigital.com</a> directly.
+      </p>
+      <div class="thankyou__actions">
+        <a href="/" class="btn btn--primary btn--lg">Back to home</a>
+        <a href="/free-audit" class="thankyou__secondary-link">Request a free audit instead</a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>
+
+<style>
+  .thankyou {
+    background: var(--color-surface-cream);
+    padding: var(--space-32) 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .thankyou__inner {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .thankyou__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .thankyou__headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: var(--weight-black);
+    color: var(--color-text-primary);
+    line-height: var(--leading-snug);
+    letter-spacing: -1px;
+    margin: 0;
+  }
+
+  .thankyou__body {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .thankyou__body a {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  .thankyou__body a:hover {
+    color: var(--color-brand-teal-hover);
+  }
+
+  .thankyou__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .thankyou__secondary-link {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border-default);
+    padding-bottom: 2px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .thankyou__secondary-link:hover {
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-brand-teal);
+  }
+
+  .thankyou__secondary-link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+    border: 2px solid transparent;
+  }
+
+  .btn--lg {
+    font-size: var(--text-base);
+    padding: var(--space-4) var(--space-8);
+  }
+
+  .btn--primary {
+    background: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+    border-color: var(--color-brand-teal);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-brand-teal-hover);
+    border-color: var(--color-brand-teal-hover);
+  }
+
+  .btn--primary:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .thankyou {
+      padding: var(--space-16) 0;
+      min-height: auto;
+    }
+
+    .thankyou__actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

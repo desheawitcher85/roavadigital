@@ -1,0 +1,98 @@
+---
+interface Props {
+  variant?: 'full' | 'mark' | 'inverse';
+  width?: number;
+  height?: number;
+  linkTo?: string;
+  class?: string;
+}
+
+const {
+  variant = 'full',
+  width,
+  height = 40,
+  linkTo,
+  class: className,
+} = Astro.props;
+
+const src =
+  variant === 'inverse'
+    ? '/roava-logo-inverse.png'
+    : variant === 'mark'
+    ? '/favicon.svg'
+    : '/roava-logo.png';
+
+const altText = 'Roava Digital, Roanoke roofing marketing agency';
+const isImg = variant !== 'mark';
+---
+
+{linkTo ? (
+  <a href={linkTo} class:list={['logo-link', className]} aria-label="Roava Digital home">
+    {isImg ? (
+      <img
+        src={src}
+        alt={altText}
+        height={height}
+        width={width}
+        loading="eager"
+        decoding="async"
+        style={`height:${height}px; width: ${width ? width + 'px' : 'auto'};`}
+      />
+    ) : (
+      <img
+        src={src}
+        alt={altText}
+        height={height}
+        width={height}
+        loading="eager"
+        decoding="async"
+        style={`height:${height}px; width: ${height}px;`}
+      />
+    )}
+  </a>
+) : (
+  <span class:list={['logo-wrap', className]}>
+    {isImg ? (
+      <img
+        src={src}
+        alt={altText}
+        height={height}
+        width={width}
+        loading="eager"
+        decoding="async"
+        style={`height:${height}px; width: ${width ? width + 'px' : 'auto'};`}
+      />
+    ) : (
+      <img
+        src={src}
+        alt={altText}
+        height={height}
+        width={height}
+        loading="eager"
+        decoding="async"
+        style={`height:${height}px; width: ${height}px;`}
+      />
+    )}
+  </span>
+)}
+
+<style>
+  .logo-link,
+  .logo-wrap {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo-link:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  .logo-link img,
+  .logo-wrap img {
+    display: block;
+    object-fit: contain;
+  }
+</style>

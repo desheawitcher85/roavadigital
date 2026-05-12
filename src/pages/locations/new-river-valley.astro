@@ -1,0 +1,372 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+import Button from '../../components/ui/Button.astro';
+
+const faqItems = [
+  {
+    question: 'Does ranking in Roanoke help my visibility in the New River Valley?',
+    answer: 'Largely, no. The local pack for searches in Christiansburg, Blacksburg, or Radford is geographically distinct from the Roanoke pack. To rank in the NRV, you need GBP signals, citations, and content pointing specifically to that area.',
+  },
+  {
+    question: 'What are the main markets in the New River Valley for roofing and exterior work?',
+    answer: 'Christiansburg has the highest contractor density and generates the most searches. Blacksburg skews toward rentals and has different job types. Radford is a smaller market with fewer competitors. Montgomery County as a whole has significant residential housing stock across rural areas.',
+  },
+  {
+    question: 'How many reviews do NRV contractors typically need to rank?',
+    answer: 'The NRV market is less competitive than Roanoke City. Top-ranked roofing contractors in Christiansburg often have 30 to 80 reviews at 4.5 or better. Lower bar to enter the top 3 than in Roanoke proper.',
+  },
+  {
+    question: 'Can I serve both Roanoke and the NRV from one GBP?',
+    answer: "It depends on your physical address. GBPs are tied to a location and Google's map pack radius. A Roanoke-based business can set a service area that includes the NRV, but will compete less effectively in the NRV local pack than a contractor with a physical presence there. Service area pages and citation-building help close the gap.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Roava Digital',
+  url: 'https://roavadigital.com',
+  description: 'Marketing agency for roofing and exterior contractors serving the New River Valley, including Christiansburg, Blacksburg, and Radford.',
+  areaServed: [
+    { '@type': 'City', name: 'Christiansburg', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Blacksburg', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Radford', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'AdministrativeArea', name: 'Montgomery County, Virginia' },
+    { '@type': 'AdministrativeArea', name: 'Pulaski County, Virginia' },
+    { '@type': 'AdministrativeArea', name: 'Floyd County, Virginia' },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://roavadigital.com/locations' },
+    { '@type': 'ListItem', position: 3, name: 'New River Valley', item: 'https://roavadigital.com/locations/new-river-valley' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="New River Valley Contractor Marketing | Roava Digital"
+  description="Local SEO and lead generation for roofing and exterior contractors in Christiansburg, Blacksburg, and Radford, VA. Built for the NRV market."
+  canonicalUrl="https://roavadigital.com/locations/new-river-valley"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="location-header" aria-labelledby="location-heading">
+    <div class="container location-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/locations" class="breadcrumb__link">Locations</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">New River Valley</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Christiansburg · Blacksburg · Radford</span>
+      <h1 id="location-heading" class="location-header__headline">New River Valley contractor marketing.</h1>
+      <p class="hero-lead">The New River Valley is a distinct local search market from Roanoke. Serving Christiansburg, Blacksburg, Radford, and surrounding Montgomery, Pulaski, and Floyd counties. Top 3 rankings in the NRV typically require 30 to 80 reviews, GBP signals pointed at the area, and location-specific service pages. Lower barrier to entry than Roanoke City.</p>
+    </div>
+  </section>
+
+  <section class="market-section" aria-labelledby="market-heading">
+    <div class="container market-inner">
+      <h2 id="market-heading" class="section-heading">A separate market, separate rankings.</h2>
+      <div class="market-body">
+        <p>The New River Valley is not an extension of Roanoke. Searches for "roofing company Christiansburg VA" pull up a completely different set of local pack results than searches in Roanoke. If your GBP is based in Roanoke, you are competing at a disadvantage in the NRV without location-specific work to support it.</p>
+        <p>The NRV is growing. Montgomery County added significant residential housing in the past decade, and Christiansburg in particular has seen an uptick in exterior contractor demand. The contractor density is lower than Roanoke, which means top 3 positions are more attainable for a well-positioned operator.</p>
+        <p>Three cities drive most of the search volume: Christiansburg for general contractor searches, Blacksburg for specific repair jobs tied to the university population, and Radford for lower-competition long-tail terms.</p>
+      </div>
+      <div class="market-stats">
+        <div class="stat-card">
+          <p class="stat-card__number">180K+</p>
+          <p class="stat-card__label">regional population across the NRV</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__number">30–80</p>
+          <p class="stat-card__label">reviews needed for top 3 in Christiansburg</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__number">3 cities</p>
+          <p class="stat-card__label">Christiansburg, Blacksburg, Radford</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section" aria-labelledby="services-heading">
+    <div class="container">
+      <h2 id="services-heading" class="section-heading">What Roava builds for NRV contractors.</h2>
+      <div class="services-grid">
+        <div class="service-item">
+          <h3 class="service-item__name">NRV-specific GBP management</h3>
+          <p class="service-item__desc">Weekly posts, Q&A responses, and photo uploads calibrated for Christiansburg and Blacksburg search patterns. Not copy-pasted from Roanoke campaigns.</p>
+        </div>
+        <div class="service-item">
+          <h3 class="service-item__name">Location-specific service pages</h3>
+          <p class="service-item__desc">Dedicated pages for Christiansburg, Blacksburg, and Radford that target local keywords. Avoids the "generalist" penalty from Google for thin, templated location content.</p>
+        </div>
+        <div class="service-item">
+          <h3 class="service-item__name">NRV citation building</h3>
+          <p class="service-item__desc">Consistent NAP (name, address, phone) across local directories specific to the New River Valley, not just national platforms. Local citations carry more weight per-market.</p>
+        </div>
+        <div class="service-item">
+          <h3 class="service-item__name">Review velocity system</h3>
+          <p class="service-item__desc">A system that produces 3 to 8 new Google reviews per month without paying for them or violating Google's terms. In the NRV market, 60 solid reviews can move you into the top 3.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-heading">
+    <div class="container faq-inner">
+      <h2 id="faq-heading" class="section-heading">New River Valley SEO questions</h2>
+      <dl class="faq-list">
+        {faqItems.map((item) => (
+          <div class="faq-item">
+            <dt class="faq-question">{item.question}</dt>
+            <dd class="faq-answer">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Serving the New River Valley?"
+    body="The free audit includes your NRV competitor analysis: who is ranking, their review count, their GBP completeness, and the gap you are closing."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+  />
+</MarketingLayout>
+
+<style>
+  .location-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .location-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .location-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+
+  /* ===== MARKET SECTION ===== */
+  .market-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .market-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .market-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .market-body p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .market-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .stat-card {
+    background: var(--color-surface-cream);
+    border: 1px solid var(--color-border-subtle);
+    border-left: 4px solid var(--color-brand-gold);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .stat-card__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 0.85;
+  }
+
+  .stat-card__label {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  /* ===== SERVICES ===== */
+  .services-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    max-width: 760px;
+    margin-top: var(--space-8);
+  }
+
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .service-item__name {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .service-item__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .faq-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: var(--space-6) 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+  }
+
+  .faq-answer {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .location-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .market-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

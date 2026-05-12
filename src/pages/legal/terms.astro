@@ -1,0 +1,192 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Terms of Service', item: 'https://roavadigital.com/legal/terms' },
+  ],
+};
+
+const lastUpdated = 'May 2026';
+---
+
+<MarketingLayout
+  title="Terms of Service | Roava Digital"
+  description="Terms of service for Roava Digital. Governs use of the Roava Digital website and marketing services."
+  canonicalUrl="https://roavadigital.com/legal/terms"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <meta name="robots" content="noindex, follow" />
+  </Fragment>
+
+  <section class="legal-header" aria-labelledby="legal-heading">
+    <div class="container legal-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Terms of Service</li>
+        </ol>
+      </nav>
+      <h1 id="legal-heading" class="legal-header__headline">Terms of Service</h1>
+      <p class="legal-header__meta">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="legal-body" aria-label="Terms of service content">
+    <div class="container legal-body__inner">
+      <div class="legal-content">
+
+        <h2>Agreement to terms</h2>
+        <p>By using the Roava Digital website (roavadigital.com), you agree to these terms. If you do not agree, do not use this site.</p>
+        <p>These terms apply to your use of this website. Separate agreements govern actual marketing services provided by Roava Digital to clients.</p>
+
+        <h2>Use of this website</h2>
+        <p>You may use this site for lawful purposes only. You agree not to:</p>
+        <ul>
+          <li>Use the site in any way that violates applicable law</li>
+          <li>Attempt to gain unauthorized access to any part of the site</li>
+          <li>Transmit spam, malware, or other harmful content</li>
+          <li>Scrape or copy site content for competing commercial purposes</li>
+        </ul>
+
+        <h2>Intellectual property</h2>
+        <p>All content on this site, including text, design, code, images, and brand elements, is owned by Roava Digital or used with permission. You may not reproduce, distribute, or create derivative works from this content without written permission.</p>
+
+        <h2>Forms and inquiries</h2>
+        <p>When you submit a form on this site, you represent that the information you provide is accurate. Submitting a form does not create a business relationship or obligation on either side. Roava Digital reserves the right to decline any inquiry.</p>
+
+        <h2>No warranties</h2>
+        <p>This website is provided "as is." Roava Digital makes no warranties, express or implied, regarding the site's availability, accuracy, or fitness for a particular purpose. We do not guarantee that the site will be error-free or uninterrupted.</p>
+
+        <h2>Limitation of liability</h2>
+        <p>To the maximum extent permitted by law, Roava Digital is not liable for any indirect, incidental, special, or consequential damages arising from your use of this website. Our total liability for any claim related to this site is limited to $100.</p>
+
+        <h2>Third-party links</h2>
+        <p>This site may contain links to third-party websites. We are not responsible for the content or practices of those sites. Links do not constitute endorsement.</p>
+
+        <h2>Governing law</h2>
+        <p>These terms are governed by the laws of the Commonwealth of Virginia. Any disputes arising from use of this site are subject to the exclusive jurisdiction of the courts in Roanoke, Virginia.</p>
+
+        <h2>Changes to these terms</h2>
+        <p>We may update these terms at any time. The "last updated" date at the top reflects when changes were made. Continued use of the site after changes constitutes acceptance of the updated terms.</p>
+
+        <h2>Marketing services terms</h2>
+        <p>Terms governing actual Roava Digital marketing engagements (retainer agreements, deliverables, payment, and termination) are provided in separate client agreements and are not covered by these website terms.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about these terms: hello@roavadigital.com</p>
+
+      </div>
+    </div>
+  </section>
+</MarketingLayout>
+
+<style>
+  .legal-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .legal-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .legal-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: var(--weight-black);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .legal-header__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== LEGAL BODY ===== */
+  .legal-body {
+    background: var(--color-surface-white);
+    padding: var(--space-12) 0 var(--space-24);
+  }
+
+  .legal-body__inner {
+    max-width: 760px;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .legal-content h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-10) 0 var(--space-3);
+    line-height: var(--leading-snug);
+  }
+
+  .legal-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal-content p {
+    margin: 0 0 var(--space-4);
+  }
+
+  .legal-content ul {
+    padding-left: var(--space-6);
+    margin: 0 0 var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .legal-content li {
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 600px) {
+    .legal-header {
+      padding: var(--space-12) 0;
+    }
+  }
+</style>

@@ -1,0 +1,98 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://roavadigital.com/locations' },
+    { '@type': 'ListItem', position: 3, name: 'Vinton, VA', item: 'https://roavadigital.com/locations/vinton' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Exterior Contractor Marketing in Vinton, VA | Roava Digital"
+  description="Local SEO and Google Ads for roofing and exterior contractors serving Vinton, VA. Vinton-specific location pages, GBP coverage, citation management. Free audit."
+  canonicalUrl="https://roavadigital.com/locations/vinton"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="loc-hero" aria-labelledby="loc-headline">
+    <div class="container loc-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/locations" class="breadcrumb__link">Locations</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Vinton, VA</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Vinton, Virginia</span>
+      <h1 id="loc-headline" class="loc-hero__headline">
+        Roofing and contractor marketing in Vinton, VA
+      </h1>
+      <p class="loc-hero__subhead">
+        Vinton is a small town with its own search identity. Homeowners on the east end of the Roanoke Valley search for local contractors specifically. A dedicated Vinton presence captures those searches that Roanoke-focused campaigns miss.
+      </p>
+      <p class="hero-lead">Roava Digital serves contractors operating in Vinton, Virginia as part of the Roanoke MSA service area. Vinton-specific location pages, GBP service area coverage, and targeted ads for Vinton ZIP codes are included in the standard retainer. Vinton represents a lower-competition opportunity for contractors who build dedicated local search presence there.</p>
+      <div class="loc-hero__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+        <Button href="/contact" variant="ghost" size="lg">Talk to DeShea</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-content-section" aria-labelledby="market-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="market-heading">Vinton as a local search opportunity</h2>
+      </div>
+      <div class="loc-prose">
+        <p>Vinton is a town of roughly 8,000 residents in eastern Roanoke County. It sits along the Roanoke River corridor and includes older residential neighborhoods that see consistent roofing and exterior work demand. Storm damage from Roanoke Valley weather events affects Vinton just as much as the core city market.</p>
+        <p>The Vinton local search market has lower competition than Roanoke City. Fewer contractors have Vinton-specific pages, which means a contractor who builds proper Vinton content can rank in the top 3 for Vinton searches with less effort than it takes to crack the Roanoke core market.</p>
+        <p>Vinton coverage is included in the Roanoke MSA retainer: a dedicated location page, Vinton in the GBP service area settings, and Vinton-specific keywords in the content and ads strategy.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Vinton, VA"
+    headline="Capture the Vinton searches your competitors are ignoring"
+    body="A free audit shows your current visibility in Vinton and the gaps your competitors have left open. 48 hours."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See Roanoke coverage"
+    secondaryCtaHref="/locations/roanoke"
+  />
+</MarketingLayout>
+
+<style>
+  .loc-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .loc-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .loc-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .loc-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 640px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .loc-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .loc-content-section { background: var(--color-surface-white); padding: var(--space-16) 0; }
+  .loc-prose { display: flex; flex-direction: column; gap: var(--space-5); max-width: 720px; }
+  .loc-prose p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+  @media (max-width: 600px) { .loc-hero { padding: var(--space-12) 0; } }
+</style>

@@ -1,0 +1,230 @@
+---
+import Logo from '../ui/Logo.astro';
+import Button from '../ui/Button.astro';
+
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="nav-header" role="banner">
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav__inner container">
+      <Logo variant="full" height={45} linkTo="/" />
+
+      <button
+        class="nav__hamburger"
+        aria-controls="nav-menu"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+        type="button"
+      >
+        <span class="nav__hamburger-bar" aria-hidden="true"></span>
+        <span class="nav__hamburger-bar" aria-hidden="true"></span>
+        <span class="nav__hamburger-bar" aria-hidden="true"></span>
+      </button>
+
+      <ul class="nav__links" id="nav-menu" role="list">
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={['nav__link', currentPath.startsWith(href) && 'nav__link--active']}
+              aria-current={currentPath.startsWith(href) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="nav__cta">
+        <Button href="/free-audit" variant="primary" size="sm">
+          Get a free audit
+        </Button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.nav__hamburger');
+  const menu = document.getElementById('nav-menu');
+
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      menu.classList.toggle('nav__links--open', !isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      const header = document.querySelector('.nav-header');
+      if (header && !header.contains(e.target as Node)) {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('nav__links--open');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('nav__links--open');
+        btn.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .nav-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-surface-white);
+    border-bottom: 1px solid var(--color-border-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    height: 72px;
+  }
+
+  .nav__inner :global(.logo-link),
+  .nav__inner :global(.logo-wrap) {
+    flex-shrink: 0;
+  }
+
+  .nav__inner :global(.logo-link img),
+  .nav__inner :global(.logo-wrap img) {
+    height: 45px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+
+  .nav__link {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color var(--transition-fast);
+    padding: var(--space-1) 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav__link:hover {
+    color: var(--color-brand-teal);
+    border-bottom-color: var(--color-brand-gold);
+  }
+
+  .nav__link--active {
+    color: var(--color-brand-teal);
+    border-bottom-color: var(--color-brand-gold);
+  }
+
+  .nav__link:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  .nav__cta {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .nav__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-2);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    border-radius: var(--radius-sm);
+  }
+
+  .nav__hamburger:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .nav__hamburger-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  @media (max-width: 768px) {
+    .nav__hamburger {
+      display: flex;
+    }
+
+    .nav__cta {
+      display: none;
+    }
+
+    .nav__links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-surface-white);
+      border-bottom: 1px solid var(--color-border-subtle);
+      box-shadow: var(--shadow-md);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: var(--space-4) var(--space-6);
+      gap: 0;
+    }
+
+    .nav__links li {
+      width: 100%;
+    }
+
+    .nav__links--open {
+      display: flex;
+    }
+
+    .nav__link {
+      display: block;
+      width: 100%;
+      padding: var(--space-3) 0;
+      font-size: var(--text-base);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .nav__link:last-of-type {
+      border-bottom: none;
+    }
+  }
+</style>

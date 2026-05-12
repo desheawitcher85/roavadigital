@@ -1,0 +1,426 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const siteUrl = 'https://roavadigital.com';
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: post.data.author,
+    url: `${siteUrl}/about`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Roava Digital',
+    url: siteUrl,
+    logo: { '@type': 'ImageObject', url: `${siteUrl}/roava-logo.png` },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/blog/${post.slug}` },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: `${siteUrl}/blog/${post.slug}` },
+  ],
+};
+---
+
+<MarketingLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonicalUrl={`${siteUrl}/blog/${post.slug}`}
+  ogType="article"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <meta property="article:published_time" content={post.data.pubDate.toISOString()} />
+    <meta property="article:author" content={post.data.author} />
+    {post.data.tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
+  </Fragment>
+
+  <article class="blog-post" aria-labelledby="post-title">
+    <!-- Post header -->
+    <header class="post-header">
+      <div class="container post-header__inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list" role="list">
+            <li><a href="/" class="breadcrumb__link">Home</a></li>
+            <li aria-hidden="true" class="breadcrumb__sep">/</li>
+            <li><a href="/blog" class="breadcrumb__link">Blog</a></li>
+            <li aria-hidden="true" class="breadcrumb__sep">/</li>
+            <li aria-current="page" class="breadcrumb__current">Article</li>
+          </ol>
+        </nav>
+        <div class="post-header__meta">
+          <time datetime={post.data.pubDate.toISOString()} class="post-meta-date">
+            {formatDate(post.data.pubDate)}
+          </time>
+          <span class="post-meta-sep" aria-hidden="true">·</span>
+          <span class="post-meta-time">{post.data.readTime} min read</span>
+          <span class="post-meta-sep" aria-hidden="true">·</span>
+          <span class="post-meta-author">By {post.data.author}</span>
+        </div>
+        <h1 id="post-title" class="post-header__title">{post.data.title}</h1>
+        <p class="post-header__description">{post.data.description}</p>
+        {post.data.tags.length > 0 && (
+          <div class="post-header__tags" aria-label="Article tags">
+            {post.data.tags.map((tag) => (
+              <span class="post-tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+
+    <!-- Post body -->
+    <div class="post-body">
+      <div class="container post-body__inner">
+        <div class="post-content">
+          <Content />
+        </div>
+
+        <!-- Author bio -->
+        <aside class="post-author" aria-label="About the author">
+          <img
+            src="/deshea-witcher.jpg"
+            alt="DeShea Witcher"
+            class="post-author__photo"
+            width="56"
+            height="56"
+            loading="lazy"
+          />
+          <div class="post-author__info">
+            <p class="post-author__name">DeShea Witcher</p>
+            <p class="post-author__bio">Founder of Roava Digital. 15 years of B2B marketing. Focused on local SEO and lead generation for roofing and exterior contractors in the Roanoke MSA.</p>
+          </div>
+        </aside>
+
+        <!-- CTA -->
+        <div class="post-cta">
+          <h2 class="post-cta__heading">Want a specific look at your local search presence?</h2>
+          <p class="post-cta__body">A free audit covers your GBP score, citation health, competitor gaps, and site speed. Specific findings for your business in 48 hours.</p>
+          <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Request a free audit</Button>
+        </div>
+      </div>
+    </div>
+  </article>
+</MarketingLayout>
+
+<style>
+  /* ===== POST HEADER ===== */
+  .post-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .post-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .post-header__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .post-meta-date,
+  .post-meta-time,
+  .post-meta-author {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.3px;
+  }
+
+  .post-meta-sep {
+    color: var(--color-text-tertiary);
+    font-size: var(--text-xs);
+  }
+
+  .post-header__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.625rem, 4vw, 2.75rem);
+    font-weight: var(--weight-black);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .post-header__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .post-header__tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .post-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-brand-teal);
+    background: var(--color-surface-teal-tint);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== POST BODY ===== */
+  .post-body {
+    background: var(--color-surface-white);
+    padding: var(--space-12) 0 var(--space-24);
+  }
+
+  .post-body__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  /* ===== PROSE STYLES ===== */
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .post-content :global(p) {
+    margin: 0 0 var(--space-5);
+    max-width: 680px;
+  }
+
+  .post-content :global(p:first-of-type) {
+    font-size: var(--text-lg);
+    color: var(--color-text-primary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .post-content :global(h2) {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: var(--space-10) 0 var(--space-4);
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .post-content :global(h3) {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-8) 0 var(--space-3);
+    line-height: var(--leading-snug);
+  }
+
+  .post-content :global(h4) {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-6) 0 var(--space-2);
+  }
+
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    padding-left: var(--space-6);
+    margin: 0 0 var(--space-5);
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .post-content :global(li) {
+    line-height: var(--leading-relaxed);
+  }
+
+  .post-content :global(blockquote) {
+    border-left: 4px solid var(--color-brand-gold);
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-brand-gold-tint);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin: var(--space-6) 0;
+    max-width: 680px;
+  }
+
+  .post-content :global(blockquote p) {
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+
+  .post-content :global(strong) {
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .post-content :global(em) {
+    font-style: italic;
+  }
+
+  .post-content :global(a) {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  .post-content :global(a:hover) {
+    color: var(--color-brand-teal-hover);
+  }
+
+  .post-content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-border-subtle);
+    margin: var(--space-10) 0;
+  }
+
+  .post-content :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-surface-cream);
+    border: 1px solid var(--color-border-subtle);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--color-brand-teal);
+  }
+
+  /* ===== AUTHOR BIO ===== */
+  .post-author {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-6);
+    background: var(--color-surface-cream);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .post-author__photo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .post-author__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .post-author__name {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .post-author__bio {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== INLINE CTA ===== */
+  .post-cta {
+    padding: var(--space-8) var(--space-8);
+    background: var(--color-brand-teal);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .post-cta__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-inverse);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .post-cta__body {
+    font-size: var(--text-base);
+    color: rgba(250, 247, 241, 0.8);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 520px;
+  }
+
+  @media (max-width: 600px) {
+    .post-header {
+      padding: var(--space-12) 0;
+    }
+
+    .post-author {
+      flex-direction: column;
+    }
+  }
+</style>

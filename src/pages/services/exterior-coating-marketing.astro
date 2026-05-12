@@ -1,0 +1,489 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+import Button from '../../components/ui/Button.astro';
+
+const faqItems = [
+  {
+    question: 'Is exterior coating a recognized category in Google Business Profile?',
+    answer: 'Yes, but category selection matters. "Painting contractor" is the broadest and most competitive. More specific options like "Exterior painter" reduce competition and may convert better. For nano or ceramic coating specialists, "Coating contractor" or a combination of categories can work. The right category selection depends on your primary service and your competitors in the local pack.',
+  },
+  {
+    question: 'How do homeowners search for exterior coating services?',
+    answer: 'Search patterns vary by product type. Exterior painting generates the highest volume: "exterior house painting Roanoke," "house painters near me." Nano and ceramic coatings are lower volume but higher ticket: "ceramic coating house Roanoke," "nano coating siding," "protective coating exterior." Both search patterns require different content and GBP positioning.',
+  },
+  {
+    question: 'Is the market for exterior coatings saturated in Roanoke?',
+    answer: 'Traditional exterior painting is competitive, particularly for large painting companies with strong online presence. Nano and ceramic coatings are less competitive because fewer contractors offer them and fewer homeowners know to search for them by name. Marketing for nano coating often involves educating the searcher, not just competing for existing demand.',
+  },
+  {
+    question: 'What is the typical job value for exterior coating in the Roanoke market?',
+    answer: 'Traditional exterior painting runs $3K to $10K depending on home size and prep requirements. Nano and ceramic coatings typically run $2K to $6K for a full application on siding, though larger homes go higher. At these ticket sizes, one or two jobs per month from search covers a monthly retainer.',
+  },
+  {
+    question: 'Do you work with nano coating and ceramic coating specialists specifically?',
+    answer: 'Yes. Blue Ridge NanoGuard is a current Roava client. Nano coating is a newer category with lower search volume but strong differentiation potential. The SEO strategy for a nano coating specialist differs from traditional exterior painting, and Roava has direct experience building it in the Roanoke market.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Exterior Coating Marketing',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'Roava Digital',
+    url: 'https://roavadigital.com',
+  },
+  areaServed: [
+    'Roanoke City, VA',
+    'Roanoke County, VA',
+    'Salem, VA',
+    'Vinton, VA',
+    'Botetourt County, VA',
+    'Bedford County, VA',
+    'New River Valley, VA',
+  ],
+  description: 'Local SEO and lead generation for exterior painting and protective coating contractors in the Roanoke MSA, including nano and ceramic coating specialists.',
+  url: 'https://roavadigital.com/services/exterior-coating-marketing',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://roavadigital.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Exterior Coating Marketing', item: 'https://roavadigital.com/services/exterior-coating-marketing' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Exterior Coating Marketing Roanoke VA | Roava Digital"
+  description="Local SEO and lead generation for exterior painting and protective coating contractors in the Roanoke MSA. Nano coating and ceramic coating specialists served."
+  canonicalUrl="https://roavadigital.com/services/exterior-coating-marketing"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="service-header" aria-labelledby="service-heading">
+    <div class="container service-header__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/services" class="breadcrumb__link">Services</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Exterior Coating Marketing</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Roanoke MSA · exterior painting and protective coatings</span>
+      <h1 id="service-heading" class="service-header__headline">Exterior coating marketing for Roanoke contractors.</h1>
+      <p class="hero-lead">Exterior coating marketing covers two distinct categories: traditional exterior painting and newer nano or ceramic protective coatings. Each has different search patterns, competition levels, and content requirements. Roava builds local SEO for both in the Roanoke MSA, and has direct experience with nano coating marketing through work with Blue Ridge NanoGuard.</p>
+      <div class="service-header__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+        <Button href="/pricing" variant="secondary" size="lg">See pricing</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="market-section" aria-labelledby="market-heading">
+    <div class="container market-inner">
+      <h2 id="market-heading" class="section-heading">Two categories. Different strategies.</h2>
+      <div class="market-cols">
+        <div class="market-col">
+          <h3 class="market-col__heading">Exterior painting</h3>
+          <p class="market-col__body">Higher search volume, more competition. Homeowners searching "exterior house painters Roanoke" know what they want and are comparing options. The local pack is competitive. Winning requires strong review velocity, complete citations, and a website that converts visitors into calls faster than your competitors' sites do.</p>
+        </div>
+        <div class="market-col">
+          <h3 class="market-col__heading">Nano and ceramic coatings</h3>
+          <p class="market-col__body">Lower volume, less competition, higher ticket per job. Many homeowners do not know to search for these products by name. Marketing strategy shifts: educational content builds awareness, GBP positioning captures existing demand, and differentiation from standard painting is the core message. Blue Ridge NanoGuard is Roava's active client in this category.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars-section" aria-labelledby="pillars-heading">
+    <div class="container">
+      <h2 id="pillars-heading" class="section-heading">What the work looks like.</h2>
+      <ol class="pillars-list">
+        <li class="pillar">
+          <span class="pillar__number">01</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">Category and GBP positioning</h3>
+            <p class="pillar__desc">The right GBP category selection for your specific service type. Exterior painters and coating specialists use different primary categories, and the wrong choice puts you competing against irrelevant businesses. Weekly management with posts, photo uploads, and review response templates.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <span class="pillar__number">02</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">Citation building for specialty trades</h3>
+            <p class="pillar__desc">Beyond generic business directories, coating contractors benefit from painting trade directories, home services platforms, and manufacturer dealer listings where applicable. NAP consistency audit first, then systematic new citation builds monthly.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <span class="pillar__number">03</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">Educational content for newer categories</h3>
+            <p class="pillar__desc">For nano and ceramic coating specialists, content that explains what the product is and why homeowners should care about it. Builds organic search presence for product-aware searchers while creating assets that can be shared at sales appointments.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <span class="pillar__number">04</span>
+          <div class="pillar__content">
+            <h3 class="pillar__name">Location-specific service pages</h3>
+            <p class="pillar__desc">Pages targeting Roanoke, Salem, Vinton, Botetourt, and the NRV that match how homeowners search in each area. Exterior coating search patterns vary between urban Roanoke and the more spread-out county markets.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="client-callout" aria-labelledby="client-heading">
+    <div class="container client-inner">
+      <div class="client-content">
+        <h2 id="client-heading" class="client-heading">Current client: Blue Ridge NanoGuard</h2>
+        <p class="client-body">Blue Ridge NanoGuard is a nano and ceramic protective coating company in the Roanoke area. Roava is building their local search presence from the ground up: GBP setup, citation building, review generation, and content that explains what nano coating is to a homeowner who has never heard of it.</p>
+        <p class="client-body">This is an active engagement. Results and specific metrics will be published as a case study once the data is meaningful. No fabricated numbers.</p>
+        <a href="/case-studies/blue-ridge-nanoguard" class="client-link">See the case study in progress <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="client-logo-wrap" aria-hidden="true">
+        <img
+          src="/nanoguard-logo.png"
+          alt=""
+          class="client-logo"
+          width="160"
+          height="48"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-heading">
+    <div class="container faq-inner">
+      <h2 id="faq-heading" class="section-heading">Exterior coating marketing questions</h2>
+      <dl class="faq-list">
+        {faqItems.map((item) => (
+          <div class="faq-item">
+            <dt class="faq-question">{item.question}</dt>
+            <dd class="faq-answer">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Exterior coating or painting contractor in Roanoke?"
+    body="The free audit shows your GBP score, competitor review counts, and citation gaps. Specific findings for your business in 48 hours."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<style>
+  .service-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .service-header__inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+
+  .service-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+
+  .service-header__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  /* ===== MARKET ===== */
+  .market-section {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .market-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.3px;
+  }
+
+  .market-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .market-col__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: var(--leading-snug);
+  }
+
+  .market-col__body {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== PILLARS ===== */
+  .pillars-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .pillars-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-8) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 760px;
+  }
+
+  .pillar {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .pillar:last-child {
+    border-bottom: none;
+  }
+
+  .pillar__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 1px;
+    padding-top: 4px;
+  }
+
+  .pillar__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .pillar__name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .pillar__desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== CLIENT CALLOUT ===== */
+  .client-callout {
+    background: var(--color-surface-white);
+    padding: var(--space-24) 0;
+  }
+
+  .client-inner {
+    max-width: 760px;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-12);
+  }
+
+  .client-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .client-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .client-body {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .client-link {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-brand-teal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    transition: gap var(--transition-fast);
+  }
+
+  .client-link:hover {
+    gap: var(--space-2);
+  }
+
+  .client-logo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .client-logo {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.8;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0;
+  }
+
+  .faq-inner {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: var(--space-6) 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+  }
+
+  .faq-answer {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .market-cols {
+      grid-template-columns: 1fr;
+    }
+
+    .client-inner {
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .service-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .pillar {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

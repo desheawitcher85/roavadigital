@@ -1,0 +1,255 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const faqItems = [
+  {
+    question: 'What roofing and contractor searches get the most volume in Roanoke?',
+    answer: "In Roanoke City and Roanoke County, the highest-volume local searches are: 'roofing companies Roanoke VA,' 'roof replacement Roanoke,' 'roofer near me' (with location signals), 'gutter installation Roanoke,' and storm-triggered searches like 'emergency roof repair Roanoke.' These spike significantly after hail or wind events in the valley.",
+  },
+  {
+    question: 'How competitive is the Roanoke roofing market for local search?',
+    answer: "Moderately competitive. The top 3 Google local pack positions in Roanoke are held by contractors with 40 to 120+ reviews and complete GBP profiles. Most mid-tier contractors are 2 to 3 months of focused work away from cracking the top 3 for their primary keywords. The market isn't locked up.",
+  },
+  {
+    question: 'Does a Roanoke contractor need separate pages for Roanoke City vs. Roanoke County?',
+    answer: "Ideally, yes. Roanoke City and Roanoke County are distinct search entities. A homeowner in Roanoke County typing 'roofer Roanoke County VA' is using different search terms than someone in Roanoke City. Two distinct location pages with specific content for each outperform one combined page.",
+  },
+  {
+    question: 'Does Roava Digital serve all of Roanoke MSA from a single retainer?',
+    answer: "Yes. A single monthly retainer covers GBP management, citations, and content for Roanoke City, Roanoke County, and surrounding markets including Salem, Vinton, Botetourt County, and Bedford County. Location pages for each city are built over the first 90 days.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Roava Digital',
+  url: 'https://roavadigital.com',
+  email: 'hello@roavadigital.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Roanoke',
+    addressRegion: 'VA',
+    addressCountry: 'US',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Roanoke',
+    containedInPlace: { '@type': 'State', name: 'Virginia' },
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://roavadigital.com/locations' },
+    { '@type': 'ListItem', position: 3, name: 'Roanoke, VA', item: 'https://roavadigital.com/locations/roanoke' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Exterior Contractor Marketing in Roanoke, VA | Roava Digital"
+  description="Local SEO and Google Ads for roofing and exterior contractors in Roanoke, VA. Roanoke City and Roanoke County coverage. Free audit in 48 hours."
+  canonicalUrl="https://roavadigital.com/locations/roanoke"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="loc-hero" aria-labelledby="loc-headline">
+    <div class="container loc-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li><a href="/" class="breadcrumb__link">Home</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li><a href="/locations" class="breadcrumb__link">Locations</a></li>
+          <li aria-hidden="true" class="breadcrumb__sep">/</li>
+          <li aria-current="page" class="breadcrumb__current">Roanoke, VA</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Roanoke, Virginia</span>
+      <h1 id="loc-headline" class="loc-hero__headline">
+        Roofing and contractor marketing for the Roanoke market
+      </h1>
+      <p class="loc-hero__subhead">
+        Roanoke is Roava Digital's primary market. Roanoke City, Roanoke County, and the surrounding valley. Every client and every campaign is built around the specific competitive landscape here.
+      </p>
+      <p class="hero-lead">Roava Digital provides local SEO and Google Ads management for roofing, gutter, siding, and exterior contractors serving Roanoke City and Roanoke County, Virginia. Services include Google Business Profile management, local citation building, service and location page optimization, review strategy, and paid search campaigns. The Roanoke MSA is the only market served.</p>
+      <div class="loc-hero__actions">
+        <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free Roanoke audit</Button>
+        <Button href="/contact" variant="ghost" size="lg">Talk to DeShea</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-market" aria-labelledby="market-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="market-heading">The Roanoke roofing market by the numbers</h2>
+        <p class="section-head__intro">Local search context for contractors operating in Roanoke City and Roanoke County.</p>
+      </div>
+      <div class="loc-content-grid">
+        <div class="loc-content-text">
+          <p>The Roanoke MSA has roughly 315,000 residents spread across Roanoke City, Roanoke County, Salem, Vinton, and surrounding counties. It's a mid-size market with active storm seasons driven by its position in the Blue Ridge Mountains and Appalachian foothills. Spring and fall thunderstorm seasons, combined with winter ice damage, create consistent year-round roofing demand.</p>
+          <p>The Google local pack for "roofing companies Roanoke VA" currently shows 3 contractors with 40 to 130+ reviews and active GBP profiles. Below the local pack, 4 to 5 additional contractors rank in organic results. The top positions are held by established contractors, but the competition isn't locked: most mid-tier contractors have clear, fixable gaps in their local search presence.</p>
+          <p>For contractors serving both Roanoke City and Roanoke County, separate service area strategies are worth the investment. The two jurisdictions have different search volumes and slightly different competitive landscapes.</p>
+        </div>
+        <div class="loc-stats">
+          <div class="stat-card">
+            <div class="stat-card__number">~315K</div>
+            <div class="stat-card__label">Roanoke MSA population across city, county, Salem, and surrounding areas</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">3</div>
+            <div class="stat-card__label">Google local pack positions for "roofing company Roanoke" — the only spots that drive most calls</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">60–90</div>
+            <div class="stat-card__label">days typical timeline for measurable local pack movement in Roanoke with consistent SEO work</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-services" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="services-heading">Services available for Roanoke contractors</h2>
+      </div>
+      <div class="loc-services-grid">
+        <a href="/services/roofing-seo" class="loc-service-card">
+          <h3 class="loc-service-card__title">Roofing SEO</h3>
+          <p class="loc-service-card__body">GBP management, citations, service pages, and review strategy for roofing contractors in Roanoke.</p>
+          <span class="loc-service-card__link" aria-hidden="true">Learn more →</span>
+        </a>
+        <a href="/services/google-ads" class="loc-service-card">
+          <h3 class="loc-service-card__title">Google Ads</h3>
+          <p class="loc-service-card__body">Storm-responsive paid search campaigns targeting Roanoke-area homeowners at high purchase intent.</p>
+          <span class="loc-service-card__link" aria-hidden="true">Learn more →</span>
+        </a>
+        <a href="/services/web-design" class="loc-service-card">
+          <h3 class="loc-service-card__title">Web Design</h3>
+          <p class="loc-service-card__body">Fast, mobile-first contractor websites with location pages built for Roanoke MSA search queries.</p>
+          <span class="loc-service-card__link" aria-hidden="true">Learn more →</span>
+        </a>
+        <a href="/services/gutter-marketing" class="loc-service-card">
+          <h3 class="loc-service-card__title">Gutter Marketing</h3>
+          <p class="loc-service-card__body">Seasonal gutter demand strategy for Roanoke: fall cleanup, spring repair, and storm-driven replacement.</p>
+          <span class="loc-service-card__link" aria-hidden="true">Learn more →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-faq" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="faq-heading">Roanoke contractor marketing questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqItems.map((item, i) => (
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls={`faq-answer-${i}`} id={`faq-trigger-${i}`}>
+              {item.question}
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-trigger-${i}`} hidden>
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Roanoke, VA"
+    headline="See exactly where your Roanoke business stands in local search"
+    body="Free audit covers GBP score, citation health, competitor gaps, and site speed. Specific to your market, not a generic report. 48 hours."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      const answerId = trigger.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  .loc-hero { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .loc-hero__inner { max-width: 860px; display: flex; flex-direction: column; gap: var(--space-6); }
+  .breadcrumb__list { display: flex; align-items: center; gap: var(--space-2); list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+  .breadcrumb__link { font-size: var(--text-sm); color: var(--color-text-tertiary); text-decoration: none; }
+  .breadcrumb__link:hover { color: var(--color-brand-teal); }
+  .breadcrumb__sep { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+  .breadcrumb__current { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); }
+  .loc-hero__headline { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: var(--weight-black); line-height: 1.08; letter-spacing: -1px; color: var(--color-text-primary); margin: 0 0 var(--space-4); }
+  .loc-hero__subhead { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed); max-width: 640px; margin: 0; }
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+  .loc-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
+  .loc-market { background: var(--color-surface-white); padding: var(--space-16) 0; }
+  .loc-content-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-16); align-items: start; }
+  .loc-content-text { display: flex; flex-direction: column; gap: var(--space-5); }
+  .loc-content-text p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+  .loc-stats { display: flex; flex-direction: column; gap: var(--space-4); }
+  .stat-card { padding: var(--space-5) var(--space-6); background: var(--color-surface-cream); border-left: 4px solid var(--color-brand-gold); border-radius: 0 var(--radius-md) var(--radius-md) 0; display: flex; flex-direction: column; gap: var(--space-1); }
+  .stat-card__number { font-family: var(--font-mono); font-size: var(--text-3xl); font-weight: var(--weight-bold); color: var(--color-brand-teal); letter-spacing: -1px; line-height: 0.75; }
+  .stat-card__label { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); }
+  .loc-services { background: var(--color-surface-cream); padding: var(--space-16) 0; }
+  .loc-services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); }
+  .loc-service-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: var(--color-surface-white); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); text-decoration: none; transition: box-shadow var(--transition-fast), border-color var(--transition-fast); }
+  .loc-service-card:hover { box-shadow: var(--shadow-md); border-color: var(--color-brand-teal); }
+  .loc-service-card:focus-visible { outline: 3px solid var(--color-brand-gold); outline-offset: 2px; }
+  .loc-service-card__title { font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--weight-bold); color: var(--color-text-primary); margin: 0; }
+  .loc-service-card__body { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; flex: 1; }
+  .loc-service-card__link { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--color-brand-teal); letter-spacing: 0.5px; margin-top: auto; }
+  .loc-faq { background: var(--color-surface-white); padding: var(--space-16) 0; }
+  .faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--color-border-subtle); max-width: 760px; }
+  .faq-item { border-bottom: 1px solid var(--color-border-subtle); }
+  .faq-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; background: none; border: none; text-align: left; font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-primary); cursor: pointer; transition: color var(--transition-fast); }
+  .faq-trigger:hover { color: var(--color-brand-teal); }
+  .faq-trigger:focus-visible { outline: 3px solid var(--color-brand-gold); outline-offset: 2px; border-radius: var(--radius-sm); }
+  .faq-icon { flex-shrink: 0; color: var(--color-brand-gold); transition: transform var(--transition-fast); }
+  .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+  .faq-answer { padding-bottom: var(--space-5); }
+  .faq-answer p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin: 0; max-width: 660px; }
+  @media (max-width: 1000px) { .loc-services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 900px) { .loc-content-grid { grid-template-columns: 1fr; gap: var(--space-10); } }
+  @media (max-width: 600px) { .loc-hero { padding: var(--space-12) 0; } .loc-services-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,776 @@
+---
+import MarketingLayout from '../../components/layout/MarketingLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+
+const faqItems = [
+  {
+    question: 'How long does roofing SEO take to produce results?',
+    answer: 'For contractors in the Roanoke market with an existing Google Business Profile and website, most clients see measurable movement in local pack rankings within 60 to 90 days. Significant organic traffic growth typically takes 4 to 6 months. Anyone promising faster results in a competitive market is overpromising.',
+  },
+  {
+    question: 'What makes roofing SEO different from general local SEO?',
+    answer: 'Roofing keywords have distinct search patterns tied to storm events, seasonal demand, and high-ticket job types like full replacements versus repairs. Roofing SEO also requires very specific GBP category selection, service-area page strategy, and competitor citation analysis that a generalist SEO company typically misses.',
+  },
+  {
+    question: 'Do I need a new website to start SEO?',
+    answer: "Not necessarily. If your site loads in under 3 seconds on mobile, has proper heading structure, and can support landing pages, we can work with it. If it's built on an old platform that can't support those basics, we'll tell you upfront before you commit to a retainer.",
+  },
+  {
+    question: 'What does a typical month of work look like?',
+    answer: 'Each month covers GBP management (posts, Q&A, photo uploads, review response templates), citation monitoring, 1 to 2 new or updated service/location pages, link-building outreach, and a written monthly report with rank tracking and traffic data. No mystery. You see exactly what was done.',
+  },
+  {
+    question: 'Do you work with contractors who already have an SEO company?',
+    answer: "Yes. Start with the free audit. It'll show you what your current company is delivering versus what's possible. If they're doing solid work, I'll tell you that.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Roofing SEO',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'Roava Digital',
+    url: 'https://roavadigital.com',
+  },
+  areaServed: [
+    'Roanoke City, VA',
+    'Roanoke County, VA',
+    'Salem, VA',
+    'Vinton, VA',
+    'Botetourt County, VA',
+    'Bedford County, VA',
+    'New River Valley, VA',
+  ],
+  description: 'Local SEO for roofing contractors in the Roanoke MSA. Google Business Profile management, citation building, service page optimization, and review strategy.',
+  url: 'https://roavadigital.com/services/roofing-seo',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://roavadigital.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Roofing SEO', item: 'https://roavadigital.com/services/roofing-seo' },
+  ],
+};
+---
+
+<MarketingLayout
+  title="Roofing SEO for Roanoke Contractors | Roava Digital"
+  description="Local SEO built for Roanoke roofing contractors. GBP management, citation building, service pages, review strategy. Ranked calls, not vanity traffic."
+  canonicalUrl="https://roavadigital.com/services/roofing-seo"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="service-hero" aria-labelledby="service-headline">
+    <div class="container service-hero__inner">
+      <div class="service-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list" role="list">
+            <li><a href="/" class="breadcrumb__link">Home</a></li>
+            <li aria-hidden="true" class="breadcrumb__sep">/</li>
+            <li><a href="/services" class="breadcrumb__link">Services</a></li>
+            <li aria-hidden="true" class="breadcrumb__sep">/</li>
+            <li aria-current="page" class="breadcrumb__current">Roofing SEO</li>
+          </ol>
+        </nav>
+        <span class="eyebrow">Roanoke MSA</span>
+        <h1 id="service-headline" class="service-hero__headline">
+          Roofing SEO that gets you the call, not just the click
+        </h1>
+        <p class="service-hero__subhead">
+          Most Roanoke roofing contractors have the same problem: they're invisible in local search when a homeowner types "roofing company near me" after a storm. This is fixable. It just takes the right work done consistently.
+        </p>
+        <p class="hero-lead">Roofing SEO for Roanoke contractors focuses on four things: Google Business Profile optimization, local citation consistency, service and location page content, and review velocity. These four levers determine whether you show up in the local pack when someone in Roanoke, Salem, or Vinton needs a roofer. Results typically appear within 60 to 90 days.</p>
+        <div class="service-hero__actions">
+          <Button href="/free-audit" variant="primary" size="lg" withArrow={true}>Get a free audit</Button>
+          <Button href="/contact" variant="ghost" size="lg">Talk to DeShea</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why local pack ranking matters -->
+  <section class="service-section service-section--white" aria-labelledby="why-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="why-heading">The Roanoke roofing market is winner-take-most</h2>
+        <p class="section-head__intro">The top 3 results in the Google local pack get the overwhelming share of calls. Position 4 gets almost nothing.</p>
+      </div>
+      <div class="service-content-grid">
+        <div class="service-content-text">
+          <p>A homeowner in Roanoke County types "roofer near me" after a hailstorm. They see three listings with photos, reviews, and a call button. They call one of those three. Maybe two. They don't scroll past the map.</p>
+          <p>If you're not in that top 3, you're not getting considered. Paid ads can put you there temporarily, but organic local pack placement runs 24/7 without a per-click cost.</p>
+          <p>The contractors in those top 3 spots didn't get there by accident. They have complete GBP profiles, consistent citations across directories, steady review velocity, and service pages that match what people actually search for in the Roanoke market.</p>
+          <p>That's what roofing SEO builds. Not just rankings. The specific signals Google uses to decide who gets those three spots.</p>
+        </div>
+        <div class="service-stats">
+          <div class="stat-card">
+            <div class="stat-card__number">~76%</div>
+            <div class="stat-card__label">of local searches result in a phone call or store visit within 24 hours [verify before publishing]</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">3</div>
+            <div class="stat-card__label">Google local pack results capture most of the clicks. Position 4 and below share the rest.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">60–90</div>
+            <div class="stat-card__label">days for measurable local pack movement in the Roanoke market with consistent work</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="service-section service-section--cream" aria-labelledby="what-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="what-heading">What roofing SEO actually involves</h2>
+        <p class="section-head__intro">Four core levers. Each one affects your local pack ranking independently. All four together is the compounding effect.</p>
+      </div>
+      <div class="service-pillars">
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">01</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Google Business Profile management</h3>
+            <p class="service-pillar__body">Most contractor GBP profiles are missing 6 to 8 key fields. Wrong primary category. No service list. Outdated hours. No photos beyond the logo. These gaps hurt rankings directly.</p>
+            <p class="service-pillar__body">Each month: profile audit, weekly posts (storm alerts, completed jobs, seasonal tips), Q&A maintenance, review response templates, and photo uploads from real job sites.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">02</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Local citation building and cleanup</h3>
+            <p class="service-pillar__body">Your business name, address, and phone (NAP) must match exactly across 50+ directories. Yelp, Angi, BBB, HomeAdvisor, local Roanoke directories, and dozens of others. Inconsistencies tell Google your listing isn't trustworthy.</p>
+            <p class="service-pillar__body">We audit, correct, and monitor citations monthly. New submissions go to high-authority directories relevant to the roofing and home services vertical.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">03</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Service and location pages</h3>
+            <p class="service-pillar__body">Google matches search intent to page content. "Roof replacement Roanoke" should hit a page specifically about roof replacement in Roanoke, not your homepage.</p>
+            <p class="service-pillar__body">We build and optimize pages for your core services (replacement, repair, gutters, siding) and primary service cities in the Roanoke MSA. Each page targets real search queries, uses proper schema markup, and loads fast on mobile.</p>
+          </div>
+        </div>
+        <div class="service-pillar">
+          <div class="service-pillar__number" aria-hidden="true">04</div>
+          <div class="service-pillar__content">
+            <h3 class="service-pillar__title">Review velocity strategy</h3>
+            <p class="service-pillar__body">The contractors ranking in the top 3 in Roanoke typically have 40 to 120 reviews at 4.7 stars or higher, with new reviews coming in consistently, not in batches.</p>
+            <p class="service-pillar__body">We set up a simple review request system your crew can run from their phones. Most clients go from 10 to 30 reviews in the first 90 days. Consistency matters more than count.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get each month -->
+  <section class="service-section service-section--white" aria-labelledby="monthly-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="monthly-heading">What you get every month</h2>
+        <p class="section-head__intro">No mystery box. Every engagement comes with a written deliverables list and a monthly report you can actually read.</p>
+      </div>
+      <div class="deliverables-grid">
+        <div class="deliverable-group">
+          <h3 class="deliverable-group__heading">GBP Management</h3>
+          <ul class="deliverable-list" role="list">
+            <li>Profile completeness audit (month 1)</li>
+            <li>Weekly posts (4 per month)</li>
+            <li>Q&amp;A monitoring and responses</li>
+            <li>Photo uploads from job sites</li>
+            <li>Review response templates</li>
+          </ul>
+        </div>
+        <div class="deliverable-group">
+          <h3 class="deliverable-group__heading">Citations</h3>
+          <ul class="deliverable-list" role="list">
+            <li>Monthly NAP consistency audit</li>
+            <li>Citation corrections as needed</li>
+            <li>New submissions to priority directories</li>
+            <li>Competitor citation gap analysis (quarterly)</li>
+          </ul>
+        </div>
+        <div class="deliverable-group">
+          <h3 class="deliverable-group__heading">Content</h3>
+          <ul class="deliverable-list" role="list">
+            <li>1 to 2 new or updated service/location pages</li>
+            <li>On-page SEO (titles, meta, headings, schema)</li>
+            <li>Internal linking structure maintenance</li>
+          </ul>
+        </div>
+        <div class="deliverable-group">
+          <h3 class="deliverable-group__heading">Reporting</h3>
+          <ul class="deliverable-list" role="list">
+            <li>Monthly written report</li>
+            <li>Local pack rank tracking (20+ target keywords)</li>
+            <li>Google Search Console data</li>
+            <li>GBP call and direction request volume</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roofing SEO vs general SEO callout -->
+  <section class="service-section service-section--cream" aria-labelledby="comparison-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="comparison-heading">Roofing SEO vs. general local SEO</h2>
+        <p class="section-head__intro">A general SEO company can run citations and write blog posts. Roofing SEO requires industry-specific knowledge a generalist doesn't have.</p>
+      </div>
+      <div class="comparison-table-wrap" role="region" aria-label="Comparison table" tabindex="0">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Area</th>
+              <th scope="col">General SEO company</th>
+              <th scope="col">Roava Digital (roofing-specific)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GBP primary category</td>
+              <td>Often set to "Contractor" or wrong subcategory</td>
+              <td>Correct roofing-specific category selection with secondary categories mapped to services</td>
+            </tr>
+            <tr>
+              <td>Storm-driven keyword strategy</td>
+              <td>Misses storm-event search spikes</td>
+              <td>Seasonal and storm-trigger content built in from month 1</td>
+            </tr>
+            <tr>
+              <td>Service page depth</td>
+              <td>Generic pages ("We do roofing in Virginia")</td>
+              <td>Specific pages per service type and city in the Roanoke MSA</td>
+            </tr>
+            <tr>
+              <td>Review strategy</td>
+              <td>Generic "ask customers to review you"</td>
+              <td>Crew-operable SMS system, timing guidance, response templates</td>
+            </tr>
+            <tr>
+              <td>Competitor benchmarking</td>
+              <td>National or regional comparisons</td>
+              <td>Roanoke-specific competitor gap analysis by ZIP code</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="service-faq service-section--white" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="faq-heading">Common questions about roofing SEO</h2>
+      </div>
+      <div class="faq-list" id="faq-accordion">
+        {faqItems.map((item, i) => (
+          <div class="faq-item">
+            <button
+              class="faq-trigger"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-trigger-${i}`}
+            >
+              {item.question}
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div
+              class="faq-answer"
+              id={`faq-answer-${i}`}
+              role="region"
+              aria-labelledby={`faq-trigger-${i}`}
+              hidden
+            >
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Next step"
+    headline="See exactly where you stand before committing to anything"
+    body="A free local SEO audit covers your GBP score, citation health, competitor gaps, and site speed. Specific findings. No obligation. Delivered in 48 hours."
+    primaryCtaText="Request a free audit"
+    primaryCtaHref="/free-audit"
+    secondaryCtaText="See pricing"
+    secondaryCtaHref="/pricing"
+  />
+</MarketingLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      const answerId = trigger.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  /* ===== HERO ===== */
+  .service-hero {
+    background: var(--color-surface-cream);
+    padding: var(--space-16) 0 var(--space-16);
+  }
+
+  .service-hero__inner {
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+  }
+
+  .breadcrumb__link:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .breadcrumb__sep {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+  }
+
+  .breadcrumb__current {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--weight-medium);
+  }
+
+  .service-hero__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: var(--weight-black);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .service-hero__subhead {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 680px;
+    margin: 0;
+  }
+
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 720px;
+  }
+
+  .service-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    margin-top: var(--space-2);
+  }
+
+  /* ===== SECTION HELPERS ===== */
+  .service-section {
+    padding: var(--space-16) 0;
+  }
+
+  .service-section--white {
+    background: var(--color-surface-white);
+  }
+
+  .service-section--cream {
+    background: var(--color-surface-cream);
+  }
+
+  /* ===== CONTENT GRID ===== */
+  .service-content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .service-content-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .service-content-text p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .service-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .stat-card {
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface-cream);
+    border-left: 4px solid var(--color-brand-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .stat-card__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    letter-spacing: -1px;
+    line-height: 0.75;
+  }
+
+  .stat-card__label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ===== PILLARS ===== */
+  .service-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .service-pillar {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--space-6);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .service-pillar:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .service-pillar__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-gold);
+    background: var(--color-brand-gold-tint);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  .service-pillar__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .service-pillar__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+
+  .service-pillar__body {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== DELIVERABLES ===== */
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+
+  .deliverable-group__heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-brand-teal);
+    margin: 0 0 var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-brand-gold);
+  }
+
+  .deliverable-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .deliverable-list li {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .deliverable-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-brand-gold);
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .comparison-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .comparison-table th {
+    background: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    text-align: left;
+    padding: var(--space-4) var(--space-5);
+    white-space: nowrap;
+  }
+
+  .comparison-table th:first-child {
+    border-radius: var(--radius-md) 0 0 0;
+  }
+
+  .comparison-table th:last-child {
+    background: var(--color-brand-teal-hover);
+    border-radius: 0 var(--radius-md) 0 0;
+  }
+
+  .comparison-table td {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    vertical-align: top;
+  }
+
+  .comparison-table td:first-child {
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    background: var(--color-surface-cream);
+    white-space: nowrap;
+  }
+
+  .comparison-table td:last-child {
+    background: rgba(3, 71, 83, 0.03);
+  }
+
+  .comparison-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comparison-table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 var(--radius-md);
+  }
+
+  .comparison-table tbody tr:last-child td:last-child {
+    border-radius: 0 0 var(--radius-md) 0;
+  }
+
+  /* ===== FAQ ===== */
+  .service-faq {
+    padding: var(--space-16) 0;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border-subtle);
+    max-width: 760px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) 0;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+
+  .faq-trigger:hover {
+    color: var(--color-brand-teal);
+  }
+
+  .faq-trigger:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--color-brand-gold);
+    transition: transform var(--transition-fast);
+  }
+
+  .faq-trigger[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding-bottom: var(--space-5);
+  }
+
+  .faq-answer p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    max-width: 660px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    .deliverables-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .service-content-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .service-stats {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      flex: 1 1 200px;
+    }
+
+    .service-pillar {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .service-pillar__number {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .service-hero {
+      padding: var(--space-12) 0;
+    }
+
+    .service-hero__actions :global(.btn) {
+      flex: 1;
+    }
+
+    .deliverables-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-stats {
+      flex-direction: column;
+    }
+  }
+</style>

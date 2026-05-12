@@ -1,0 +1,630 @@
+---
+import MarketingLayout from '../components/layout/MarketingLayout.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://roavadigital.com' },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://roavadigital.com/contact' },
+  ],
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Roava Digital',
+  url: 'https://roavadigital.com',
+  email: 'hello@roavadigital.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Roanoke',
+    addressRegion: 'VA',
+    addressCountry: 'US',
+  },
+  areaServed: [
+    'Roanoke City, VA',
+    'Roanoke County, VA',
+    'Salem, VA',
+    'Vinton, VA',
+    'Botetourt County, VA',
+    'Bedford County, VA',
+    'New River Valley, VA',
+  ],
+};
+---
+
+<MarketingLayout
+  title="Contact Roava Digital | Roanoke Contractor Marketing"
+  description="Ready to talk? Reach Roava Digital by email or the form below. I respond within 24 hours. No sales runaround."
+  canonicalUrl="https://roavadigital.com/contact"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  </Fragment>
+
+  <!-- Page header -->
+  <section class="contact-header" aria-labelledby="contact-heading">
+    <div class="container contact-header__inner">
+      <span class="eyebrow">Roanoke, Virginia</span>
+      <h1 id="contact-heading" class="contact-header__headline">Get in touch.</h1>
+      <p class="contact-header__subhead">
+        Fill out the form or email <a href="mailto:hello@roavadigital.com">hello@roavadigital.com</a> directly. I respond within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main: form + details -->
+  <section class="contact-main" aria-label="Contact form and details">
+    <div class="container contact-main__grid">
+
+      <!-- Form -->
+      <div class="contact-form-wrap">
+        <form
+          id="contact-form"
+          class="contact-form"
+          novalidate
+          aria-label="Contact form"
+        >
+          <div class="form-row form-row--two">
+            <div class="form-field">
+              <label for="firstName" class="form-label">First name <span class="form-required" aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                class="form-input"
+                autocomplete="given-name"
+                required
+                aria-required="true"
+              />
+            </div>
+            <div class="form-field">
+              <label for="businessName" class="form-label">Business name <span class="form-required" aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="businessName"
+                name="businessName"
+                class="form-input"
+                autocomplete="organization"
+                required
+                aria-required="true"
+              />
+            </div>
+          </div>
+
+          <div class="form-row form-row--two">
+            <div class="form-field">
+              <label for="email" class="form-label">Email address <span class="form-required" aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                autocomplete="email"
+                required
+                aria-required="true"
+              />
+            </div>
+            <div class="form-field">
+              <label for="phone" class="form-label">Phone number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="form-input"
+                autocomplete="tel"
+              />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="service" class="form-label">What are you looking for?</label>
+            <select id="service" name="service" class="form-select">
+              <option value="" disabled selected>Select one</option>
+              <option value="Local SEO">Local SEO</option>
+              <option value="Google Ads">Google Ads</option>
+              <option value="Website design and build">Website design and build</option>
+              <option value="Full marketing package">Full marketing package</option>
+              <option value="Free audit first">Free audit first</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="message" class="form-label">Anything else I should know?</label>
+            <textarea
+              id="message"
+              name="message"
+              class="form-textarea"
+              rows="4"
+              placeholder="Current situation, specific goals, timeline, whatever's relevant."
+            ></textarea>
+          </div>
+
+          <div id="form-error" class="form-error" role="alert" aria-live="polite" hidden></div>
+
+          <button type="submit" id="form-submit" class="btn btn--primary btn--lg form-submit-btn">
+            <span class="btn-text">Send message</span>
+            <span class="btn-loading" hidden aria-hidden="true">Sending...</span>
+          </button>
+          <p class="form-note"><span aria-hidden="true">*</span> Required. No spam. I respond within 24 hours.</p>
+        </form>
+      </div>
+
+      <!-- Details sidebar -->
+      <aside class="contact-details" aria-label="Contact details and process">
+        <div class="contact-info">
+          <h2 class="contact-info__heading">Direct contact</h2>
+          <ul class="contact-info__list" role="list">
+            <li class="contact-info__item">
+              <span class="contact-info__label">Email</span>
+              <a href="mailto:hello@roavadigital.com" class="contact-info__value">hello@roavadigital.com</a>
+            </li>
+            <li class="contact-info__item">
+              <span class="contact-info__label">Location</span>
+              <span class="contact-info__value">Roanoke, Virginia</span>
+            </li>
+            <li class="contact-info__item">
+              <span class="contact-info__label">Service area</span>
+              <span class="contact-info__value">Roanoke MSA — Roanoke City, Roanoke County, Salem, Vinton, Botetourt, Bedford, NRV</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-process">
+          <h2 class="contact-process__heading">What happens after you reach out</h2>
+          <ol class="contact-process__steps" role="list">
+            <li class="contact-process__step">
+              <div class="contact-process__num" aria-hidden="true">1</div>
+              <div class="contact-process__content">
+                <p>I look up your business, your website, and your top 3 local competitors before replying. You won't have to explain the basics.</p>
+              </div>
+            </li>
+            <li class="contact-process__step">
+              <div class="contact-process__num" aria-hidden="true">2</div>
+              <div class="contact-process__content">
+                <p>Reply within 24 hours with a direct answer: whether I can help, what that looks like, and rough numbers. No "let's schedule a discovery call" delay.</p>
+              </div>
+            </li>
+            <li class="contact-process__step">
+              <div class="contact-process__num" aria-hidden="true">3</div>
+              <div class="contact-process__content">
+                <p>If it's a fit, I'll send a specific proposal. No vague retainer talk. The scope, the deliverables, the price.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="contact-audit-cta">
+          <p class="contact-audit-cta__text">Not ready to commit? A free local SEO audit is a no-risk starting point.</p>
+          <a href="/free-audit" class="contact-audit-link">
+            Request a free audit
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</MarketingLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('form-submit') as HTMLButtonElement | null;
+  const errorEl = document.getElementById('form-error') as HTMLElement | null;
+  const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement | null;
+  const btnLoading = submitBtn?.querySelector('.btn-loading') as HTMLElement | null;
+
+  function setLoading(loading: boolean) {
+    if (!submitBtn || !btnText || !btnLoading) return;
+    submitBtn.disabled = loading;
+    btnText.hidden = loading;
+    btnLoading.hidden = !loading;
+    if (!loading) btnLoading.setAttribute('aria-hidden', 'true');
+    else btnLoading.removeAttribute('aria-hidden');
+  }
+
+  function showError(msg: string) {
+    if (!errorEl) return;
+    errorEl.textContent = msg;
+    errorEl.hidden = false;
+    errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!errorEl) return;
+    errorEl.hidden = true;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        window.location.href = '/contact/thank-you';
+      } else {
+        showError(json.error || 'Something went wrong. Please email hello@roavadigital.com directly.');
+        setLoading(false);
+      }
+    } catch {
+      showError('Could not send your message. Please email hello@roavadigital.com directly.');
+      setLoading(false);
+    }
+  });
+</script>
+
+<style>
+  /* ===== HEADER ===== */
+  .contact-header {
+    background: var(--color-surface-cream);
+    padding: var(--space-24) 0 var(--space-16);
+  }
+
+  .contact-header__inner {
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .contact-header__headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: var(--weight-black);
+    line-height: var(--leading-tight);
+    letter-spacing: -1.5px;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  .contact-header__subhead {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .contact-header__subhead a {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  .contact-header__subhead a:hover {
+    color: var(--color-brand-teal-hover);
+  }
+
+  /* ===== MAIN GRID ===== */
+  .contact-main {
+    background: var(--color-surface-white);
+    padding: var(--space-16) 0 var(--space-24);
+  }
+
+  .contact-main__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  /* ===== FORM ===== */
+  .contact-form-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form-row--two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .form-required {
+    color: var(--color-brand-teal);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: var(--space-3) var(--space-4);
+    border: 1.5px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    background: var(--color-surface-white);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-brand-teal);
+    box-shadow: 0 0 0 3px rgba(3, 71, 83, 0.12);
+  }
+
+  .form-input:focus-visible,
+  .form-select:focus-visible,
+  .form-textarea:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%237A8588' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    padding-right: var(--space-10);
+    cursor: pointer;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: var(--leading-relaxed);
+  }
+
+  .form-error {
+    padding: var(--space-3) var(--space-4);
+    background: #FEF2F2;
+    border: 1px solid var(--color-error);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    color: var(--color-error);
+  }
+
+  .form-submit-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--space-2);
+  }
+
+  .form-note {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    text-align: center;
+    margin: 0;
+  }
+
+  /* ===== DETAILS SIDEBAR ===== */
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+    position: sticky;
+    top: 96px;
+  }
+
+  .contact-info__heading,
+  .contact-process__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-5);
+  }
+
+  .contact-info__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .contact-info__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .contact-info__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  .contact-info__value {
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  a.contact-info__value {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+  }
+
+  a.contact-info__value:hover {
+    color: var(--color-brand-teal-hover);
+  }
+
+  /* ===== PROCESS STEPS ===== */
+  .contact-process__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .contact-process__step {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .contact-process__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-gold);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-brand-gold-tint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contact-process__content p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ===== AUDIT CTA ===== */
+  .contact-audit-cta {
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface-teal-tint);
+    border-left: 4px solid var(--color-brand-teal);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-audit-cta__text {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .contact-audit-link {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-teal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    transition: gap var(--transition-fast);
+  }
+
+  .contact-audit-link:hover {
+    gap: var(--space-3);
+  }
+
+  .contact-audit-link:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===== BUTTON ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+    border: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .btn--lg {
+    font-size: var(--text-base);
+    padding: var(--space-4) var(--space-8);
+  }
+
+  .btn--primary {
+    background: var(--color-brand-teal);
+    color: var(--color-text-inverse);
+    border-color: var(--color-brand-teal);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-brand-teal-hover);
+    border-color: var(--color-brand-teal-hover);
+  }
+
+  .btn--primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn--primary:focus-visible {
+    outline: 3px solid var(--color-brand-gold);
+    outline-offset: 2px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .contact-main__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+
+    .contact-details {
+      position: static;
+      order: -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .contact-header {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .form-row--two {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-main {
+      padding: var(--space-12) 0 var(--space-16);
+    }
+  }
+</style>

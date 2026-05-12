@@ -1,0 +1,193 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  id?: string;
+  schemaId?: string;
+}
+
+const { items, id, schemaId = 'faq-schema' } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<section id={id} class="faq" aria-labelledby="faq-heading">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <div class="container">
+    <h2 id="faq-heading" class="faq__heading">Frequently Asked Questions</h2>
+    <dl class="faq__list">
+      {items.map((item, i) => (
+        <div class="faq__item">
+          <dt>
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-question-${i}`}
+              type="button"
+            >
+              <h3 class="faq__question-text">{item.question}</h3>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+          </dt>
+          <dd
+            class="faq__answer"
+            id={`faq-answer-${i}`}
+            role="region"
+            aria-labelledby={`faq-question-${i}`}
+            hidden
+          >
+            <div class="faq__answer-inner">
+              <p>{item.answer}</p>
+            </div>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll<HTMLElement>('.faq__item');
+
+  faqItems.forEach((item) => {
+    const btn = item.querySelector<HTMLButtonElement>('.faq__question');
+    const answer = item.querySelector<HTMLElement>('.faq__answer');
+
+    if (!btn || !answer) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      faqItems.forEach((otherItem) => {
+        const otherBtn = otherItem.querySelector<HTMLButtonElement>('.faq__question');
+        const otherAnswer = otherItem.querySelector<HTMLElement>('.faq__answer');
+        if (otherBtn && otherAnswer) {
+          otherBtn.setAttribute('aria-expanded', 'false');
+          otherAnswer.hidden = true;
+          otherItem.classList.remove('faq__item--open');
+        }
+      });
+
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        answer.hidden = false;
+        item.classList.add('faq__item--open');
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    padding: var(--section-padding-desktop) 0;
+    background: var(--color-surface-cream);
+  }
+
+  .faq__heading {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-12);
+  }
+
+  .faq__list {
+    max-width: var(--prose-width);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .faq__item:first-child {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .faq__question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-6) 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .faq__question:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  .faq__question-text {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-primary);
+    line-height: var(--leading-snug);
+    margin: 0;
+  }
+
+  .faq__icon {
+    flex-shrink: 0;
+    color: var(--color-brand-teal);
+    transition: transform var(--transition-base);
+    display: flex;
+    align-items: center;
+  }
+
+  .faq__item--open .faq__icon {
+    transform: rotate(180deg);
+  }
+
+  .faq__item--open .faq__question-text {
+    color: var(--color-brand-teal);
+  }
+
+  .faq__answer {
+    overflow: hidden;
+  }
+
+  .faq__answer-inner {
+    padding: 0 0 var(--space-6) 0;
+  }
+
+  .faq__answer-inner p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: none;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .faq {
+      padding: var(--section-padding-mobile) 0;
+    }
+  }
+</style>

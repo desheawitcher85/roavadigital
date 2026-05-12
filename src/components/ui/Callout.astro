@@ -1,0 +1,71 @@
+---
+interface Props {
+  type: 'pro-tip' | 'reality-check' | 'insider-tip' | 'from-the-trenches' | 'insider-note';
+  label?: string;
+}
+
+const labelMap: Record<string, string> = {
+  'pro-tip': 'Pro Tip',
+  'reality-check': 'Reality Check',
+  'insider-tip': 'Insider Tip',
+  'from-the-trenches': 'From the Trenches',
+  'insider-note': 'Insider Note',
+};
+
+const { type, label } = Astro.props;
+const displayLabel = label ?? labelMap[type] ?? type;
+---
+
+<aside class:list={['callout', `callout--${type}`]} role="note">
+  <span class="callout__label">{displayLabel}</span>
+  <div class="callout__body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .callout {
+    border-left: 5px solid var(--color-brand-gold);
+    padding: var(--space-4) var(--space-6);
+    margin: var(--space-8) 0;
+    background: var(--color-brand-gold-tint);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .callout__label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-brand-gold-hover);
+    margin-bottom: var(--space-2);
+  }
+
+  .callout__body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-primary);
+  }
+
+  .callout__body :global(p) {
+    max-width: none;
+    margin: 0;
+  }
+
+  .callout__body :global(p + p) {
+    margin-top: var(--space-2);
+  }
+
+  /* Variant: reality-check gets a slightly different treatment */
+  .callout--reality-check {
+    border-left-color: var(--color-brand-teal);
+    background: var(--color-surface-teal-tint);
+  }
+
+  .callout--reality-check .callout__label {
+    color: var(--color-brand-teal);
+  }
+</style>
