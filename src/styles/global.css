@@ -1,24 +1,19 @@
 @import './tokens.css';
 @import './reset.css';
 
-/* Montserrat weights: 400 500 600 700 800 900 */
-@import '@fontsource/montserrat/400.css';
-@import '@fontsource/montserrat/500.css';
+/* Montserrat: display/heading use only — 600+ */
 @import '@fontsource/montserrat/600.css';
 @import '@fontsource/montserrat/700.css';
 @import '@fontsource/montserrat/800.css';
 @import '@fontsource/montserrat/900.css';
 
-/* Inter weights: 400 500 600 700 */
+/* Inter: body copy — 400 500 600 */
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
-@import '@fontsource/inter/700.css';
 
-/* JetBrains Mono weights: 400 500 700 */
+/* JetBrains Mono: data callouts — 400 only */
 @import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/jetbrains-mono/700.css';
 
 /* Base element styles */
 

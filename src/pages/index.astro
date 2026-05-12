@@ -8,6 +8,7 @@ import FAQ from '../components/sections/FAQ.astro';
 import Callout from '../components/ui/Callout.astro';
 import PricingCard from '../components/ui/PricingCard.astro';
 import Button from '../components/ui/Button.astro';
+import heroImage from '../assets/hero-neighborhood.jpg';
 
 const faqItems = [
   {
@@ -181,8 +182,8 @@ const personSchema = {
     primaryCtaWithArrow={true}
     secondaryCtaText="See how we work"
     secondaryCtaHref="#how-we-work"
-    imageSrc="/hero-neighborhood.jpg"
-    imageAlt="Aerial view of a residential neighborhood in the Roanoke region — the market Roava serves"
+    image={heroImage}
+    imageAlt="Aerial view of a residential neighborhood in the Roanoke region, the market Roava serves"
   />
 
   <!-- INTRO STATEMENT -->
