@@ -7,6 +7,9 @@ export default defineConfig({
   integrations: [sitemap()],
   output: 'hybrid',
   adapter: vercel(),
+  build: {
+    inlineStylesheets: 'always',
+  },
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',

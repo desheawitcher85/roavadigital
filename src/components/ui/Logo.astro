@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import logoFull from '../../assets/roava-logo.png';
+import logoInverse from '../../assets/roava-logo-inverse.png';
+
 interface Props {
   variant?: 'full' | 'mark' | 'inverse';
   width?: number;
@@ -9,69 +13,52 @@ interface Props {
 
 const {
   variant = 'full',
-  width,
   height = 40,
   linkTo,
   class: className,
 } = Astro.props;
 
-const src =
-  variant === 'inverse'
-    ? '/roava-logo-inverse.png'
-    : variant === 'mark'
-    ? '/favicon.svg'
-    : '/roava-logo.png';
-
 const altText = 'Roava Digital, Roanoke roofing marketing agency';
 const isImg = variant !== 'mark';
+const logoSrc = variant === 'inverse' ? logoInverse : logoFull;
+
+// Natural dimensions: 1087x290. Scale to 2x the rendered height for retina.
+const renderHeight = height;
+const renderWidth = Math.round((renderHeight * logoFull.width) / logoFull.height);
 ---
 
 {linkTo ? (
   <a href={linkTo} class:list={['logo-link', className]} aria-label="Roava Digital home">
     {isImg ? (
-      <img
-        src={src}
+      <Image
+        src={logoSrc}
         alt={altText}
-        height={height}
-        width={width}
+        width={renderWidth * 2}
+        height={renderHeight * 2}
+        format="webp"
+        quality={90}
         loading="eager"
-        decoding="async"
-        style={`height:${height}px; width: ${width ? width + 'px' : 'auto'};`}
+        style={`height:${renderHeight}px; width: auto;`}
       />
     ) : (
-      <img
-        src={src}
-        alt={altText}
-        height={height}
-        width={height}
-        loading="eager"
-        decoding="async"
-        style={`height:${height}px; width: ${height}px;`}
-      />
+      <img src="/favicon.svg" alt={altText} height={height} width={height} loading="eager" decoding="async" style={`height:${height}px; width: ${height}px;`} />
     )}
   </a>
 ) : (
   <span class:list={['logo-wrap', className]}>
     {isImg ? (
-      <img
-        src={src}
+      <Image
+        src={logoSrc}
         alt={altText}
-        height={height}
-        width={width}
+        width={renderWidth * 2}
+        height={renderHeight * 2}
+        format="webp"
+        quality={90}
         loading="eager"
-        decoding="async"
-        style={`height:${height}px; width: ${width ? width + 'px' : 'auto'};`}
+        style={`height:${renderHeight}px; width: auto;`}
       />
     ) : (
-      <img
-        src={src}
-        alt={altText}
-        height={height}
-        width={height}
-        loading="eager"
-        decoding="async"
-        style={`height:${height}px; width: ${height}px;`}
-      />
+      <img src="/favicon.svg" alt={altText} height={height} width={height} loading="eager" decoding="async" style={`height:${height}px; width: ${height}px;`} />
     )}
   </span>
 )}

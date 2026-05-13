@@ -2,6 +2,8 @@
 import MarketingLayout from '../../components/layout/MarketingLayout.astro';
 import CTASection from '../../components/sections/CTASection.astro';
 import Button from '../../components/ui/Button.astro';
+import { Image } from 'astro:assets';
+import nanoguardLogo from '../../assets/nanoguard-logo.png';
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -62,12 +64,14 @@ const caseStudySchema = {
       </nav>
       <div class="case-header__client">
         <a href="https://blueridgenanoguard.com" rel="noopener" aria-label="Blue Ridge NanoGuard website">
-          <img
-            src="/nanoguard-logo.png"
+          <Image
+            src={nanoguardLogo}
             alt="Blue Ridge NanoGuard"
             class="case-header__logo"
-            width="180"
-            height="54"
+            width={180}
+            height={54}
+            format="webp"
+            quality={85}
             loading="eager"
           />
         </a>
