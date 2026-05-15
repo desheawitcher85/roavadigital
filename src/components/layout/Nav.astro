@@ -44,6 +44,7 @@ const currentPath = Astro.url.pathname;
       </ul>
 
       <div class="nav__cta">
+        <a href="tel:+15402741788" class="nav__phone">(540) 274-1788</a>
         <Button href="/free-audit" variant="primary" size="sm">
           Get a free audit
         </Button>
@@ -51,6 +52,16 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 </header>
+
+<!-- Sticky call bar — mobile only -->
+<div class="sticky-call" aria-label="Call Roava Digital">
+  <a href="tel:+15402741788" class="sticky-call__link">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="currentColor"/>
+    </svg>
+    Call (540) 274-1788
+  </a>
+</div>
 
 <script>
   const btn = document.querySelector<HTMLButtonElement>('.nav__hamburger');
@@ -155,6 +166,30 @@ const currentPath = Astro.url.pathname;
   .nav__cta {
     margin-left: auto;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .nav__phone {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-brand-teal);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+  }
+
+  .nav__phone:hover {
+    color: var(--color-brand-teal-hover);
+  }
+
+  .nav__phone:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
   }
 
   .nav__hamburger {
@@ -181,6 +216,11 @@ const currentPath = Astro.url.pathname;
     background: var(--color-text-primary);
     border-radius: 2px;
     transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  /* Sticky call bar */
+  .sticky-call {
+    display: none;
   }
 
   @media (max-width: 768px) {
@@ -225,6 +265,43 @@ const currentPath = Astro.url.pathname;
 
     .nav__link:last-of-type {
       border-bottom: none;
+    }
+
+    /* Sticky call bar */
+    .sticky-call {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      background: var(--color-brand-teal);
+      border-top: 3px solid var(--color-brand-gold);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .sticky-call__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .sticky-call__link:active {
+      background: var(--color-brand-teal-active);
+    }
+
+    .sticky-call__link:focus-visible {
+      outline: 3px solid var(--color-brand-gold);
+      outline-offset: -3px;
     }
   }
 </style>
