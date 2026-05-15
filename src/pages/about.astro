@@ -1,6 +1,8 @@
 ---
 import MarketingLayout from '../components/layout/MarketingLayout.astro';
 import Button from '../components/ui/Button.astro';
+import { Image } from 'astro:assets';
+import nanoguardLogo from '../assets/nanoguard-logo.png';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -134,8 +136,8 @@ const breadcrumbSchema = {
           <span aria-hidden="true">→</span>
         </a>
       </div>
-      <div class="about-client__logo-wrap" aria-hidden="true">
-        <img src="/nanoguard-logo.png" alt="" class="about-client__logo" width="160" height="48" loading="lazy" />
+      <div class="about-client__logo-wrap">
+        <Image src={nanoguardLogo} alt="Blue Ridge NanoGuard, Roanoke exterior coating contractor" class="about-client__logo" width={160} height={48} format="webp" loading="lazy" />
       </div>
     </div>
   </section>

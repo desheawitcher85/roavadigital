@@ -9,6 +9,8 @@ import Callout from '../components/ui/Callout.astro';
 import PricingCard from '../components/ui/PricingCard.astro';
 import Button from '../components/ui/Button.astro';
 import heroImage from '../assets/hero-neighborhood.jpg';
+import nanoguardLogo from '../assets/nanoguard-logo.png';
+import { Image } from 'astro:assets';
 
 const faqItems = [
   {
@@ -195,7 +197,7 @@ const personSchema = {
   <!-- PROOF BAR -->
   <ProofBar label="Currently working with:" background="cream">
     <a href="https://blueridgenanoguard.com" class="client-logo-chip" rel="noopener" aria-label="Blue Ridge NanoGuard website">
-      <img src="/nanoguard-logo.png" alt="Blue Ridge NanoGuard" width="68" height="50" loading="lazy" decoding="async" />
+      <Image src={nanoguardLogo} alt="Blue Ridge NanoGuard, Roanoke exterior coating contractor" width={68} height={50} format="webp" loading="lazy" />
     </a>
   </ProofBar>
 
@@ -442,7 +444,7 @@ const personSchema = {
           </div>
           <img
             src="/nanoguard-site.png"
-            alt="The Blue Ridge NanoGuard website built by Roava Digital, showing the homepage hero and call-to-action"
+            alt="Blue Ridge NanoGuard website built by Roava Digital for a Roanoke, VA exterior coating contractor"
             class="browser-frame__shot"
             width="1200"
             height="891"
@@ -453,7 +455,7 @@ const personSchema = {
         <figure class="ba-figure">
           <img
             src="/nanoguard-before-after.jpg"
-            alt="Before and after of a residential roof restored with a GoNano nano-coating treatment, featured on the Blue Ridge NanoGuard website"
+            alt="Before and after: Roanoke residential roof restored with GoNano nano-coating treatment by Blue Ridge NanoGuard"
             class="ba-photo"
             width="1024"
             height="481"

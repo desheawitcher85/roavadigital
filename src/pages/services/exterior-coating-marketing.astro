@@ -2,6 +2,8 @@
 import MarketingLayout from '../../components/layout/MarketingLayout.astro';
 import CTASection from '../../components/sections/CTASection.astro';
 import Button from '../../components/ui/Button.astro';
+import { Image } from 'astro:assets';
+import nanoguardLogo from '../../assets/nanoguard-logo.png';
 
 const faqItems = [
   {
@@ -162,12 +164,13 @@ const breadcrumbSchema = {
         <a href="/case-studies/blue-ridge-nanoguard" class="client-link">See the case study in progress <span aria-hidden="true">→</span></a>
       </div>
       <div class="client-logo-wrap" aria-hidden="true">
-        <img
-          src="/nanoguard-logo.png"
-          alt=""
+        <Image
+          src={nanoguardLogo}
+          alt="Blue Ridge NanoGuard, Roanoke exterior coating contractor"
           class="client-logo"
-          width="160"
-          height="48"
+          width={160}
+          height={48}
+          format="webp"
           loading="lazy"
         />
       </div>

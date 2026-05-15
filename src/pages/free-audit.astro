@@ -1,5 +1,7 @@
 ---
 import MarketingLayout from '../components/layout/MarketingLayout.astro';
+import { Image } from 'astro:assets';
+import nanoguardLogo from '../assets/nanoguard-logo.png';
 
 const faqItems = [
   {
@@ -237,7 +239,7 @@ const breadcrumbSchema = {
 
         <div class="audit-proof">
           <div class="audit-proof__inner">
-            <img src="/nanoguard-logo.png" alt="Blue Ridge NanoGuard" class="audit-proof__logo" width="140" height="40" loading="lazy" />
+            <Image src={nanoguardLogo} alt="Blue Ridge NanoGuard, Roanoke exterior coating contractor" class="audit-proof__logo" width={140} height={40} format="webp" loading="lazy" />
             <p class="audit-proof__quote">"The audit showed us exactly where we were invisible. Three specific things we could fix without touching our budget."</p>
             <p class="audit-proof__attr">Blue Ridge NanoGuard, Roanoke</p>
           </div>
